@@ -36,7 +36,7 @@
     };
 
     crane-rs = {
-      url = "github:santoshxshrestha/crane-rs";
+      url = "github:vimlinuz/crane-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
