@@ -99,7 +99,11 @@
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowBroken = false;
+    allowUnfree = true;
+  };
+
   programs.bash.enable = true;
 
   services.xserver.enable = true;
