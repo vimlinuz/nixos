@@ -124,7 +124,7 @@
             {
               __raw = ''
                 function()
-                  return ''
+                  return ' '
                 end
               '';
             }
