@@ -72,6 +72,10 @@ go)
     echo "Running go project: $file with 'go'..."
     go run "."
     ;;
+lua)
+    echo "Running rua project: $file with 'lua'..."
+    lua "$file"
+    ;;
 *)
     echo "Damn it! got the wrong file in the buffer: .$file (extension: .$extension)"
     ;;
