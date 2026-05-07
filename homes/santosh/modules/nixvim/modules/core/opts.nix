@@ -140,7 +140,7 @@
         foldinner = " ";
 
         wbr = "─";
-        msgsep = "─";
+        # msgsep = "─";
         horiz = "─";
         horizup = "│";
         horizdown = "│";
