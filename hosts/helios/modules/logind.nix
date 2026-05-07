@@ -17,7 +17,7 @@
         # when multiple displays are connected
         lidSwitchDocked = "ignore";
         # when on external power
-        HandleLidSwithcExternalPower = "lock";
+        HandleLidSwitchExternalPower = "lock";
 
         # idle settings
         IdleAction = "ignore";
