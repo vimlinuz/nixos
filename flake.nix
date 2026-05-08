@@ -7,6 +7,7 @@
       nixpkgs,
       home-manager,
       nixvim,
+      mnw,
       ...
     }:
     let
@@ -24,7 +25,10 @@
             home-manager.nixosModules.home-manager
             {
               home-manager = {
-                sharedModules = [ nixvim.homeModules.nixvim ];
+                sharedModules = [
+                  nixvim.homeModules.nixvim
+                  mnw.homeManagerModules.mnw
+                ];
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.santosh = import ./homes/santosh/home.nix;
@@ -37,6 +41,12 @@
 
       };
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
+
+      package.${system} = {
+        neovimDev = self.nixosConfigurations.hostname.config.programs.mnw.finalPackage.devMode;
+        neovim = self.nixosConfigurations.hostname.config.programs.mnw.finalpackage;
+      };
+
     };
 
   inputs = {
@@ -95,6 +105,8 @@
         home-manager.follows = "home-manager";
       };
     };
+
+    mnw.url = "github:Gerg-L/mnw";
 
     black-metal-theme-neovim = {
       url = "github:metalelf0/black-metal-theme-neovim";
