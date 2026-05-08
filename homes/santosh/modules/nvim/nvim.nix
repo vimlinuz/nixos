@@ -19,6 +19,8 @@
         pkgs.vimPlugins.which-key-nvim
         pkgs.vimPlugins.vim-tpipeline
         pkgs.vimPlugins.lualine-nvim
+        pkgs.vimPlugins.surround-nvim
+        pkgs.vimPlugins.snacks-nvim
       ];
 
       dev.myconfig = {
