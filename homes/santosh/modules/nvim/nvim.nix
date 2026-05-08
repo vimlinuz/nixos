@@ -24,9 +24,9 @@
         pkgs.vimPlugins.nvim-notify
         pkgs.vimPlugins.markdown-preview-nvim
         pkgs.vimPlugins.undotree
-        pkgs.vimPlugins.fugitive
+        pkgs.vimPlugins.vim-fugitive
         pkgs.vimPlugins.gitsigns-nvim
-        pkgs.vimPlugins.rhubarb
+        pkgs.vimPlugins.vim-rhubarb
         pkgs.vimPlugins.auto-pairs
         pkgs.vimPlugins.todo-comments-nvim
         pkgs.vimPlugins.colorizer
