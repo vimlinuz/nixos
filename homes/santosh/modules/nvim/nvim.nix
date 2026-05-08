@@ -11,6 +11,8 @@
     plugins = {
       start = [
         pkgs.vimPlugins.oil-nvim
+        pkgs.vimPlugins.alpha-nvim
+        pkgs.vimPlugins.vague-nvim
       ];
 
       dev.myconfig = {

@@ -1,2 +1,18 @@
-require("oil").setup()
-vim.keymap.set("n", "<leader>o", "<CMD>Oil<CR>", { desc = "Open oil" })
+require("oil").setup({
+  default_file_explorer = true,
+  delete_to_trash = true,
+  keymaps = {
+    ["<C-h>"] = false,
+    ["<C-l>"] = false,
+    ["<C-p>"] = false,
+    ["<C-r>"] = "actions.refresh",
+    ["<C-v>"] = "actions.select_vsplit",
+  },
+  skip_confirm_for_simple_edits = true,
+  use_default_keymaps = true,
+  view_options = { natural_order = true, show_hidden = true },
+  watch_for_changes = true,
+  win_options = { wrap = true },
+})
+
+vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>", { desc = "Open oil" })
