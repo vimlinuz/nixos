@@ -23,6 +23,7 @@
         pkgs.vimPlugins.snacks-nvim
         pkgs.vimPlugins.nvim-notify
         pkgs.vimPlugins.markdown-preview-nvim
+        pkgs.vimPlugins.undotree
       ];
 
       dev.myconfig = {
