@@ -16,6 +16,7 @@
         pkgs.vimPlugins.comment-nvim
         pkgs.vimPlugins.harpoon2
         pkgs.vimPlugins.telescope-nvim
+        pkgs.vimPlugins.which-key-nvim
       ];
 
       dev.myconfig = {
