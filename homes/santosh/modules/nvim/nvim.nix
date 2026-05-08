@@ -26,6 +26,8 @@
         pkgs.vimPlugins.undotree
         pkgs.vimPlugins.fugitive
         pkgs.vimPlugins.gitsigns-nvim
+        pkgs.vimPlugins.rhubarb
+        pkgs.vimPlugins.auto-pairs
       ];
 
       dev.myconfig = {
