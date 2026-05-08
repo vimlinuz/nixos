@@ -25,6 +25,7 @@
         pkgs.vimPlugins.markdown-preview-nvim
         pkgs.vimPlugins.undotree
         pkgs.vimPlugins.fugitive
+        pkgs.vimPlugins.gitsigns-nvim
       ];
 
       dev.myconfig = {

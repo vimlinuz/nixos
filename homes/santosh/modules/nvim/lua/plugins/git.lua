@@ -85,3 +85,22 @@ do
     vim.keymap.set(map.mode, map.key, map.action, map.options)
   end
 end
+
+require("gitsigns").setup({
+  signs = {
+    add = { text = "│" },
+    change = { text = "│" },
+    changedelete = { text = "~" },
+    delete = { text = "_" },
+    topdelete = { text = "‾" },
+    untracked = { text = "┆" },
+  },
+  signs_staged = {
+    add = { text = "│" },
+    change = { text = "│" },
+    changedelete = { text = "~" },
+    delete = { text = "_" },
+    topdelete = { text = "‾" },
+    untracked = { text = "┆" },
+  },
+})
