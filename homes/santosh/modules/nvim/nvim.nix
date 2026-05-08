@@ -28,6 +28,8 @@
         pkgs.vimPlugins.gitsigns-nvim
         pkgs.vimPlugins.rhubarb
         pkgs.vimPlugins.auto-pairs
+        pkgs.vimPlugins.todo-comments-nvim
+        pkgs.vimPlugins.colorizer
       ];
 
       dev.myconfig = {
