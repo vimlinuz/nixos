@@ -17,6 +17,8 @@
         pkgs.vimPlugins.harpoon2
         pkgs.vimPlugins.telescope-nvim
         pkgs.vimPlugins.which-key-nvim
+        pkgs.vimPlugins.vim-tpipeline
+        pkgs.vimPlugins.lualine-nvim
       ];
 
       dev.myconfig = {
