@@ -21,6 +21,7 @@
         pkgs.vimPlugins.lualine-nvim
         pkgs.vimPlugins.surround-nvim
         pkgs.vimPlugins.snacks-nvim
+        pkgs.vimPlugins.nvim-notify
       ];
 
       dev.myconfig = {
