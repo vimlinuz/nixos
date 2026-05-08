@@ -30,6 +30,8 @@
         pkgs.vimPlugins.auto-pairs
         pkgs.vimPlugins.todo-comments-nvim
         pkgs.vimPlugins.colorizer
+        pkgs.vimPlugins.cord-nvim
+        pkgs.vimPlugins.nvim-web-devicons
       ];
 
       dev.myconfig = {
