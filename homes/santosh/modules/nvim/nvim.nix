@@ -22,6 +22,7 @@
         pkgs.vimPlugins.surround-nvim
         pkgs.vimPlugins.snacks-nvim
         pkgs.vimPlugins.nvim-notify
+        pkgs.vimPlugins.markdown-preview-nvim
       ];
 
       dev.myconfig = {
