@@ -14,12 +14,6 @@ in
 {
   programs.mnw = {
     enable = true;
-    aliases = [
-      "vi"
-      "nvim"
-      "neovim"
-    ];
-    appName = "neovim";
     desktopEntry = true;
     initLua = ''
       require("init")
