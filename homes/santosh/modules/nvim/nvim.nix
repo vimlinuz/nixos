@@ -57,6 +57,7 @@
 
         pkgs.vimPlugins.nvim-treesitter
         pkgs.vimPlugins.nvim-treesitter-context
+        pkgs.vimPlugins.telescope-fzf-native-nvim
       ];
 
       dev.myconfig = {
