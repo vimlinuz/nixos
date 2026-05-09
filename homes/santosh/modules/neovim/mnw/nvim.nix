@@ -4,7 +4,7 @@
 }:
 {
   programs.mnw = {
-    enable = false;
+    enable = true;
     initLua = ''
       require("init")
     '';

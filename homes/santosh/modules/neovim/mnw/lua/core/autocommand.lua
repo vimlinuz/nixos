@@ -1,5 +1,14 @@
--- Create autogroup for treesitter autocmds
-local augroup = vim.api.nvim_create_augroup("nixvim_treesitter", { clear = true })
+do
+  local __nixvim_autogroups = {
+    nixvim_binds_LspAttach = { clear = true },
+    nixvim_lsp_binds = { clear = false },
+    nixvim_lsp_on_attach = { clear = false },
+  }
+
+  for group_name, options in pairs(__nixvim_autogroups) do
+    vim.api.nvim_create_augroup(group_name, options)
+  end
+end
 
 -- Detect nvim-treesitter API
 local has_configs_module = pcall(require, "nvim-treesitter.configs")
@@ -83,12 +92,8 @@ local __telescopeExtensions = { "fzf", "harpoon" }
 for _, extension in ipairs(__telescopeExtensions) do
   require("telescope").load_extension(extension)
 end
+
 do
-  local __nixvim_groups = {
-    nixvim_lsp_on_attach = vim.api.nvim_create_augroup("nixvim_lsp_on_attach", { clear = true }),
-    nixvim_lsp_binds = vim.api.nvim_create_augroup("nixvim_lsp_binds", { clear = true }),
-    nixvim_binds_LspAttach = vim.api.nvim_create_augroup("nixvim_binds_LspAttach", { clear = true }),
-  }
   local __nixvim_autocommands = {
     {
       callback = function(event)
@@ -104,7 +109,7 @@ do
       end,
       desc = "Run LSP onAttach",
       event = "LspAttach",
-      group = __nixvim_groups.nixvim_lsp_on_attach,
+      group = "nixvim_lsp_on_attach",
     },
     {
       callback = function(args)
@@ -190,14 +195,14 @@ do
       end,
       desc = "Load LSP keymaps",
       event = "LspAttach",
-      group = __nixvim_groups.nixvim_lsp_binds,
+      group = "nixvim_lsp_binds",
     },
     {
       callback = function(args)
         do
           local __nixvim_binds = {}
 
-          for _, map in ipairs(__nixvim_binds) do
+          for i, map in ipairs(__nixvim_binds) do
             local options = vim.tbl_extend("keep", map.options or {}, { buffer = args.buf })
             vim.keymap.set(map.mode, map.key, map.action, options)
           end
@@ -205,7 +210,7 @@ do
       end,
       desc = "Load keymaps for LspAttach",
       event = "LspAttach",
-      group = __nixvim_groups.nixvim_binds_LspAttach,
+      group = "nixvim_binds_LspAttach",
     },
     { command = "lua vim.highlight.on_yank{timeout=50}", event = "TextYankPost", pattern = "*" },
     {
