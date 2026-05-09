@@ -8,6 +8,23 @@
     initLua = ''
       require("init")
     '';
+
+    extraBinPath = [
+      pkgs.bash-language-server
+      pkgs.clang-tools
+      pkgs.emmet-language-server
+      pkgs.glslls
+      pkgs.lua-language-server
+      pkgs.marksman
+      pkgs.nixd
+      pkgs.nushell
+      pkgs.tailwindcss-language-server
+      pkgs.typescript
+      pkgs.typescript-language-server
+      pkgs.vscode-langservers-extracted
+      pkgs.rust-analyzer
+    ];
+
     plugins = {
       start = [
         pkgs.vimPlugins.oil-nvim
@@ -34,6 +51,7 @@
         pkgs.vimPlugins.nvim-web-devicons
         pkgs.vimPlugins.lspsaga-nvim
         pkgs.vimPlugins.lspkind-nvim
+        pkgs.vimPlugins.nvim-lspconfig
         pkgs.vimPlugins.nvim-cmp
         pkgs.vimPlugins.luasnip
         pkgs.vimPlugins.lsp-format-nvim
@@ -61,9 +79,6 @@
         pkgs.vimPlugins.telescope-fzf-native-nvim
         pkgs.vimPlugins.vim-tmux-navigator
 
-        pkgs.bash-language-server
-        pkgs.lua-language-server
-        pkgs.nixd
       ];
 
       dev.myconfig = {
