@@ -32,6 +32,31 @@
         pkgs.vimPlugins.colorizer
         pkgs.vimPlugins.cord-nvim
         pkgs.vimPlugins.nvim-web-devicons
+        pkgs.vimPlugins.lspsaga-nvim
+        pkgs.vimPlugins.lspkind-nvim
+        pkgs.vimPlugins.nvim-cmp
+        pkgs.vimPlugins.luasnip
+        pkgs.vimPlugins.lsp-format-nvim
+        pkgs.vimPlugins.nvim-ufo
+        pkgs.vimPlugins.null-ls-nvim
+        pkgs.vimPlugins.cmp-git
+        pkgs.vimPlugins.black-metal-theme-neovim
+        pkgs.vimPlugins.indent-blankline-nvim
+        pkgs.vimPlugins.noice-nvim
+        pkgs.vimPlugins.catppuccin-nvim
+        pkgs.vimPlugins.copilot-cmp
+        pkgs.vimPlugins.copilot-lua
+        pkgs.vimPlugins.cmp-calc
+        pkgs.vimPlugins.cmp-buffer
+        pkgs.vimPlugins.cmp-cmdline
+        pkgs.vimPlugins.cmp-dotenv
+        pkgs.vimPlugins.cmp-nvim-lsp
+        pkgs.vimPlugins.cmp-async-path
+        pkgs.vimPlugins.cmp-conventionalcommits
+        pkgs.vimPlugins.cmp-emoji
+
+        pkgs.vimPlugins.nvim-treesitter
+        pkgs.vimPlugins.nvim-treesitter-context
       ];
 
       dev.myconfig = {
