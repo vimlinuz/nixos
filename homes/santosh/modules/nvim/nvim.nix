@@ -19,7 +19,7 @@
         pkgs.vimPlugins.which-key-nvim
         pkgs.vimPlugins.vim-tpipeline
         pkgs.vimPlugins.lualine-nvim
-        pkgs.vimPlugins.surround-nvim
+        pkgs.vimPlugins.nvim-surround
         pkgs.vimPlugins.snacks-nvim
         pkgs.vimPlugins.nvim-notify
         pkgs.vimPlugins.markdown-preview-nvim
@@ -27,9 +27,9 @@
         pkgs.vimPlugins.vim-fugitive
         pkgs.vimPlugins.gitsigns-nvim
         pkgs.vimPlugins.vim-rhubarb
-        pkgs.vimPlugins.auto-pairs
+        pkgs.vimPlugins.nvim-autopairs
         pkgs.vimPlugins.todo-comments-nvim
-        pkgs.vimPlugins.colorizer
+        pkgs.vimPlugins.nvim-colorizer-lua
         pkgs.vimPlugins.cord-nvim
         pkgs.vimPlugins.nvim-web-devicons
         pkgs.vimPlugins.lspsaga-nvim
@@ -44,8 +44,9 @@
         pkgs.vimPlugins.indent-blankline-nvim
         pkgs.vimPlugins.noice-nvim
         pkgs.vimPlugins.catppuccin-nvim
-        pkgs.vimPlugins.copilot-cmp
         pkgs.vimPlugins.copilot-lua
+
+        pkgs.vimPlugins.copilot-cmp
         pkgs.vimPlugins.cmp-calc
         pkgs.vimPlugins.cmp-buffer
         pkgs.vimPlugins.cmp-cmdline
@@ -58,9 +59,11 @@
         pkgs.vimPlugins.nvim-treesitter
         pkgs.vimPlugins.nvim-treesitter-context
         pkgs.vimPlugins.telescope-fzf-native-nvim
+        pkgs.vimPlugins.vim-tmux-navigator
+
         pkgs.bash-language-server
         pkgs.lua-language-server
-        pkgs.vimPlugins.vim-tmux-navigator
+        pkgs.nixd
       ];
 
       dev.myconfig = {
