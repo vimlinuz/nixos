@@ -44,7 +44,7 @@
 
       package.${system} = {
         neovimDev = self.nixosConfigurations.santosh.config.programs.mnw.finalPackage.devMode;
-        neovim = self.nixosConfigurations.santosh.config.programs.mnw.finalpackage;
+        neovim = self.nixosConfigurations.santosh.config.programs.mnw.finalPackage;
       };
 
     };
