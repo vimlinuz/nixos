@@ -38,7 +38,7 @@
         pkgs.vimPlugins.luasnip
         pkgs.vimPlugins.lsp-format-nvim
         pkgs.vimPlugins.nvim-ufo
-        pkgs.vimPlugins.null-ls-nvim
+        pkgs.vimPlugins.none-ls-nvim
         pkgs.vimPlugins.cmp-git
         pkgs.vimPlugins.black-metal-theme-neovim
         pkgs.vimPlugins.indent-blankline-nvim
