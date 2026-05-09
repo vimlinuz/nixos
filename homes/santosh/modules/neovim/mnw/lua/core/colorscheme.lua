@@ -52,6 +52,16 @@ require("kanagawa").setup({
   undercurl = true,
 })
 
+require("palette").setup({ bolds = false, italics = true, transparent_background = true })
+
+require("rose-pine").setup({
+  disable_background = true,
+  disable_float_background = true,
+  flavor = "main",
+  show_end_of_buffer = false,
+  styles = { bold = false, italic = false, transparency = true },
+})
+
 require("black-metal").setup({
   -- If true, docstrings will be highlighted like strings, otherwise they will be
   -- highlighted like comments. Note, behavior is dependent on the language server.

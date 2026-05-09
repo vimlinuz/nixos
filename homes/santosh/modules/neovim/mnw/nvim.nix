@@ -4,7 +4,7 @@
 }:
 {
   programs.mnw = {
-    enable = true;
+    enable = false;
     initLua = ''
       require("init")
     '';
@@ -30,7 +30,6 @@
       start = [
         pkgs.vimPlugins.oil-nvim
         pkgs.vimPlugins.alpha-nvim
-        pkgs.vimPlugins.vague-nvim
         pkgs.vimPlugins.comment-nvim
         pkgs.vimPlugins.harpoon2
         pkgs.vimPlugins.telescope-nvim
@@ -59,13 +58,23 @@
         pkgs.vimPlugins.nvim-ufo
         pkgs.vimPlugins.none-ls-nvim
         pkgs.vimPlugins.cmp-git
-        pkgs.vimPlugins.black-metal-theme-neovim
         pkgs.vimPlugins.indent-blankline-nvim
         pkgs.vimPlugins.noice-nvim
-        pkgs.vimPlugins.catppuccin-nvim
-        pkgs.vimPlugins.copilot-lua
 
+        pkgs.vimPlugins.catppuccin-nvim
+        pkgs.vimPlugins.tokyonight-nvim
+        pkgs.vimPlugins.kanagawa-nvim
+        pkgs.vimPlugins.palette-nvim
+        pkgs.vimPlugins.rose-pine
+        pkgs.vimPlugins.falcon
+        pkgs.vimPlugins.kanso-nvim
+        pkgs.vimPlugins.vague-nvim
+        pkgs.vimPlugins.black-metal-theme-neovim
+
+        pkgs.vimPlugins.CopilotChat-nvim
+        pkgs.vimPlugins.copilot-lua
         pkgs.vimPlugins.copilot-cmp
+
         pkgs.vimPlugins.cmp-calc
         pkgs.vimPlugins.cmp-buffer
         pkgs.vimPlugins.cmp-cmdline
