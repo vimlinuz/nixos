@@ -58,6 +58,9 @@
         pkgs.vimPlugins.nvim-treesitter
         pkgs.vimPlugins.nvim-treesitter-context
         pkgs.vimPlugins.telescope-fzf-native-nvim
+        pkgs.bash-language-server
+        pkgs.lua-language-server
+        pkgs.vimPlugins.vim-tmux-navigator
       ];
 
       dev.myconfig = {
