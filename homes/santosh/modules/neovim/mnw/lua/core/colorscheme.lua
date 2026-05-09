@@ -45,6 +45,13 @@ require("tokyonight").setup({
   transparent = true,
 })
 
+require("kanagawa").setup({
+  commonStyle = { bold = false, italic = true },
+  dimInactive = false,
+  transparent = false,
+  undercurl = true,
+})
+
 require("black-metal").setup({
   -- If true, docstrings will be highlighted like strings, otherwise they will be
   -- highlighted like comments. Note, behavior is dependent on the language server.
