@@ -23,6 +23,7 @@
       pkgs.typescript-language-server
       pkgs.vscode-langservers-extracted
       pkgs.rust-analyzer
+      pkgs.nixfmt
     ];
 
     plugins = {
