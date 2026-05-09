@@ -2,6 +2,15 @@
   pkgs,
   ...
 }:
+let
+  optimizedTreesitter = pkgs.symlinkJoin {
+    name = "nvim-treesitter-optimized";
+    paths = [
+      pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+      pkgs.vimPlugins.nvim-treesitter.withAllGrammars.dependencies
+    ];
+  };
+in
 {
   programs.mnw = {
     enable = true;
@@ -84,6 +93,7 @@
         pkgs.vimPlugins.cmp-conventionalcommits
         pkgs.vimPlugins.cmp-emoji
 
+        optimizedTreesitter
         pkgs.vimPlugins.nvim-treesitter
         pkgs.vimPlugins.nvim-treesitter-context
         pkgs.vimPlugins.nvim-treesitter-textobjects
