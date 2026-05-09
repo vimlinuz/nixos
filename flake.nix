@@ -42,9 +42,11 @@
       };
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
 
-      package.${system} = {
-        neovimDev = self.nixosConfigurations.santosh.config.programs.mnw.finalPackage.devMode;
-        neovim = self.nixosConfigurations.santosh.config.programs.mnw.finalPackage;
+      packages.${system} = {
+        neovimDev =
+          self.nixosConfigurations.helios.config.home-manager.users.santosh.programs.mnw.finalPackage.devMode;
+        neovim =
+          self.nixosConfigurations.helios.config.home-manager.users.santosh.programs.mnw.finalPackage;
       };
 
     };
