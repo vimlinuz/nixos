@@ -86,6 +86,7 @@
 
         pkgs.vimPlugins.nvim-treesitter
         pkgs.vimPlugins.nvim-treesitter-context
+        pkgs.vimPlugins.nvim-treesitter-textobjects
         pkgs.vimPlugins.telescope-fzf-native-nvim
         pkgs.vimPlugins.vim-tmux-navigator
 
