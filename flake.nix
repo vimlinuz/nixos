@@ -43,8 +43,8 @@
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
 
       package.${system} = {
-        neovimDev = self.nixosConfigurations.hostname.config.programs.mnw.finalPackage.devMode;
-        neovim = self.nixosConfigurations.hostname.config.programs.mnw.finalpackage;
+        neovimDev = self.nixosConfigurations.santosh.config.programs.mnw.finalPackage.devMode;
+        neovim = self.nixosConfigurations.santosh.config.programs.mnw.finalpackage;
       };
 
     };
