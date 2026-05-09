@@ -21,5 +21,5 @@ require("plugins.ufo")
 require("plugins.null-ls")
 require("plugins.noice")
 
-require("utils.term")
-require("utils.jutsu")
+-- require("utils.term")
+-- require("utils.jutsu")

@@ -80,7 +80,7 @@ else
 end
 
 local __telescopeExtensions = { "fzf", "harpoon" }
-for i, extension in ipairs(__telescopeExtensions) do
+for _, extension in ipairs(__telescopeExtensions) do
   require("telescope").load_extension(extension)
 end
 do
@@ -197,7 +197,7 @@ do
         do
           local __nixvim_binds = {}
 
-          for i, map in ipairs(__nixvim_binds) do
+          for _, map in ipairs(__nixvim_binds) do
             local options = vim.tbl_extend("keep", map.options or {}, { buffer = args.buf })
             vim.keymap.set(map.mode, map.key, map.action, options)
           end
