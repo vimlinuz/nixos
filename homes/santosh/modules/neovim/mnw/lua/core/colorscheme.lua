@@ -98,18 +98,6 @@ require("black-metal").setup({
     },
   },
 })
--- vim.cmd('colors-- Set up autogroups {{
-do
-  local __nixvim_autogroups = {
-    nixvim_binds_LspAttach = { clear = true },
-    nixvim_lsp_binds = { clear = false },
-    nixvim_lsp_on_attach = { clear = false },
-  }
-
-  for group_name, options in pairs(__nixvim_autogroups) do
-    vim.api.nvim_create_augroup(group_name, options)
-  end
-end
 
 require("catppuccin").setup({
   color_overrides = { all = { base = "#191d33" } },
@@ -122,8 +110,6 @@ require("catppuccin").setup({
   transparent_background = true,
 })
 
-vim.cmd("colorscheme catppuccin")
-vim.cmd([[let $BAT_THEME = 'catppuccin'
-
-colorscheme catppuccin
+vim.cmd([[let $BAT_THEME = 'vague'
+colorscheme vague
 ]])

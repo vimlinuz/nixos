@@ -1,15 +1,14 @@
 do
-  local __nixvim_autogroups = {
-    nixvim_binds_LspAttach = { clear = true },
-    nixvim_lsp_binds = { clear = false },
-    nixvim_lsp_on_attach = { clear = false },
+  local __nvim_autogroups = {
+    nvim_binds_LspAttach = { clear = true },
+    nvim_lsp_binds = { clear = false },
+    nvim_lsp_on_attach = { clear = false },
   }
 
-  for group_name, options in pairs(__nixvim_autogroups) do
+  for group_name, options in pairs(__nvim_autogroups) do
     vim.api.nvim_create_augroup(group_name, options)
   end
 end
-
 -- Detect nvim-treesitter API
 local has_configs_module = pcall(require, "nvim-treesitter.configs")
 
@@ -94,7 +93,7 @@ for _, extension in ipairs(__telescopeExtensions) do
 end
 
 do
-  local __nixvim_autocommands = {
+  local _nvim_autocommands = {
     {
       callback = function(event)
         do
@@ -109,7 +108,7 @@ do
       end,
       desc = "Run LSP onAttach",
       event = "LspAttach",
-      group = "nixvim_lsp_on_attach",
+      group = "nvim_lsp_on_attach",
     },
     {
       callback = function(args)
@@ -195,14 +194,14 @@ do
       end,
       desc = "Load LSP keymaps",
       event = "LspAttach",
-      group = "nixvim_lsp_binds",
+      group = "nvim_lsp_binds",
     },
     {
       callback = function(args)
         do
-          local __nixvim_binds = {}
+          local __nvim_binds = {}
 
-          for i, map in ipairs(__nixvim_binds) do
+          for _, map in ipairs(__nvim_binds) do
             local options = vim.tbl_extend("keep", map.options or {}, { buffer = args.buf })
             vim.keymap.set(map.mode, map.key, map.action, options)
           end
@@ -210,7 +209,7 @@ do
       end,
       desc = "Load keymaps for LspAttach",
       event = "LspAttach",
-      group = "nixvim_binds_LspAttach",
+      group = "nvim_binds_LspAttach",
     },
     { command = "lua vim.hl.on_yank{timeout=50}", event = "TextYankPost", pattern = "*" },
     {
@@ -225,7 +224,7 @@ do
     },
   }
 
-  for _, autocmd in ipairs(__nixvim_autocommands) do
+  for _, autocmd in ipairs(_nvim_autocommands) do
     vim.api.nvim_create_autocmd(autocmd.event, {
       group = autocmd.group,
       pattern = autocmd.pattern,
