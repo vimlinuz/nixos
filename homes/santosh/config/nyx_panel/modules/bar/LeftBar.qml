@@ -21,8 +21,10 @@ PanelWindow {
         id: background
         anchors.fill: parent
 
-        color: "#000000"
-        opacity: 0.80
+        color: "#bb000000"
+
+        // color: "#000000"
+        // opacity: 0.80
         radius: 8
 
         border.width: 1
