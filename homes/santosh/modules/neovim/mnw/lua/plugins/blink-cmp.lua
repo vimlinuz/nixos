@@ -62,8 +62,8 @@ blink.setup({
     },
     documentation = {
       auto_show = true,
-      scrollbar = false,
       window = {
+        scrollbar = false,
         border = "single",
         winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:CursorLine,Search:None",
       },
