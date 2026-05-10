@@ -8,22 +8,22 @@ rec {
   colorschemes.enable = true;
   indent-blankline.enable = true;
   lualine.enable = true;
-  notify.enable = false;
+  notify.enable = true;
   snacks.enable = true;
   vim-tpipeline.enable = true;
 
   # ╭───────────────────────────────────────────────╮
   # │ AI and Automation Plugins                     │
   # ╰───────────────────────────────────────────────╯
-  avante.enable = false;
-  copilot-lua.enable = false;
+  avante.enable = true;
+  copilot-lua.enable = true;
   copilot-chat.enable = copilot-lua.enable;
-  justu.enable = false;
+  justu.enable = true;
 
   # ╭───────────────────────────────────────────────╮
   # │ Git and Navigation Plugins                    │
   # ╰───────────────────────────────────────────────╯
-  cord.enable = false;
+  cord.enable = true;
   gitsigns.enable = true;
   harpoon.enable = true;
 
@@ -41,7 +41,7 @@ rec {
   comment.enable = true;
   misc.enable = true;
   formatter.enable = true;
-  noice.enable = false;
+  noice.enable = true;
   oil.enable = true;
   surround.enable = true;
   telescope.enable = true;
@@ -53,7 +53,7 @@ rec {
 
   programs.nixvim = {
     nixpkgs.useGlobalPackages = true;
-    enable = true;
+    enable = false;
     editorconfig = {
       enable = true;
     };

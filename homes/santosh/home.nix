@@ -37,10 +37,11 @@
     # ╭───────────────────────────────────────────────╮
     # │ Code editors                                  │
     # ╰───────────────────────────────────────────────╯
-    ./modules/nixvim/nixvim.nix
+    ./modules/neovim/mnw/nvim.nix
     ./modules/vim.nix
     ./modules/zed.nix
     ./modules/helix.nix
+    ./modules/neovim/nixvim/nvim.nix
 
     # ╭───────────────────────────────────────────────╮
     # │ Shell                                         │

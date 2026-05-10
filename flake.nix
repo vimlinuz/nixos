@@ -1,6 +1,56 @@
 {
   description = "flake for nixos configuration of vimlinuz";
 
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      home-manager,
+      nixvim,
+      mnw,
+      ...
+    }:
+    let
+      system = "x86_64-linux";
+      lib = nixpkgs.lib;
+    in
+    {
+      nixosConfigurations = {
+
+        santosh = lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./hosts/helios/configuration.nix
+            ./overlay.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                sharedModules = [
+                  nixvim.homeModules.nixvim
+                  mnw.homeManagerModules.mnw
+                ];
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.santosh = import ./homes/santosh/home.nix;
+                extraSpecialArgs = { inherit inputs; };
+              };
+            }
+          ];
+          specialArgs = { inherit inputs; };
+        };
+
+      };
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
+
+      packages.${system} = {
+        neovimDev =
+          self.nixosConfigurations.helios.config.home-manager.users.santosh.programs.mnw.finalPackage.devMode;
+        neovim =
+          self.nixosConfigurations.helios.config.home-manager.users.santosh.programs.mnw.finalPackage;
+      };
+
+    };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -58,47 +108,11 @@
       };
     };
 
+    mnw.url = "github:Gerg-L/mnw";
+
     black-metal-theme-neovim = {
       url = "github:metalelf0/black-metal-theme-neovim";
       flake = false;
     };
   };
-
-  outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      home-manager,
-      nixvim,
-      ...
-    }:
-    let
-      system = "x86_64-linux";
-      lib = nixpkgs.lib;
-    in
-    {
-      nixosConfigurations = {
-
-        santosh = lib.nixosSystem {
-          inherit system;
-          modules = [
-            ./hosts/helios/configuration.nix
-            ./overlay.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                sharedModules = [ nixvim.homeModules.nixvim ];
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.santosh = import ./homes/santosh/home.nix;
-                extraSpecialArgs = { inherit inputs; };
-              };
-            }
-          ];
-          specialArgs = { inherit inputs; };
-        };
-
-      };
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
-    };
 }

@@ -163,6 +163,21 @@
         "type": "github"
       }
     },
+    "mnw": {
+      "locked": {
+        "lastModified": 1778111118,
+        "narHash": "sha256-WJPAjh5dGgv3U2CNRESYP+5q3g1kx8EWINKDI2RAhec=",
+        "owner": "Gerg-L",
+        "repo": "mnw",
+        "rev": "0902144a302ff3b43fca93cd62575a626b3e5226",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Gerg-L",
+        "repo": "mnw",
+        "type": "github"
+      }
+    },
     "naersk": {
       "inputs": {
         "fenix": "fenix",
@@ -374,6 +389,7 @@
         "crane-rs": "crane-rs",
         "home-manager": "home-manager",
         "mdwatch": "mdwatch",
+        "mnw": "mnw",
         "nh": "nh",
         "nixpkgs": "nixpkgs_3",
         "nixvim": "nixvim",
