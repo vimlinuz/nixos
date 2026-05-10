@@ -20,7 +20,7 @@ require("plugins.blink-cmp")
 require("plugins.lsp")
 require("plugins.ufo")
 require("plugins.null-ls")
-require("plugins.noice")
+-- require("plugins.noice")
 
 -- require("utils.term")
 -- require("utils.jutsu")
