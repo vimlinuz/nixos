@@ -1,5 +1,10 @@
 require("telescope").setup({
-  defaults = { layout_config = { prompt_position = "top" }, sorting_strategy = "ascending" },
+  defaults = {
+    layout_config = { prompt_position = "top" },
+    sorting_strategy = "ascending",
+    prompt_prefix = " > ",
+    selection_caret = " > ",
+  },
   extensions = {
     fzf = { case_mode = "smart_case", fuzzy = true, override_file_sorter = true, override_generic_sorter = true },
   },
