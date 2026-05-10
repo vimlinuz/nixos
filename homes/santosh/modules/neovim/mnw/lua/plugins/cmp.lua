@@ -61,3 +61,5 @@ cmp.setup.cmdline(
   ":",
   { mapping = cmp.mapping.preset.cmdline(), sources = { { name = "async_path" }, { name = "cmdline" } } }
 )
+
+require("cmp_git").setup({})

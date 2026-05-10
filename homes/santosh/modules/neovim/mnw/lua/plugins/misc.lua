@@ -6,7 +6,6 @@ require("nvim-surround").setup({})
 require("todo-comments").setup({ signs = true })
 require("colorizer").setup({})
 require("cord").setup({ display = { show_time = true } })
-require("cmp_git").setup({})
 
 require("ibl").setup({
   indent = { char = "│" },

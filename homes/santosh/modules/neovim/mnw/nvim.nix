@@ -67,7 +67,6 @@ in
         pkgs.vimPlugins.lsp-format-nvim
         pkgs.vimPlugins.nvim-ufo
         pkgs.vimPlugins.none-ls-nvim
-        pkgs.vimPlugins.cmp-git
         pkgs.vimPlugins.indent-blankline-nvim
         pkgs.vimPlugins.noice-nvim
         pkgs.vimPlugins.oil-nvim
@@ -86,14 +85,17 @@ in
         pkgs.vimPlugins.copilot-lua
         pkgs.vimPlugins.copilot-cmp
 
-        pkgs.vimPlugins.cmp-calc
-        pkgs.vimPlugins.cmp-buffer
-        pkgs.vimPlugins.cmp-cmdline
-        pkgs.vimPlugins.cmp-dotenv
-        pkgs.vimPlugins.cmp-nvim-lsp
-        pkgs.vimPlugins.cmp-async-path
-        pkgs.vimPlugins.cmp-conventionalcommits
-        pkgs.vimPlugins.cmp-emoji
+        pkgs.vimPlugins.blink-cmp
+
+        # pkgs.vimPlugins.cmp-calc
+        # pkgs.vimPlugins.cmp-buffer
+        # pkgs.vimPlugins.cmp-cmdline
+        # pkgs.vimPlugins.cmp-dotenv
+        # pkgs.vimPlugins.cmp-nvim-lsp
+        # pkgs.vimPlugins.cmp-async-path
+        # pkgs.vimPlugins.cmp-conventionalcommits
+        # pkgs.vimPlugins.cmp-emoji
+        # pkgs.vimPlugins.cmp-git
 
         optimizedTreesitter
         pkgs.vimPlugins.nvim-treesitter

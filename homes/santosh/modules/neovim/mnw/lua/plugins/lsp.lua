@@ -6,7 +6,6 @@ require("lspkind").init({
   symbol_map = { Copilot = "" },
 })
 
-require("luasnip").config.setup({})
 require("lsp-format").setup({})
 
 do
@@ -14,13 +13,16 @@ do
   local __lspCapabilities = function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-    capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+    -- capabilities for nvmi cmp
+    -- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
     -- Capabilities configuration for nvim-ufo
     capabilities.textDocument.foldingRange = {
       dynamicRegistration = false,
       lineFoldingOnly = true,
     }
+
+    capabilities = require("blink-cmp").get_lsp_capabilities(capabilities)
 
     return capabilities
   end
