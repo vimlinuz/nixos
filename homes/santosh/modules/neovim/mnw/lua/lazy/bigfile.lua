@@ -1,6 +1,6 @@
 return {
   {
-    "bigfile",
+    "bigfile.nvim",
     event = "DeferredUIEnter",
     after = function()
       require("bigfile").setup({

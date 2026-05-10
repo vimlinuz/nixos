@@ -48,7 +48,7 @@ in
         pkgs.vimPlugins.vim-tpipeline
         pkgs.vimPlugins.lualine-nvim
         pkgs.vimPlugins.nvim-surround
-        pkgs.vimPlugins.nvim-notify
+        # pkgs.vimPlugins.nvim-notify
         pkgs.vimPlugins.markdown-preview-nvim
         pkgs.vimPlugins.undotree
         pkgs.vimPlugins.vim-fugitive
