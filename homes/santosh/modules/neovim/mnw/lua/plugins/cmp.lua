@@ -63,3 +63,11 @@ cmp.setup.cmdline(
 )
 
 require("cmp_git").setup({})
+
+require("lspkind").init({
+  cmp = { max_width = 10 },
+  ellipsis_char = "...",
+  maxwidth = 50,
+  mode = "symbol_text",
+  symbol_map = { Copilot = "" },
+})
