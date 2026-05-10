@@ -1,5 +1,5 @@
 do
-  local nixvim_options = {
+  local nvim_options = {
     autoindent = true,
     backspace = "indent,eol,start",
     backup = false,
@@ -64,7 +64,7 @@ do
     writebackup = false,
   }
 
-  for k, v in pairs(nixvim_options) do
+  for k, v in pairs(nvim_options) do
     vim.opt[k] = v
   end
 end

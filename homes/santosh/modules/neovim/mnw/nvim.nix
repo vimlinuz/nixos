@@ -48,27 +48,23 @@ in
         pkgs.vimPlugins.vim-tpipeline
         pkgs.vimPlugins.lualine-nvim
         pkgs.vimPlugins.nvim-surround
-        # pkgs.vimPlugins.nvim-notify
         pkgs.vimPlugins.markdown-preview-nvim
         pkgs.vimPlugins.undotree
-        pkgs.vimPlugins.vim-fugitive
-        pkgs.vimPlugins.gitsigns-nvim
-        pkgs.vimPlugins.vim-rhubarb
         pkgs.vimPlugins.nvim-autopairs
         pkgs.vimPlugins.todo-comments-nvim
         pkgs.vimPlugins.nvim-colorizer-lua
         pkgs.vimPlugins.cord-nvim
         pkgs.vimPlugins.nvim-web-devicons
-        pkgs.vimPlugins.lspsaga-nvim
-        pkgs.vimPlugins.lspkind-nvim
-        pkgs.vimPlugins.nvim-lspconfig
-        pkgs.vimPlugins.nvim-cmp
-        pkgs.vimPlugins.luasnip
-        pkgs.vimPlugins.lsp-format-nvim
         pkgs.vimPlugins.nvim-ufo
-        pkgs.vimPlugins.none-ls-nvim
+
+        # pkgs.vimPlugins.nvim-notify
+        # pkgs.vimPlugins.noice-nvim
+
+        pkgs.vimPlugins.vim-fugitive
+        pkgs.vimPlugins.gitsigns-nvim
+        pkgs.vimPlugins.vim-rhubarb
+
         pkgs.vimPlugins.indent-blankline-nvim
-        pkgs.vimPlugins.noice-nvim
         pkgs.vimPlugins.oil-nvim
 
         pkgs.vimPlugins.catppuccin-nvim
@@ -85,8 +81,17 @@ in
         pkgs.vimPlugins.copilot-lua
         pkgs.vimPlugins.copilot-cmp
 
+        pkgs.vimPlugins.lspsaga-nvim
+        pkgs.vimPlugins.lspkind-nvim
+        pkgs.vimPlugins.nvim-lspconfig
+        pkgs.vimPlugins.none-ls-nvim
+
+        pkgs.vimPlugins.luasnip
+        pkgs.vimPlugins.lsp-format-nvim
+
         pkgs.vimPlugins.blink-cmp
 
+        # pkgs.vimPlugins.nvim-cmp
         # pkgs.vimPlugins.cmp-calc
         # pkgs.vimPlugins.cmp-buffer
         # pkgs.vimPlugins.cmp-cmdline

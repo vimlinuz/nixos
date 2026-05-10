@@ -1,25 +1,8 @@
-do
-  local nixvim_globals = { mapleader = " ", maplocalleader = " " }
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-  for k, v in pairs(nixvim_globals) do
-    vim.g[k] = v
-  end
-end
-
-do
-  local misc_maps = {
-    {
-      action = "<cmd>UndotreeToggle<CR>",
-      key = "<leader>u",
-      mode = { "n" },
-      options = { desc = "Toggle undo tree" },
-    },
-  }
-
-  for k, v in pairs(misc_maps) do
-    vim.g[k] = v
-  end
-end
+-- UndotreeToggle keymap
+vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Toggle undo tree" })
 
 do
   local junk_maps = {
