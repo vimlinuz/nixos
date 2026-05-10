@@ -21,8 +21,6 @@ do
   end
 end
 
-vim.keymap.set("n", "<leader>o", "<CMD>Oil<CR>", { desc = "Open oil" })
-
 do
   local junk_maps = {
     { action = "<cmd>cnext<CR>zz", key = "]q", mode = { "n" }, options = { desc = "Go to next quickfix item" } },

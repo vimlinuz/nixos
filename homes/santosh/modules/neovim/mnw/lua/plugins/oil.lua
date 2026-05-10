@@ -1,6 +1,12 @@
 require("oil").setup({
   default_file_explorer = true,
   delete_to_trash = true,
+  columns = {
+    "icon",
+    "permissions",
+    "size",
+    "mtime",
+  },
   keymaps = {
     ["<C-h>"] = false,
     ["<C-l>"] = false,

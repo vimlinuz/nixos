@@ -17,6 +17,7 @@ in
     desktopEntry = true;
     initLua = ''
       require("init")
+      require("lz.n").load('lazy')
     '';
 
     extraBinPath = [
@@ -38,11 +39,10 @@ in
 
     plugins = {
       start = [
-        pkgs.vimPlugins.oil-nvim
+        pkgs.vimPlugins.lz-n
         pkgs.vimPlugins.alpha-nvim
         pkgs.vimPlugins.comment-nvim
         pkgs.vimPlugins.harpoon2
-        pkgs.vimPlugins.telescope-nvim
         pkgs.vimPlugins.which-key-nvim
         pkgs.vimPlugins.vim-tpipeline
         pkgs.vimPlugins.lualine-nvim
@@ -70,6 +70,7 @@ in
         pkgs.vimPlugins.cmp-git
         pkgs.vimPlugins.indent-blankline-nvim
         pkgs.vimPlugins.noice-nvim
+        pkgs.vimPlugins.oil-nvim
 
         pkgs.vimPlugins.catppuccin-nvim
         pkgs.vimPlugins.tokyonight-nvim
@@ -98,9 +99,14 @@ in
         pkgs.vimPlugins.nvim-treesitter
         pkgs.vimPlugins.nvim-treesitter-context
         pkgs.vimPlugins.nvim-treesitter-textobjects
-        pkgs.vimPlugins.telescope-fzf-native-nvim
-        pkgs.vimPlugins.vim-tmux-navigator
 
+        pkgs.vimPlugins.vim-tmux-navigator
+        pkgs.vimPlugins.telescope-nvim
+        pkgs.vimPlugins.telescope-fzf-native-nvim
+      ];
+
+      # Anything that you're loading lazily should be put here
+      opt = [
       ];
 
       dev.myconfig = {
