@@ -212,7 +212,7 @@ do
       event = "LspAttach",
       group = "nixvim_binds_LspAttach",
     },
-    { command = "lua vim.highlight.on_yank{timeout=50}", event = "TextYankPost", pattern = "*" },
+    { command = "lua vim.hl.on_yank{timeout=50}", event = "TextYankPost", pattern = "*" },
     {
       command = "lua\n        if vim.env.TMUX then\n          vim.opt.laststatus = 0\n        end\n          ",
       event = { "WinResized" },
