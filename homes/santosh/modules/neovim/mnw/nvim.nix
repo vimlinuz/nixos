@@ -35,6 +35,7 @@ in
       pkgs.vscode-langservers-extracted
       pkgs.rust-analyzer
       pkgs.nixfmt
+      pkgs.stylua
     ];
 
     plugins = {
