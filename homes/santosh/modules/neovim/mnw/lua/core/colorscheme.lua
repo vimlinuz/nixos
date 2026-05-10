@@ -37,7 +37,6 @@ require("vague").setup({
   -- },
 })
 -- vim.cmd('colorscheme dark-funeral')
-vim.cmd("colorscheme vague")
 
 require("tokyonight").setup({
   style = "night",
@@ -123,6 +122,7 @@ require("catppuccin").setup({
   transparent_background = true,
 })
 
+vim.cmd("colorscheme catppuccin")
 vim.cmd([[let $BAT_THEME = 'catppuccin'
 
 colorscheme catppuccin
