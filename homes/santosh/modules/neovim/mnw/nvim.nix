@@ -66,7 +66,7 @@ in
         pkgs.vimPlugins.vim-fugitive
         pkgs.vimPlugins.gitsigns-nvim
         pkgs.vimPlugins.vim-rhubarb
-        pkgs.vimPlugins.neoscroll-nvim
+        # pkgs.vimPlugins.neoscroll-nvim
 
         pkgs.vimPlugins.indent-blankline-nvim
         pkgs.vimPlugins.oil-nvim
