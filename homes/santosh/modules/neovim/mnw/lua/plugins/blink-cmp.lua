@@ -1,5 +1,3 @@
--- Adapted from NobbZ's Neovim(NobbZvim) config:
--- https://github.com/NobbZ/nobbz-vim/blob/main/plugins/nobbz/lua/nobbz/plugins/blink.lua
 local blink = require("blink-cmp")
 local luasnip = require("luasnip")
 
