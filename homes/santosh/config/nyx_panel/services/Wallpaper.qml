@@ -23,8 +23,7 @@ Item {
     property int selectedIndex: 0
 
     // Hardcoded wallpaper directory from the nix store flake input.
-    property string wallpaperDir: "/nix/store/5171ic8fb6x33vczirzdabribbf7prqv-source/wallpapers"
-
+    property string wallpaperDir: "/nix/store/0dwgg5m249gdbr39q9x24876y2xp6dfi-source/wallpapers"
     function toggle(): void {
         if (panelVisible) {
             hide();
