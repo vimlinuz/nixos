@@ -17,7 +17,9 @@ in
     desktopEntry = true;
     initLua = ''
       require("init")
-      require("lz.n").load('lazy')
+      local lzn = require("lz.n")
+      lzn.load('lazy')
+      lzn.load('lazy.colorscheme')
     '';
 
     extraBinPath = [
