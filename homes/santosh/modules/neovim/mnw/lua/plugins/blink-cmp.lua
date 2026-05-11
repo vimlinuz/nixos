@@ -34,7 +34,125 @@ blink.setup({
 
   cmdline = { enabled = true },
   sources = {
-    default = { "lsp", "path", "snippets", "buffer", "omni" },
+
+    default = {
+      "lsp",
+      "path",
+      "snippets",
+      "copilot",
+      "git",
+      "conventional_commits",
+      "spell",
+      "buffer",
+      -- "omni",
+      "emoji",
+      "env",
+      "dictionary",
+      dictionary = {
+        module = "blink-cmp-dictionary",
+        name = "Dict",
+        min_keyword_length = 1,
+        opts = {
+          -- Optional: explicitly force fallback mode
+          -- (By default, fallback is used when fzf is not found)
+          force_fallback = true,
+        },
+      },
+    },
+
+    providers = {
+      conventional_commits = {
+        name = "Conventional Commits",
+        module = "blink-cmp-conventional-commits",
+        enabled = function()
+          return vim.bo.filetype == "gitcommit"
+        end,
+        ---@module 'blink-cmp-conventional-commits'
+        ---@type blink-cmp-conventional-commits.Options
+        opts = {
+          ---[for custom commits](https://github.com/disrupted/blink-cmp-conventional-commits#using-only-custom-types)
+          scopes = false,
+        },
+      },
+
+      git = {
+        module = "blink-cmp-git",
+        name = "Git",
+        -- only enable this source when filetype is gitcommit, markdown, or 'octo'
+        enabled = function()
+          return vim.tbl_contains({ "octo", "gitcommit", "markdown" }, vim.bo.filetype)
+        end,
+      },
+
+      spell = {
+        name = "Spell",
+        module = "blink-cmp-spell",
+        opts = {
+          -- EXAMPLE: Only enable source in `@spell` captures, and disable it
+          -- in `@nospell` captures.
+          enable_in_context = function()
+            local curpos = vim.api.nvim_win_get_cursor(0)
+            local captures = vim.treesitter.get_captures_at_pos(0, curpos[1] - 1, curpos[2] - 1)
+            local in_spell_capture = false
+            for _, cap in ipairs(captures) do
+              if cap.capture == "spell" then
+                in_spell_capture = true
+              elseif cap.capture == "nospell" then
+                return false
+              end
+            end
+            return in_spell_capture
+          end,
+        },
+      },
+      emoji = {
+        module = "blink-emoji",
+        name = "Emoji",
+        score_offset = 15, -- Tune by preference
+        opts = {
+          insert = true, -- Insert emoji (default) or complete its name
+          ---@type string|table|fun():table
+          trigger = function()
+            return { ":" }
+          end,
+        },
+        should_show_items = function()
+          return vim.tbl_contains(
+            -- Enable emoji completion only for git commits and markdown.
+            -- By default, enabled for all file-types.
+            { "gitcommit", "markdown" },
+            vim.o.filetype
+          )
+        end,
+      },
+
+      copilot = {
+        name = "copilot",
+        module = "blink-cmp-copilot",
+        score_offset = 100,
+        async = true,
+      },
+      env = {
+        name = "Env",
+        module = "blink-cmp-env",
+        --- @type blink-cmp-env.Options
+        opts = {
+          item_kind = require("blink.cmp.types").CompletionItemKind.Variable,
+          show_braces = false,
+          show_documentation_window = true,
+        },
+      },
+      dictionary = {
+        module = "blink-cmp-dictionary",
+        name = "Dict",
+        min_keyword_length = 1,
+        opts = {
+          -- Optional: explicitly force fallback mode
+          -- (By default, fallback is used when fzf is not found)
+          force_fallback = true,
+        },
+      },
+    },
   },
   signature = {
     enabled = true,

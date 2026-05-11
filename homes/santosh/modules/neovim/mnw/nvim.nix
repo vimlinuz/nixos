@@ -90,6 +90,13 @@ in
         pkgs.vimPlugins.lsp-format-nvim
 
         pkgs.vimPlugins.blink-cmp
+        pkgs.vimPlugins.blink-cmp-git
+        pkgs.vimPlugins.blink-cmp-spell
+        pkgs.vimPlugins.blink-emoji-nvim
+        pkgs.vimPlugins.blink-cmp-copilot
+        pkgs.vimPlugins.blink-cmp-env
+        pkgs.vimPlugins.blink-cmp-conventional-commits
+        pkgs.vimPlugins.blink-cmp-dictionary
 
         # pkgs.vimPlugins.nvim-cmp
         # pkgs.vimPlugins.cmp-calc
