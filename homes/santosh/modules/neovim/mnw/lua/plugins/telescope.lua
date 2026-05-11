@@ -9,6 +9,12 @@ require("telescope").setup({
     fzf = { case_mode = "smart_case", fuzzy = true, override_file_sorter = true, override_generic_sorter = true },
   },
 })
+
+local __telescopeExtensions = { "fzf", "harpoon" }
+for _, extension in ipairs(__telescopeExtensions) do
+  require("telescope").load_extension(extension)
+end
+
 local telescope_maps = {
   {
     action = "<cmd>Telescope colorscheme<CR>",

@@ -87,11 +87,6 @@ else
   })
 end
 
-local __telescopeExtensions = { "fzf", "harpoon" }
-for _, extension in ipairs(__telescopeExtensions) do
-  require("telescope").load_extension(extension)
-end
-
 do
   local _nvim_autocommands = {
     {
