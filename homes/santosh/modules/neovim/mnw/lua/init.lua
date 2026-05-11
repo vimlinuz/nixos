@@ -21,6 +21,7 @@ require("plugins.which-key")
 require("plugins.misc")
 require("plugins.git")
 require("plugins.ufo")
+require("plugins.neoscroll-nvim")
 
 -- require("plugins.cmp")
 -- require("plugins.noice")
