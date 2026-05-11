@@ -36,6 +36,7 @@ in
       pkgs.rust-analyzer
       pkgs.nixfmt
       pkgs.stylua
+      pkgs.prettier
     ];
 
     plugins = {
