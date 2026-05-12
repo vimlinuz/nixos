@@ -16,8 +16,8 @@
         HandleLidSwitch = "suspend-then-hibernate";
         # when multiple displays are connected
         lidSwitchDocked = "ignore";
-        # when on external power
-        HandleLidSwitchExternalPower = "lock";
+        # when on external power and multiple displays are connected
+        HandleLidSwitchExternalPower = "ignore";
 
         # idle settings
         IdleAction = "ignore";

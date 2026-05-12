@@ -34,7 +34,6 @@
     ./modules/direnv.nix
     ./modules/gh.nix
 
-    ./modules/swayidle.nix
     ./modules/swaync.nix
 
     # ╭───────────────────────────────────────────────╮
