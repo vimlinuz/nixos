@@ -11,6 +11,7 @@
       {
         timeout = 185;
         command = "niri msg action power-off-monitors";
+        resumeCommand = "niri msg action power-on-monitors";
       }
       {
         timeout = 300;
