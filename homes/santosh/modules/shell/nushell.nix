@@ -81,7 +81,7 @@ in
       adfs = "sessionizer";
 
       # rebuild = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos/#santosh";
-      rebuild = "nh os switch .#santosh";
+      rebuild = "nh os switch ${config.home.homeDirectory}/nixos/#santosh";
 
       gs = "git status";
       gl = "git log --oneline --graph --decorate --all";
