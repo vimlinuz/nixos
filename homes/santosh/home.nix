@@ -35,6 +35,8 @@
     ./modules/gh.nix
 
     ./modules/swayidle.nix
+    ./modules/swaylock.nix
+    ./modules/swaync.nix
 
     # ╭───────────────────────────────────────────────╮
     # │ Code editors                                  │
@@ -57,7 +59,6 @@
     # │ Wayland and Terminal Tools                    │
     # ╰───────────────────────────────────────────────╯
     ./modules/waybar/default.nix
-    ./modules/swaync.nix
     ./modules/tmux/default.nix
 
     # ╭───────────────────────────────────────────────╮
