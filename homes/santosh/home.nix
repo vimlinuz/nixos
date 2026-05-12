@@ -15,6 +15,7 @@
     ./modules/terminals/kitty.nix
     ./modules/terminals/alacritty/alacritty.nix
     ./modules/terminals/ghostty/ghostty.nix
+    ./modules/terminals/foot.nix
 
     # ╭───────────────────────────────────────────────╮
     # │ General Utility Modules                       │
