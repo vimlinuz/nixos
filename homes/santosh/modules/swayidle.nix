@@ -3,9 +3,9 @@
   services.swayidle = {
     enable = true;
     events = {
-      lock = "swaylock -fF";
+      lock = "hyprlock";
       after-resume = "niri msg action power-on-monitors";
-      before-sleep = "${pkgs.swaylock}/bin/swaylock -fF";
+      before-sleep = "hyprlock";
     };
     timeouts = [
       {
@@ -14,7 +14,7 @@
       }
       {
         timeout = 300;
-        command = "swaylock -fF";
+        command = "hyprlock";
       }
       {
         timeout = 600;

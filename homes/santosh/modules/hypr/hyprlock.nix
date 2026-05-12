@@ -16,12 +16,6 @@ in
         vibrancy_darkness = 0.0;
       };
 
-      general = {
-        no_fade_in = false;
-        grace = 0;
-        disable_loading_bar = false;
-      };
-
       "input-field" = [
         {
           monitor = "eDP-1";
@@ -34,7 +28,6 @@ in
           inner_color = "rgba(18,18,18,0.5)";
           font_color = "rgba(181, 181, 181,1)";
           fade_on_empty = true;
-          font_size = 1;
           placeholder_text = "";
           fail_text = "󰞇";
           hide_input = false;
@@ -48,7 +41,6 @@ in
         {
           text = ''cmd[update:1000] echo -e "$(date +"%I")"'';
           color = "rgba(255, 255, 255, 1)";
-          shadow_pass = 2;
           shadow_size = 3;
           shadow_color = "rgb(0,0,0)";
           shadow_boost = 1.2;

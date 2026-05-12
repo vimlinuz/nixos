@@ -35,7 +35,6 @@
     ./modules/gh.nix
 
     ./modules/swayidle.nix
-    ./modules/swaylock.nix
     ./modules/swaync.nix
 
     # ╭───────────────────────────────────────────────╮
