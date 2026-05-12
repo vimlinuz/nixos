@@ -13,7 +13,7 @@
       };
 
       cursor = {
-        style = "beam";
+        style = "block";
         blink = "no";
       };
 
