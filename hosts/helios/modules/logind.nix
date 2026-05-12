@@ -20,7 +20,7 @@
         HandleLidSwitchExternalPower = "lock";
 
         # idle settings
-        IdleAction = "lock-session";
+        IdleAction = "ignore";
         IdleActionSec = "600"; # 10 minutes
 
         # power button settings

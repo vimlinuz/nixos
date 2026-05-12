@@ -34,6 +34,8 @@
     ./modules/direnv.nix
     ./modules/gh.nix
 
+    ./modules/swayidle.nix
+
     # ╭───────────────────────────────────────────────╮
     # │ Code editors                                  │
     # ╰───────────────────────────────────────────────╯
