@@ -162,7 +162,7 @@ blink.setup({
       auto_show = function(ctx)
         return ctx ~= "cmdline"
       end,
-      winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:CurSearch,Search:None",
+      winhighlight = "Normal:None,FloatBorder:BlinkCmpMenuBorder,CursorLine:CurSearch,Search:None",
       border = "rounded",
       draw = {
         treesitter = { "lsp" },
@@ -181,7 +181,7 @@ blink.setup({
       window = {
         scrollbar = false,
         border = "rounded",
-        winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,EndOfBuffer:BlinkCmpDoc",
+        winhighlight = "Normal:None,FloatBorder:BlinkCmpDocBorder,EndOfBuffer:BlinkCmpDoc",
       },
       auto_show_delay_ms = 500,
     },
