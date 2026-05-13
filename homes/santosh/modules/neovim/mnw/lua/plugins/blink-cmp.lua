@@ -162,8 +162,8 @@ blink.setup({
       auto_show = function(ctx)
         return ctx ~= "cmdline"
       end,
-      winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:CurSearch,Search:None",
-      border = "single",
+      winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:CurSearch,Search:None",
+      border = "rounded",
       draw = {
         treesitter = { "lsp" },
         columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "source_name" } },
@@ -180,8 +180,8 @@ blink.setup({
       auto_show = true,
       window = {
         scrollbar = false,
-        border = "single",
-        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:CursorLine,Search:None",
+        border = "rounded",
+        winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,EndOfBuffer:BlinkCmpDoc",
       },
       auto_show_delay_ms = 500,
     },
