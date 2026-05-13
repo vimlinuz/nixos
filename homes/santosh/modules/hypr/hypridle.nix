@@ -4,7 +4,7 @@
     settings = {
       general = {
         lock_cmd = "pidof hyprlock || hyprlock";
-        before_sleep_cmd = "hyprlock";
+        before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd = "niri msg action power-on-monitors";
 
         ignore_dbus_inhibit = false;
@@ -20,7 +20,7 @@
         }
         {
           timeout = 300;
-          on-timeout = "hyprlock";
+          on-timeout = "loginctl lock-session";
         }
         {
           timeout = 900;
