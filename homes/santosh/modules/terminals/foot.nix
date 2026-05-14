@@ -7,7 +7,7 @@
     settings = {
       main = {
         term = "xterm-256color";
-        font = "JetBrainsMono Nerd Font:size=11.25";
+        font = "JetBrainsMono Nerd Font:size=8";
         dpi-aware = "yes";
         shell = "${pkgs.nushell}/bin/nu";
       };
