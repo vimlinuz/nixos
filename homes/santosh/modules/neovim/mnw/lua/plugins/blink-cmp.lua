@@ -37,15 +37,12 @@ blink.setup({
       "lsp",
       "path",
       "snippets",
-      "copilot",
-      "git",
-      "conventional_commits",
       "spell",
       "buffer",
-      -- "omni",
       "emoji",
       "env",
       "dictionary",
+      -- "omni",
       dictionary = {
         module = "blink-cmp-dictionary",
         name = "Dict",
@@ -59,31 +56,6 @@ blink.setup({
     },
 
     providers = {
-      conventional_commits = {
-        name = "Conventional Commits",
-        module = "blink-cmp-conventional-commits",
-        enabled = function()
-          return vim.bo.filetype == "gitcommit"
-        end,
-        ---@module 'blink-cmp-conventional-commits'
-        ---@type blink-cmp-conventional-commits.Options
-        opts = {
-          ---[for custom commits](https://github.com/disrupted/blink-cmp-conventional-commits#using-only-custom-types)
-          scopes = {
-            git_log_count = 500,
-          },
-        },
-      },
-
-      git = {
-        module = "blink-cmp-git",
-        name = "Git",
-        -- only enable this source when filetype is gitcommit, markdown, or 'octo'
-        enabled = function()
-          return vim.tbl_contains({ "octo", "gitcommit", "markdown" }, vim.bo.filetype)
-        end,
-      },
-
       spell = {
         name = "Spell",
         module = "blink-cmp-spell",
@@ -124,13 +96,6 @@ blink.setup({
             vim.o.filetype
           )
         end,
-      },
-
-      copilot = {
-        name = "copilot",
-        module = "blink-cmp-copilot",
-        score_offset = 100,
-        async = true,
       },
       env = {
         name = "Env",
