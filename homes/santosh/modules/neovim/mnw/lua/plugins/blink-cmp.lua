@@ -69,7 +69,9 @@ blink.setup({
         ---@type blink-cmp-conventional-commits.Options
         opts = {
           ---[for custom commits](https://github.com/disrupted/blink-cmp-conventional-commits#using-only-custom-types)
-          scopes = false,
+          scopes = {
+            git_log_count = 500,
+          },
         },
       },
 
