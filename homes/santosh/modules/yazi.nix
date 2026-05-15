@@ -2,7 +2,7 @@
 {
   programs.yazi = {
     enable = true;
-    shellWrapperName = "y";
+    shellWrapperName = "yy";
     enableBashIntegration = true;
     enableNushellIntegration = true;
     extraPackages = with pkgs; [
