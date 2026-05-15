@@ -7,6 +7,10 @@ in
     enable = true;
     enableCompletion = true;
 
+    initExtra = ''
+      set -o vi
+    '';
+
     # number of lines
     historySize = 1000000;
 
