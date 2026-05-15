@@ -36,6 +36,7 @@
     ./modules/gh.nix
 
     ./modules/swaync.nix
+    ./modules/yazi.nix
 
     # ╭───────────────────────────────────────────────╮
     # │ Code editors                                  │
