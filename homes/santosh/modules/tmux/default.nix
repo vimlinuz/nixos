@@ -8,7 +8,7 @@ in
     mouse = true;
     prefix = "C-a";
     # shell = "${pkgs.fish}/bin/fish";
-    shell = "${pkgs.nushell}/bin/nu";
+    # shell = "${pkgs.nushell}/bin/nu";
     # terminal = "screen-256color";
     terminal = "xterm-256color";
     escapeTime = 0;

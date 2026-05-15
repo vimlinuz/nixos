@@ -9,7 +9,7 @@
         term = "xterm-256color";
         font = "JetBrainsMono Nerd Font:size=8";
         dpi-aware = "yes";
-        shell = "${pkgs.nushell}/bin/nu";
+        # shell = "${pkgs.nushell}/bin/nu";
       };
 
       cursor = {

@@ -104,6 +104,9 @@
     allowUnfree = true;
   };
 
+  # https://home-manager-options.extranix.com/?query=bash&release=master
+  # The reason this is here is this docs
+  environment.pathsToLink = [ "/share/bash-completion" ];
   programs.bash.enable = true;
 
   services.xserver.enable = true;

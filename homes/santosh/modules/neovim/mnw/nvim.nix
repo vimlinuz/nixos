@@ -30,7 +30,6 @@ in
       pkgs.lua-language-server
       pkgs.marksman
       pkgs.nixd
-      pkgs.nushell
       pkgs.tailwindcss-language-server
       pkgs.typescript
       pkgs.typescript-language-server
