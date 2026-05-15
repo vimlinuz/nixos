@@ -9,10 +9,9 @@
         LANG = "en_US.UTF-8";
         LC_ALL = "en_US.UTF-8";
       };
-      terminal = {
-        shell = "${pkgs.nushell}/bin/nu";
-      };
-
+      # terminal = {
+      #   shell = "${pkgs.nushell}/bin/nu";
+      # };
       window = {
         padding = {
           x = 2;

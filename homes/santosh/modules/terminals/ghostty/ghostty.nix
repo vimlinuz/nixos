@@ -5,7 +5,7 @@
     settings = {
       theme = "catppuccin-mocha";
 
-      command = "${pkgs.nushell}/bin/nu";
+      # command = "${pkgs.nushell}/bin/nu";
 
       font-family = "JetBrainsMono Nerd Font";
       font-family-bold = "JetBrainsMono Nerd Font";
