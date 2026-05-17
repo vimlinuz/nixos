@@ -21,4 +21,10 @@ require("oil").setup({
   win_options = { wrap = true },
 })
 
-vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>", { desc = "Open oil" })
+vim.keymap.set("n", "<leader>e", function()
+  if vim.bo.filetype == "oil" then
+    vim.cmd("bdelete")
+  else
+    vim.cmd("Oil")
+  end
+end, { desc = "toggle oil", noremap = true, silent = true })
