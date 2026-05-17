@@ -213,18 +213,6 @@ do
       options = { desc = "Close all other splits", silent = true },
     },
     {
-      action = function()
-        if vim.bo.filetype == "oil" then
-          vim.cmd("bdelete")
-        else
-          vim.cmd("Oil")
-        end
-      end,
-      key = "<leader>e",
-      mode = { "n" },
-      options = { desc = "toggle oil", noremap = true, silent = true },
-    },
-    {
       action = "<cmd>Lspsaga peek_definition<CR>",
       key = "<leader>cd",
       mode = { "n" },
