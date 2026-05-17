@@ -1,7 +1,7 @@
 { config, ... }:
 {
   programs.fastfetch = {
-    enable = true;
+    enable = false;
     settings = {
       logo = {
         source = "${config.home.homeDirectory}/nixos/homes/santosh/assets/nixos.png";

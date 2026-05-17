@@ -16,6 +16,7 @@ with pkgs;
   mpv
   swaybg
   libreoffice
+  microfetch
 
   # Provided via flake inputs (not nixpkgs).
   # inputs.quickshell.packages.${stdenv.hostPlatform.system}.default
