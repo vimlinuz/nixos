@@ -8,19 +8,19 @@
   #   size = 20;
   # };
 
-  # home.pointerCursor = {
-  #   gtk.enable = true;
-  #   x11.enable = true;
-  #   package = pkgs.nightdiamond-cursors;
-  #   name = "NightDiamond-Red";
-  #   size = 20;
-  # };
-
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
-    package = pkgs.callPackage ./nightdiamond-cursors.nix { };
+    package = pkgs.nightdiamond-cursors;
     name = "NightDiamond-Fusion";
     size = 20;
   };
+
+  # home.pointerCursor = {
+  #   gtk.enable = true;
+  #   x11.enable = true;
+  #   package = pkgs.callPackage ./nightdiamond-cursors.nix { };
+  #   name = "NightDiamond-Fusion";
+  #   size = 20;
+  # };
 }
