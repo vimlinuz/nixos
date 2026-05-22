@@ -41,5 +41,9 @@ in
 
       initialize = "flake-initializer";
     };
+
+    bashrcExtra = ''
+      export PATH=$PATH:${config.home.homeDirectory}/.local/scripts
+    '';
   };
 }
