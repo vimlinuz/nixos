@@ -5,7 +5,7 @@ let
 in
 {
   programs.starship = {
-    enable = true;
+    enable = false;
     enableFishIntegration = true;
     enableBashIntegration = true;
     enableNushellIntegration = true;
