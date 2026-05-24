@@ -13,6 +13,7 @@ in
 
     # number of lines
     historySize = 1000000;
+    historyFileSize = 1000000;
 
     historyIgnore = [
       "exit"
