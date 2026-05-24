@@ -8,6 +8,8 @@ in
     enableCompletion = true;
 
     initExtra = ''
+      # PS1=\n\[\033[1;32m\][\[\e]0;\u@\h: \w\a\]\u@\h:\w]\$\[\033[0m\]
+      PS1='\n\[\033[1;37m\]\w\[\033[0m\]\n\[\033[1;37m\]✦ ❯\[\033[0m\] '
       set -o vi
     '';
 
