@@ -43,16 +43,6 @@ blink.setup({
       "env",
       "dictionary",
       -- "omni",
-      dictionary = {
-        module = "blink-cmp-dictionary",
-        name = "Dict",
-        min_keyword_length = 1,
-        opts = {
-          -- Optional: explicitly force fallback mode
-          -- (By default, fallback is used when fzf is not found)
-          force_fallback = true,
-        },
-      },
     },
 
     providers = {
