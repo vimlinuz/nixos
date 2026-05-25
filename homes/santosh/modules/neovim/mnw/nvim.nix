@@ -95,7 +95,6 @@ in
         pkgs.vimPlugins.blink-cmp-spell
         pkgs.vimPlugins.blink-emoji-nvim
         pkgs.vimPlugins.blink-cmp-env
-        pkgs.vimPlugins.blink-cmp-dictionary
         # pkgs.vimPlugins.blink-cmp-copilot
         # pkgs.vimPlugins.blink-cmp-git
         # pkgs.vimPlugins.blink-cmp-conventional-commits
