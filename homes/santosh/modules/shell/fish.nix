@@ -52,8 +52,4 @@
       "P" = "git push origin $(git branch --show-current)";
     };
   };
-
-  programs.fzf = {
-    enable = true;
-  };
 }

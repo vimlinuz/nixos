@@ -20,6 +20,10 @@
     # ╭───────────────────────────────────────────────╮
     # │ General Utility Modules                       │
     # ╰───────────────────────────────────────────────╯
+    ./modules/fzf.nix
+    ./modules/eza.nix
+    ./modules/lsd.nix
+
     ./modules/gtk.nix
     ./modules/fastfetch.nix
     ./modules/starship/starship.nix
