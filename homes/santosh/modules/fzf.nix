@@ -8,7 +8,11 @@
     ];
     colors = {
       pointer = "#ffffff";
+
       marker = "#000000";
     };
+    defaultOptions = [
+      "--reverse"
+    ];
   };
 }
