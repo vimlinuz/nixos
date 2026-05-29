@@ -1,4 +1,4 @@
-require("lsp-format").setup({})
+-- require("lsp-format").setup({})
 
 do
   vim.lsp.inlay_hint.enable(true)
@@ -68,9 +68,9 @@ do
         "typescript.tsx",
       },
       on_attach = function(client, bufnr)
-        if vim.list_contains({ "dockerls", "gopls", "nushell", "rust_analyzer", "pylsp" }, client.name) then
-          require("lsp-format").on_attach(client, bufnr)
-        end
+        -- if vim.list_contains({ "dockerls", "gopls", "nushell", "rust_analyzer", "pylsp" }, client.name) then
+        --   require("lsp-format").on_attach(client, bufnr)
+        -- end
 
         client.server_capabilities.documentFormattingProvider = false
       end,

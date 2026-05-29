@@ -12,22 +12,22 @@ end
 
 do
   local _nvim_autocommands = {
-    {
-      callback = function(event)
-        do
-          -- client and bufnr are supplied to the builtin `on_attach` callback,
-          -- so make them available in scope for our global `onAttach` impl
-          local client = vim.lsp.get_client_by_id(event.data.client_id)
-          local bufnr = event.buf
-          if vim.list_contains({ "dockerls", "gopls", "nushell", "rust_analyzer", "pylsp" }, client.name) then
-            require("lsp-format").on_attach(client, bufnr)
-          end
-        end
-      end,
-      desc = "Run LSP onAttach",
-      event = "LspAttach",
-      group = "nvim_lsp_on_attach",
-    },
+    -- {
+    --   callback = function(event)
+    --     do
+    --       -- client and bufnr are supplied to the builtin `on_attach` callback,
+    --       -- so make them available in scope for our global `onAttach` impl
+    --       local client = vim.lsp.get_client_by_id(event.data.client_id)
+    --       local bufnr = event.buf
+    --       if vim.list_contains({ "dockerls", "gopls", "nushell", "rust_analyzer", "pylsp" }, client.name) then
+    --         require("lsp-format").on_attach(client, bufnr)
+    --       end
+    --     end
+    --   end,
+    --   desc = "Run LSP onAttach",
+    --   event = "LspAttach",
+    --   group = "nvim_lsp_on_attach",
+    -- },
     {
       callback = function(args)
         local __keymaps = {

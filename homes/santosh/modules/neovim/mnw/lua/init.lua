@@ -9,9 +9,11 @@ require("plugins.lualine")
 require("plugins.telescope")
 
 require("plugins.lspsaga")
-require("plugins.null-ls")
 require("plugins.blink-cmp")
 require("plugins.lsp")
+
+-- require("plugins.null-ls")
+require("plugins.conform-nvim")
 
 require("plugins.oil")
 require("plugins.alpla")

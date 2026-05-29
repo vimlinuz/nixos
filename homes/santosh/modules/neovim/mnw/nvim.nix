@@ -24,10 +24,14 @@ in
 
     extraBinPath = [
       pkgs.bash-language-server
+      pkgs.shfmt
       pkgs.clang-tools
       pkgs.emmet-language-server
       pkgs.glslls
+
+      pkgs.stylua
       pkgs.lua-language-server
+
       pkgs.marksman
       pkgs.nixd
       pkgs.tailwindcss-language-server
@@ -36,7 +40,7 @@ in
       pkgs.vscode-langservers-extracted
       pkgs.rust-analyzer
       pkgs.nixfmt
-      pkgs.stylua
+      pkgs.rustfmt
       pkgs.prettier
     ];
 
@@ -86,10 +90,12 @@ in
         pkgs.vimPlugins.lspsaga-nvim
         pkgs.vimPlugins.lspkind-nvim
         pkgs.vimPlugins.nvim-lspconfig
-        pkgs.vimPlugins.none-ls-nvim
+
+        # pkgs.vimPlugins.none-ls-nvim
+        # pkgs.vimPlugins.lsp-format-nvim
+        pkgs.vimPlugins.conform-nvim
 
         pkgs.vimPlugins.luasnip
-        pkgs.vimPlugins.lsp-format-nvim
 
         pkgs.vimPlugins.blink-cmp
         pkgs.vimPlugins.blink-cmp-spell
