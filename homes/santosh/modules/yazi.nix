@@ -16,55 +16,62 @@
         };
       };
 
-      find_keyword = {
-        fg = "#f7768e";
-        bold = true;
-        italic = true;
-        underline = true;
+      find = {
+        keyword = {
+          fg = "#f7768e";
+          bold = true;
+          italic = true;
+          underline = true;
+        };
+        position = {
+          fg = "#bb9af7";
+          bg = "reset";
+          bold = true;
+          italic = true;
+        };
       };
-      find_position = {
-        fg = "#bb9af7";
-        bg = "reset";
-        bold = true;
-        italic = true;
-      };
-
       # Marker
-      marker_copied = {
-        fg = "#9ece6a";
-        bg = "#9ece6a";
-      };
-      marker_cut = {
-        fg = "#e0af68";
-        bg = "#f7768e";
-      };
-      marker_marked = {
-        fg = "#7aa2f7";
-        bg = "#7dcfff";
-      };
-      marker_selected = {
-        fg = "#e0af68";
-        bg = "#e0af68";
+      marker = {
+        copied = {
+          fg = "#9ece6a";
+          bg = "#9ece6a";
+        };
+        cut = {
+          fg = "#e0af68";
+          bg = "#f7768e";
+        };
+        marked = {
+          fg = "#7aa2f7";
+          bg = "#7dcfff";
+        };
+        selected = {
+          fg = "#e0af68";
+          bg = "#e0af68";
+        };
       };
 
       # Count
-      count_copied = {
-        fg = "#1a1b26";
-        bg = "#9ece6a";
-      };
-      count_cut = {
-        fg = "#1a1b26";
-        bg = "#e0af68";
-      };
-      count_selected = {
-        fg = "#1a1b26";
-        bg = "#7aa2f7";
+      count = {
+        copied = {
+          fg = "#1a1b26";
+          bg = "#9ece6a";
+        };
+        cut = {
+          fg = "#1a1b26";
+          bg = "#e0af68";
+        };
+        selected = {
+          fg = "#1a1b26";
+          bg = "#7aa2f7";
+        };
       };
 
       # Border
-      border_symbol = "│";
-      border_style = {
-        fg = "#414868";
+      border = {
+        symbol = "│";
+        style = {
+          fg = "#414868";
+        };
       };
 
       tabs = {
@@ -92,24 +99,28 @@
         };
       };
 
-      select_main = {
-        fg = "#292e42";
-        bg = "#9ece6a";
-        bold = true;
-      };
-      select_alt = {
-        fg = "#7aa2f7";
-        bg = "#292e42";
+      select = {
+        main = {
+          fg = "#292e42";
+          bg = "#9ece6a";
+          bold = true;
+        };
+        alt = {
+          fg = "#7aa2f7";
+          bg = "#292e42";
+        };
       };
 
-      unset_main = {
-        fg = "#292e42";
-        bg = "#bb9af7";
-        bold = true;
-      };
-      unset_alt = {
-        fg = "#7aa2f7";
-        bg = "#292e42";
+      unset = {
+        main = {
+          fg = "#292e42";
+          bg = "#bb9af7";
+          bold = true;
+        };
+        alt = {
+          fg = "#7aa2f7";
+          bg = "#292e42";
+        };
       };
 
       status = {
@@ -127,35 +138,39 @@
 
       };
 
-      # Progress
-      progress_label = {
-        fg = "#292e42";
-        bold = true;
-      };
-      progress_normal = {
-        fg = "#7aa2f7";
-        bg = "#292e42";
-      };
-      progress_error = {
-        fg = "#f7768e";
-        bg = "#292e42";
+      progress = {
+        # Progress
+        label = {
+          fg = "#292e42";
+          bold = true;
+        };
+        normal = {
+          fg = "#7aa2f7";
+          bg = "#292e42";
+        };
+        error = {
+          fg = "#f7768e";
+          bg = "#292e42";
+        };
       };
 
-      # Permissions
-      perm_sep = {
-        fg = "#7aa2f7";
-      };
-      perm_type = {
-        fg = "#9ece6a";
-      };
-      perm_read = {
-        fg = "#e0af68";
-      };
-      perm_write = {
-        fg = "#f7768e";
-      };
-      perm_exec = {
-        fg = "#bb9af7";
+      perm = {
+        # Permissions
+        sep = {
+          fg = "#7aa2f7";
+        };
+        type = {
+          fg = "#9ece6a";
+        };
+        read = {
+          fg = "#e0af68";
+        };
+        write = {
+          fg = "#f7768e";
+        };
+        exec = {
+          fg = "#bb9af7";
+        };
       };
 
       pick = {
@@ -214,7 +229,7 @@
         };
         separator = "  ";
       };
-      separator_style = {
+      separator.style = {
         fg = "#626880";
       };
 
