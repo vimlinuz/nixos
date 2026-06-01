@@ -23,7 +23,7 @@ ColumnLayout {
             property int thisWsId: model.id
             property bool isActiveWs: model.isActive
 
-            text: model.isActive ? "\udb82\udee5" : "\udb82\udee3"
+            text: model.isActive ? "" : "\udb82\udee3"
             active: model.isActive
 
             onLeftClicked: Services.Niri.focusWorkspaceById(model.id)
