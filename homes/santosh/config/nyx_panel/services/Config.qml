@@ -6,7 +6,4 @@ import QtQuick
 Item {
     // Kill switch: when true, the visualizer does no work.
     property bool disableVisualizer: true
-
-    // When true, the active workspace icon does not spin.
-    property bool disableWorkspaceSpin: true
 }
