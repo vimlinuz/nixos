@@ -26,23 +26,6 @@ ColumnLayout {
             text: model.isActive ? "\udb82\udee5" : "\udb82\udee3"
             active: model.isActive
 
-            property real spinAngle: 0
-
-            transform: Rotation {
-                origin.x: width / 2
-                origin.y: height / 2
-                angle: (model.isActive && !Services.Config.disableWorkspaceSpin) ? spinAngle : 0
-            }
-
-            NumberAnimation on spinAngle {
-                running: model.isActive && !Services.Config.disableWorkspaceSpin
-                from: 0
-                to: 360
-                duration: 5000
-                loops: Animation.Infinite
-                onRunningChanged: if (!running) spinAngle = 0
-            }
-
             onLeftClicked: Services.Niri.focusWorkspaceById(model.id)
         }
     }
