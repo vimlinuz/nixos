@@ -7,92 +7,123 @@ ColumnLayout {
     id: root
     spacing: 4
 
-    // Map workspace index -> icon.
-    readonly property var icons: ({
-        1: "\uf120",       // terminal
-        2: "\udb80\ude39", // firefox
-        3: "3",
-        4: "4",
-        5: "5",
-        6: "6",
-        7: "7",
-        8: "8",
-        9: "9",
-        10: ""
-    })
-
     Component.onCompleted: {
-        // Keep a stable workspace list size for UI.
         if (Services.Niri.workspaces) Services.Niri.workspaces.maxCount = 10;
     }
 
     Repeater {
+        id: wsRepeater
         model: Services.Niri.workspaces
 
         WidgetButton {
-            id: wsButton
             required property var model
             implicitWidth: 32
-            label.font.pixelSize: 20
+            label.font.pixelSize: 21
 
-            // Renamed to thisWsId to avoid clash with window role "workspaceId"
             property int thisWsId: model.id
+            property bool isActiveWs: model.isActive
 
-            Repeater {
-                id: windowRepeater
-                model: Services.Niri.windows
-                Item {
-                    visible: false
-                    // model.workspaceId = window's workspace
-                    // wsButton.thisWsId  = this workspace's id
-                    property bool belongsHere: model.workspaceId == wsButton.thisWsId
-                    property bool isFocused: model.isFocused
-                }
-            }
-            Text {
-                anchors.centerIn: parent
-                visible: !model.isActive
-                text: "\udb82\udee3"
-                font.pixelSize: 20  // big size for inactive icon
-                color: label.color
-            }
-
-            Text {
-                anchors.centerIn: parent
-                visible: model.isActive
-                text: {
-                    var icons = "";
-                    for (var i = 0; i < windowRepeater.count; i++) {
-                        var win = windowRepeater.itemAt(i);
-                        if (win?.belongsHere)
-                            icons += win.isFocused ? "│"  : "╷";
-                        }
-                        if (icons === ""){
-                            return "●"
-                        }
-                        return icons;
-                }
-                font.pixelSize: 13  // smaller size for window dots
-                color: label.color
-            }
-
-            property real spinAngle: 0
-            transform: Rotation {
-                origin.x: width / 2
-                origin.y: height / 2
-                angle: (model.isActive && !Services.Config.disableWorkspaceSpin) ? spinAngle : 0
-            }
-
-            NumberAnimation on spinAngle {
-                running: model.isActive && !Services.Config.disableWorkspaceSpin
-                from: 0
-                to: 360
-                duration: 5000
-                loops: Animation.Infinite
-                onRunningChanged: if (!running) spinAngle = 0
-            }
+            text: model.isActive ? "" : "\udb82\udee3"
+            active: model.isActive
 
             onLeftClicked: Services.Niri.focusWorkspaceById(model.id)
+        }
+    }
+
+    property int activeWsId: {
+        for (var i = 0; i < wsRepeater.count; i++) {
+            var d = wsRepeater.itemAt(i);
+            if (d && d.isActiveWs) return d.thisWsId;
+        }
+        return -1;
+    }
+
+    Rectangle {
+        Layout.fillWidth: true
+        height: 3
+        color: "#ffffff"
+        opacity: 0.25
+    }
+
+    Flow {
+        Layout.fillWidth: true
+        spacing: 4
+
+        Repeater {
+            model: Services.Niri.windows
+
+            Item {
+                required property var model
+                visible: model.workspaceId === root.activeWsId
+                implicitWidth: 32
+                implicitHeight: 28
+
+                Rectangle {
+                    id: iconBg
+                    anchors.fill: parent
+                    radius: 6
+                    color: model.isFocused ? "#4a4a6a" : ""
+                    opacity: 0.55
+                }
+
+                Rectangle {
+                    anchors.fill: iconBg
+                    radius: 6
+                    color: "#ffffff"
+                    opacity: mouseArea.containsMouse ? 0.12 : 0
+                }
+
+                Image {
+                    anchors.centerIn: parent
+                    source: model.iconPath ? "file://" + model.iconPath : ""
+                    sourceSize.width: 26
+                    sourceSize.height: 26
+                    visible: model.iconPath !== ""
+                    smooth: true
+                }
+
+                Text {
+                    anchors.centerIn: parent
+                    visible: model.iconPath === ""
+                    text: model.appId ? model.appId.charAt(0).toUpperCase() : "?"
+                    font.family: "JetBrains Mono Nerd Font"
+                    font.pixelSize: 26
+                    font.bold: true
+                    color: "#d0d0e0"
+                }
+
+                MouseArea {
+                    id: mouseArea
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+
+                    Text {
+                        id: tooltip
+                        anchors {
+                            left: parent.right
+                            leftMargin: 6
+                            verticalCenter: parent.verticalCenter
+                        }
+                        visible: mouseArea.containsMouse
+                        text: model.title
+                        font.family: "JetBrains Mono Nerd Font"
+                        font.pixelSize: 11
+                        color: "#e0e0f0"
+                        style: Text.Sunken
+                        styleColor: "#000000"
+                        padding: 4
+
+                        Rectangle {
+                            anchors.fill: parent
+                            radius: 4
+                            color: "#1a1a2e"
+                            opacity: 0.92
+                            z: -1
+                        }
+                    }
+                }
+            }
         }
     }
 }
