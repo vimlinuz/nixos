@@ -7,7 +7,7 @@
 let
   currentDesktop = builtins.getEnv "XDG_CURRENT_DESKTOP";
   theme = "${config.home.homeDirectory}/.config/rofi/themes/wallpaper-selector.rasi";
-  WALLPAPER_DIR = "${inputs.wallpaper-archive}/wallpapers";
+  WALLPAPER_DIR = "${inputs.wall-archive}/wallpapers";
 
   rofi-wallpaper-selector = pkgs.writeShellScriptBin "rofi-wallpaper-selector" ''
     #!/usr/bin/env bash

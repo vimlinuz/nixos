@@ -396,7 +396,7 @@
         "qml-niri": "qml-niri",
         "quickshell": "quickshell",
         "sops-nix": "sops-nix",
-        "wallpaper-archive": "wallpaper-archive",
+        "wall-archive": "wall-archive",
         "zen-browser": "zen-browser"
       }
     },
@@ -487,18 +487,18 @@
         "type": "github"
       }
     },
-    "wallpaper-archive": {
+    "wall-archive": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1780253345,
-        "narHash": "sha256-8DL1E096K4F9R3fmCm1V14OEIxXPQE3LVwGDu2Pfvx8=",
+        "lastModified": 1780322182,
+        "narHash": "sha256-tOdtEBLiJ26KRWGzNLO7Svhg10Q00Psj4d2ALc0IHpU=",
         "owner": "vimlinuz",
         "repo": "wall-archive",
-        "rev": "cc8e94661744caf92a183b09684ffa02770200e0",
+        "rev": "25fa12c65ed9dceed70d928a08e364db3143e1dc",
         "type": "github"
       },
       "original": {

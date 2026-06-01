@@ -95,7 +95,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    wallpaper-archive = {
+    wall-archive = {
       url = "github:vimlinuz/wall-archive";
       inputs.nixpkgs.follows = "nixpkgs";
     };
