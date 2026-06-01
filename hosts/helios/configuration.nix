@@ -146,10 +146,10 @@
   bluetooth.enable = false;
 
   # Enable TLP for power management
-  tlp.enable = true;
+  tlp.enable = false;
 
   # Enable upower for power actions
-  upower.enable = false;
+  upower.enable = true;
 
   # remap
   keyd.enable = true;
