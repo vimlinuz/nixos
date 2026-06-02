@@ -4,10 +4,11 @@
     extensions = [
       "nix"
       "rust"
+      "javascript"
     ];
     userSettings = {
       features = {
-        copilot = true;
+        copilot = false;
       };
       vim_mode = true;
     };
