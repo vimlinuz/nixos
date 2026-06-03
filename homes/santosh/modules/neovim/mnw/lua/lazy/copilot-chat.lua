@@ -10,7 +10,7 @@ return {
         auto_follow_cursor = true,
         headers = { assistant = "## Ai ", tool = "## Tool ", user = "## vimlinuz " },
         highlight_selection = false,
-        -- model = "gpt-4.1",
+        model = "claude-haiku-4.5",
         show_help = false,
         window = { border = "none", height = 1, layout = "float", title = "─", width = 1 },
       })

@@ -86,9 +86,6 @@ in
         pkgs.vimPlugins.vague-nvim
         pkgs.vimPlugins.black-metal-theme-neovim
 
-        pkgs.vimPlugins.CopilotChat-nvim
-        pkgs.vimPlugins.copilot-lua
-
         pkgs.vimPlugins.lspsaga-nvim
         pkgs.vimPlugins.lspkind-nvim
         pkgs.vimPlugins.nvim-lspconfig
@@ -128,12 +125,15 @@ in
         pkgs.vimPlugins.telescope-nvim
         pkgs.vimPlugins.telescope-fzf-native-nvim
 
-        pkgs.vimPlugins.avante-nvim
       ];
 
       # Anything that you're loading lazily should be put here
       opt = [
         pkgs.vimPlugins.bigfile-nvim
+
+        pkgs.vimPlugins.avante-nvim
+        pkgs.vimPlugins.CopilotChat-nvim
+        # pkgs.vimPlugins.copilot-lua
       ];
 
       dev.myconfig = {
