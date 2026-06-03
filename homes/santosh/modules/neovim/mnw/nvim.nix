@@ -42,6 +42,8 @@ in
       pkgs.nixfmt
       pkgs.rustfmt
       pkgs.prettier
+
+      pkgs.nodejs
     ];
 
     plugins = {
@@ -125,6 +127,8 @@ in
         pkgs.vimPlugins.vim-tmux-navigator
         pkgs.vimPlugins.telescope-nvim
         pkgs.vimPlugins.telescope-fzf-native-nvim
+
+        pkgs.vimPlugins.avante-nvim
       ];
 
       # Anything that you're loading lazily should be put here
