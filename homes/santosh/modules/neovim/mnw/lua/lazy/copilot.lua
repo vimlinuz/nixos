@@ -1,0 +1,31 @@
+return {
+  {
+    "copilot.lua",
+    cmd = "Copilot",
+    after = function()
+      require("copilot").setup({
+        filetypes = {
+          ["."] = false,
+          bash = true,
+          cvs = false,
+          gitcommit = true,
+          gitrebase = true,
+          help = false,
+          hgcommit = false,
+          html = true,
+          js = true,
+          lua = true,
+          markdown = true,
+          nix = true,
+          python = true,
+          rs = true,
+          svn = false,
+          ts = true,
+          yaml = false,
+        },
+        panel = { auto_refresh = false, enabled = false },
+        suggestion = { auto_trigger = true, debounce = 90, enabled = true, hide_during_completion = true },
+      })
+    end,
+  },
+}
