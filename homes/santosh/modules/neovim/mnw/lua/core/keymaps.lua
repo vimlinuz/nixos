@@ -32,48 +32,6 @@ do
       options = { desc = "Dismiss all Noice notifications" },
     },
     {
-      action = "<CMD>CopilotChatReset<CR>",
-      key = "<leader>cR",
-      mode = { "n" },
-      options = { desc = "Reset Copilot Chat" },
-    },
-    {
-      action = "<CMD>CopilotChatToggle<CR>",
-      key = "<leader>ct",
-      mode = { "n", "v" },
-      options = { desc = "Toggle Copilot Chat Window" },
-    },
-    {
-      action = "<CMD>CopilotChatStop<CR>",
-      key = "<leader>cs",
-      mode = { "n", "v" },
-      options = { desc = "Stop current Copilot output" },
-    },
-    {
-      action = "<CMD>CopilotChatReview<CR>",
-      key = "<leader>cr",
-      mode = { "v" },
-      options = { desc = "Review the selected code" },
-    },
-    {
-      action = "<CMD>CopilotChatExplain<CR>",
-      key = "<leader>ce",
-      mode = { "v" },
-      options = { desc = "Give an explanation for the selected code" },
-    },
-    {
-      action = "<CMD>CopilotChatDocs<CR>",
-      key = "<leader>cd",
-      mode = { "v" },
-      options = { desc = "Add documentation for the selection" },
-    },
-    {
-      action = "<CMD>CopilotChatTests<CR>",
-      key = "<leader>cp",
-      mode = { "v" },
-      options = { desc = "Add tests for my code" },
-    },
-    {
       action = "<cmd>Terminal code-runner<CR>",
       key = "<leader>t",
       mode = { "n" },
