@@ -38,6 +38,7 @@
     ./modules/git.nix
     ./modules/direnv.nix
     ./modules/gh.nix
+    ./modules/jujutsu.nix.nix
 
     ./modules/swaync.nix
     ./modules/yazi.nix
