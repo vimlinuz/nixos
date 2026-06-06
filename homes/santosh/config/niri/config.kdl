@@ -265,7 +265,7 @@ layer-rule {
 
 //https://niri-wm.github.io/niri/Overview.html
 overview {
-    zoom 0.75
+    zoom 0.40
     workspace-shadow {
         off
     }
