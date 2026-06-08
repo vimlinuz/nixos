@@ -17,7 +17,7 @@ with pkgs;
   swaybg
   libreoffice
   microfetch
-
+  zip
   # Provided via flake inputs (not nixpkgs).
   # inputs.quickshell.packages.${stdenv.hostPlatform.system}.default
   inputs.qml-niri.packages.${stdenv.hostPlatform.system}.quickshell
