@@ -134,6 +134,7 @@ in
         pkgs.vimPlugins.avante-nvim
         pkgs.vimPlugins.CopilotChat-nvim
         # pkgs.vimPlugins.copilot-lua
+        pkgs.vimPlugins.supermaven-nvim
       ];
 
       dev.myconfig = {
