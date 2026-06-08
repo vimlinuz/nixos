@@ -24,11 +24,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780942784,
-        "narHash": "sha256-ckYY9hpBF7gYeoVUfoYadvoPTtIbzL4KD9weo+5ZSn8=",
+        "lastModified": 1780947354,
+        "narHash": "sha256-PZ9pKrta/REuWITTtdaJFpVKmzVDmWS9cRBh0IN/aHU=",
         "owner": "vimlinuz",
         "repo": "crane-rs",
-        "rev": "029bb48a651810381be4fcb65a5a59a257f3870f",
+        "rev": "66bfd474b223df60a3af9e06a5cbbf9e2373a083",
         "type": "github"
       },
       "original": {
