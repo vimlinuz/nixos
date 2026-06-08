@@ -1,6 +1,7 @@
 return {
   {
     "copilot.lua",
+    enabled = false,
     cmd = "Copilot",
     after = function()
       require("copilot").setup({

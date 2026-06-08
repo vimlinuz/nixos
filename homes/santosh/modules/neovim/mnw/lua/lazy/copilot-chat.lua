@@ -1,6 +1,8 @@
 return {
   {
     "CopilotChat.nvim",
+    enabled = false,
+
     keys = {
       { "<leader>ct", "<CMD>CopilotChatToggle<CR>", desc = "Toggle Copilot Chat Window" },
     },

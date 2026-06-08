@@ -1,5 +1,6 @@
 return {
   "avante.nvim",
+  enabled = false,
 
   keys = {
     { "<leader>aa", "<CMD>AvanteAsk<CR>", desc = "AvanteAsk" },
