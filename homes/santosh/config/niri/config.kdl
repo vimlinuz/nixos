@@ -33,7 +33,7 @@ input {
         // drag false
         // drag-lock
         natural-scroll
-        accel-speed 0.2
+        accel-speed 0.5
         // accel-profile "flat"
         // scroll-method "two-finger"
         // disabled-on-external-mouse
@@ -73,7 +73,7 @@ input {
 output "eDP-1" {
     // off
     mode "1920x1080@60.001"
-    scale 1
+    scale 0.8
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
