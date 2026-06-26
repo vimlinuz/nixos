@@ -59,6 +59,7 @@
     ./modules/shell/nushell.nix
     ./modules/shell/carapace.nix
     ./modules/shell/bash.nix
+    ./modules/shell/atuin.nix
 
     # ╭───────────────────────────────────────────────╮
     # │ Wayland and Terminal Tools                    │
