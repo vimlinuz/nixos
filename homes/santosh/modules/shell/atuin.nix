@@ -8,6 +8,9 @@
       invert = true;
       show_help = false;
       style = "full";
+
+      enter_accept = true;
+      keymap_mode = "vim-insert";
     };
   };
 }
