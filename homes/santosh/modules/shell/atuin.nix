@@ -7,6 +7,7 @@
     settings = {
       invert = true;
       show_help = false;
+      style = "full";
     };
   };
 }
