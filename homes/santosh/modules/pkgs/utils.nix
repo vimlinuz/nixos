@@ -8,9 +8,6 @@ with pkgs;
 
   # vscode
   gimp
-  discord
-
-  opencode
   code-cursor
 
   obs-studio
