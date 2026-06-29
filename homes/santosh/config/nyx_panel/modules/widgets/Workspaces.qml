@@ -61,14 +61,14 @@ ColumnLayout {
                 Rectangle {
                     id: iconBg
                     anchors.fill: parent
-                    radius: 5
+                    radius: 0
                     color: model.isFocused ? "#4a4a6a" : ""
                     opacity: 0.55
                 }
 
                 Rectangle {
                     anchors.fill: iconBg
-                    radius: 5
+                    radius: 0
                     color: "#ffffff"
                     opacity: mouseArea.containsMouse ? 0.12 : 0
                 }
@@ -116,7 +116,7 @@ ColumnLayout {
 
                         Rectangle {
                             anchors.fill: parent
-                            radius: 4
+                            radius: 0
                             color: "#1a1a2e"
                             opacity: 0.92
                             z: -1

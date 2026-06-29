@@ -103,7 +103,7 @@ Item {
 
     Rectangle {
         anchors.fill: parent
-        radius: 6
+        radius: 0
         color: "#000000"
         opacity: 0.20
         border.width: 1

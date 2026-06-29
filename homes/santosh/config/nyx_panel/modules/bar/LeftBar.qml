@@ -23,7 +23,7 @@ PanelWindow {
 
         color: "#bb000000"
 
-        radius: 8
+        radius: 0
 
         border.width: 1
         border.color: "#606060"

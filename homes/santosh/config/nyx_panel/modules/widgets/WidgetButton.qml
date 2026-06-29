@@ -28,7 +28,7 @@ Rectangle {
     signal hoverEntered()
     signal hoverExited()
 
-    radius: 6
+    radius: 0
     color: "transparent"
     opacity: 1
 
