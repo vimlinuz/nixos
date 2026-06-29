@@ -26,10 +26,9 @@ WidgetButton {
         return "\udb80\udc79";
     }
 
-    label.font.pixelSize: 18
+    label.font.pixelSize: 13
     label.elide: Text.ElideRight
 
-    // Match Waybar-ish battery colors (charging > low battery).
     label.color: {
         if (!Services.BatterySys.available) return "#f0f0f0";
         if (Services.BatterySys.isCharging) return "#66ff66";
@@ -38,43 +37,29 @@ WidgetButton {
         return "#f0f0f0";
     }
 
-    // Keep layout stable even if font differs.
-    implicitWidth: implicitHeight
-    implicitHeight: label.font.pixelSize * 2 + 8
+    implicitWidth: 24
+    implicitHeight: 35
 
     Column {
-        anchors {
-            fill: parent
-            leftMargin: root.paddingX
-            rightMargin: root.paddingX
-            topMargin: root.paddingTop
-            bottomMargin: root.paddingBottom
-        }
-        spacing: 2
+        width: root.implicitWidth
+        anchors.centerIn: parent
+        spacing: 1
 
         Text {
             text: Services.BatterySys.available ? batteryGlyph : "\udb80\udc79"
             color: root.label.color
             font.family: "JetBrains Mono Nerd Font"
-            font.pixelSize:root.label.font.pixelSize
+            font.pixelSize: root.label.font.pixelSize
             font.bold: true
             horizontalAlignment: Text.AlignHCenter
             width: parent.width
         }
 
-        // // seperator between time and date
-        // Rectangle {
-        //     width: parent.width
-        //     height: 3
-        //     color: "#ffffff"
-        //     opacity: 0.25
-        // }
-
         Text {
             text: Services.BatterySys.available ? `${pct}%` : "N/A"
             color: root.label.color
             font.family: "JetBrains Mono Nerd Font"
-            font.pixelSize: 10
+            font.pixelSize: 8
             font.bold: true
             horizontalAlignment: Text.AlignHCenter
             width: parent.width

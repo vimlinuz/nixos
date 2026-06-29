@@ -8,7 +8,7 @@ import Quickshell.Services.SystemTray
 ColumnLayout {
     id: root
 
-    spacing: 6
+    spacing: 4
 
     Repeater {
         model: SystemTray.items
@@ -24,8 +24,8 @@ ColumnLayout {
 
             IconImage {
                 anchors.centerIn: parent
-                implicitWidth: 18
-                implicitHeight: 18
+                implicitWidth: 14
+                implicitHeight: 14
                 source: modelData.icon
 
                 enabled: false

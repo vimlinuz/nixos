@@ -32,7 +32,8 @@ Rectangle {
     color: "transparent"
     opacity: 1
 
-    implicitHeight: 28
+    implicitWidth: 24
+    implicitHeight: 24
 
     property alias label: label
 
@@ -50,7 +51,7 @@ Rectangle {
         color: "#f0f0f0"
         opacity: root.normalTextOpacity
         font.family: "JetBrains Mono Nerd Font"
-        font.pixelSize: 18
+        font.pixelSize: 14
         font.bold: root.active
         visible: label.text.length > 0
     }

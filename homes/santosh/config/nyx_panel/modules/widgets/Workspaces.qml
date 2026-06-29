@@ -17,8 +17,8 @@ ColumnLayout {
 
         WidgetButton {
             required property var model
-            implicitWidth: 32
-            label.font.pixelSize: 21
+            implicitWidth: 25
+            label.font.pixelSize: 16
 
             property int thisWsId: model.id
             property bool isActiveWs: model.isActive
@@ -52,23 +52,23 @@ ColumnLayout {
         Repeater {
             model: Services.Niri.windows
 
-            Item {
+                Item {
                 required property var model
                 visible: model.workspaceId === root.activeWsId
-                implicitWidth: 32
-                implicitHeight: 28
+                implicitWidth: 24
+                implicitHeight: 24
 
                 Rectangle {
                     id: iconBg
                     anchors.fill: parent
-                    radius: 6
+                    radius: 5
                     color: model.isFocused ? "#4a4a6a" : ""
                     opacity: 0.55
                 }
 
                 Rectangle {
                     anchors.fill: iconBg
-                    radius: 6
+                    radius: 5
                     color: "#ffffff"
                     opacity: mouseArea.containsMouse ? 0.12 : 0
                 }
@@ -76,8 +76,8 @@ ColumnLayout {
                 Image {
                     anchors.centerIn: parent
                     source: model.iconPath ? "file://" + model.iconPath : ""
-                    sourceSize.width: 26
-                    sourceSize.height: 26
+                    sourceSize.width: 18
+                    sourceSize.height: 18
                     visible: model.iconPath !== ""
                     smooth: true
                 }
@@ -87,7 +87,7 @@ ColumnLayout {
                     visible: model.iconPath === ""
                     text: model.appId ? model.appId.charAt(0).toUpperCase() : "?"
                     font.family: "JetBrains Mono Nerd Font"
-                    font.pixelSize: 26
+                    font.pixelSize: 18
                     font.bold: true
                     color: "#d0d0e0"
                 }

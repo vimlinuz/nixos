@@ -14,7 +14,7 @@ PanelWindow {
         bottom: true
     }
 
-    implicitWidth: 40
+    implicitWidth: 30
     color: "transparent"
 
     Rectangle {
@@ -23,8 +23,6 @@ PanelWindow {
 
         color: "#bb000000"
 
-        // color: "#000000"
-        // opacity: 0.80
         radius: 8
 
         border.width: 1
@@ -32,13 +30,14 @@ PanelWindow {
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 4
-            spacing: 6
+            anchors.margins: 2
+            spacing: 4
 
             // Top section
             ColumnLayout {
                 Layout.alignment: Qt.AlignTop
-                spacing: 6
+                Layout.fillWidth: true
+                spacing: 4
 
                 Workspaces { Layout.fillWidth: true }
             }
@@ -53,7 +52,8 @@ PanelWindow {
             // Center section
             ColumnLayout {
                 Layout.alignment: Qt.AlignVCenter
-                spacing: 6
+                Layout.fillWidth: true
+                spacing: 4
 
                 Clock { Layout.fillWidth: true }
             }
@@ -68,15 +68,15 @@ PanelWindow {
             // Bottom section
             ColumnLayout {
                 Layout.alignment: Qt.AlignBottom
-                spacing: 6
+                Layout.fillWidth: true
+                spacing: 4
 
-                Tray { Layout.fillWidth: true }
-                // Network { Layout.fillWidth: true }
-                Brightness { Layout.fillWidth: true }
-                Volume { Layout.fillWidth: true }
-                Microphone { Layout.fillWidth: true }
-                Battery { Layout.fillWidth: true }
-                Notifications { Layout.fillWidth: true }
+                Tray { Layout.alignment: Qt.AlignHCenter }
+                Brightness { Layout.alignment: Qt.AlignHCenter }
+                Volume { Layout.alignment: Qt.AlignHCenter }
+                Microphone { Layout.alignment: Qt.AlignHCenter }
+                Battery { Layout.alignment: Qt.AlignHCenter }
+                Notifications { Layout.alignment: Qt.AlignHCenter }
             }
         }
     }

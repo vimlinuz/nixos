@@ -7,17 +7,14 @@ Widgets.WidgetButton {
 
     property var now: new Date()
 
-    // Keep WidgetButton's internal label empty; we'll render two lines.
     text: ""
 
-    // Outer size includes some padding around text.
-    implicitWidth: 38
-    implicitHeight: 140
+    implicitWidth: 26
+    implicitHeight: 110
 
-    // Padding inside the button.
     readonly property int paddingX: 2
-    readonly property int paddingTop: 8
-    readonly property int paddingBottom: 8
+    readonly property int paddingTop: 6
+    readonly property int paddingBottom: 6
 
     Column {
         anchors {
@@ -27,7 +24,7 @@ Widgets.WidgetButton {
             topMargin: root.paddingTop
             bottomMargin: root.paddingBottom
         }
-        spacing: 2
+        spacing: 1
 
         Text {
             text: {
@@ -38,7 +35,7 @@ Widgets.WidgetButton {
             }
             color: "#ffffff"
             font.family: "JetBrains Mono Nerd Font"
-            font.pixelSize: 20
+            font.pixelSize: 16
             font.bold: true
             horizontalAlignment: Text.AlignHCenter
             width: parent.width
@@ -48,16 +45,15 @@ Widgets.WidgetButton {
             text: String(root.now.getMinutes()).padStart(2, "0")
             color: "#ffffff"
             font.family: "JetBrains Mono Nerd Font"
-            font.pixelSize: 20
+            font.pixelSize: 16
             font.bold: true
             horizontalAlignment: Text.AlignHCenter
             width: parent.width
         }
 
-        // seperator between time and date
         Rectangle {
             width: parent.width
-            height: 3
+            height: 2
             color: "#ffffff"
             opacity: 0.25
         }
@@ -66,7 +62,7 @@ Widgets.WidgetButton {
             text: Qt.formatDateTime(root.now, "ddd")
             color: "#ffffff"
             font.family: "JetBrains Mono Nerd Font"
-            font.pixelSize: 14
+            font.pixelSize: 11
             font.bold: true
             horizontalAlignment: Text.AlignHCenter
             width: parent.width
@@ -76,7 +72,7 @@ Widgets.WidgetButton {
             text: Qt.formatDateTime(root.now, "d")
             color: "#ffffff"
             font.family: "JetBrains Mono Nerd Font"
-            font.pixelSize: 14
+            font.pixelSize: 11
             font.bold: true
             horizontalAlignment: Text.AlignHCenter
             width: parent.width
@@ -86,7 +82,7 @@ Widgets.WidgetButton {
             text: Qt.formatDateTime(root.now, "MMM")
             color: "#ffffff"
             font.family: "JetBrains Mono Nerd Font"
-            font.pixelSize: 14
+            font.pixelSize: 11
             font.bold: true
             horizontalAlignment: Text.AlignHCenter
             width: parent.width
