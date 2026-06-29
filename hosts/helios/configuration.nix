@@ -23,6 +23,7 @@
     ./modules/keyd.nix
     ./modules/systemd.nix
     ./modules/plymouth.nix
+    ./modules/docker.nix
   ];
 
   sops.defaultSopsFile = ./sops.yaml;
@@ -171,6 +172,8 @@
   logind.enable = true;
 
   plymouth.enable = true;
+
+  docker.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
