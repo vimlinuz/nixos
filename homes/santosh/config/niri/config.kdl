@@ -105,7 +105,7 @@ layout {
     // place-within-backdrop is enabled for background so have to set this to true to get the background visible in the overview.
     background-color "transparent"
     // Set gaps around windows in logical pixels.
-    gaps 10
+    gaps 2
     always-center-single-column true
 
     // When to center a column when changing focus, options are:
@@ -250,8 +250,8 @@ layout {
     // Top and bottom struts will simply add outer gaps in addition to the area occupied by
     // layer-shell panels and regular gaps.
     struts {
-        // left 64
-        // right 64
+        left 2
+        right 2
         // top 64
         // bottom 64
     }
@@ -572,7 +572,7 @@ window-rule {
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
 window-rule {
-    geometry-corner-radius 10
+    geometry-corner-radius 8
     clip-to-geometry true
 }
 
