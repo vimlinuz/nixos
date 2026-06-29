@@ -4,6 +4,9 @@
     enableBashIntegration = true;
     enableFishIntegration = true;
     enableNushellIntegration = true;
+
+    flags = [ "--disable-up-arrow" ];
+
     settings = {
       invert = true;
       show_help = false;
