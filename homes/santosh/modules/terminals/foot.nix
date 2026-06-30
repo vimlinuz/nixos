@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   programs.foot = {
     enable = true;
@@ -7,7 +6,7 @@
     settings = {
       main = {
         term = "xterm-256color";
-        font = "JetBrainsMono Nerd Font:size=8";
+        font = "FiraCode Nerd Font:size=8";
         dpi-aware = "yes";
         # shell = "${pkgs.nushell}/bin/nu";
       };
