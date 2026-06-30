@@ -6,7 +6,7 @@
     settings = {
       main = {
         term = "xterm-256color";
-        font = "FiraCode Nerd Font:size=8";
+        font = "Victor Mono:size=8";
         dpi-aware = "yes";
         # shell = "${pkgs.nushell}/bin/nu";
       };

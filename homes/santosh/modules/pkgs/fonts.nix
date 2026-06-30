@@ -8,4 +8,5 @@ with pkgs;
   fira-code
   font-awesome
   open-dyslexic
+  victor-mono
 ]
