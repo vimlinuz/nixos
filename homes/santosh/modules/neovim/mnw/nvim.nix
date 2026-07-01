@@ -16,10 +16,10 @@ in
     enable = true;
     desktopEntry = true;
     initLua = ''
-      require("init")
       local lzn = require("lz.n")
       lzn.load('lazy')
       lzn.load('lazy.colorscheme')
+      require("init")
     '';
 
     extraBinPath = [
