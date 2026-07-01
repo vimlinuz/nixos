@@ -3,12 +3,12 @@ return {
   colorscheme = "vague",
   after = function()
     require("vague").setup({
-      transparent = false,
-      bold = false,
-      italic = false,
-      -- colors = {
-      --     bg = "#191d33",
-      -- },
+      transparent = true,
+      bold = true,
+      italic = true,
+      colors = {
+        bg = "#191d33",
+      },
       on_highlights = function(highlights, colors)
         -- GitSigns
         highlights.GitSignsAdd = { fg = "#ffffff", bg = "NONE" }
