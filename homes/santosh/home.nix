@@ -42,7 +42,7 @@
 
     ./modules/swaync.nix
     ./modules/yazi.nix
-    ./modules/vesktop.nix
+    ./modules/vesktop/vesktop.nix
 
     # ╭───────────────────────────────────────────────╮
     # │ Code editors                                  │
