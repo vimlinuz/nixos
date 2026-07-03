@@ -58,3 +58,8 @@ fi
 
 # --- Open it in your editor ---
 "${EDITOR:-vi}" "$target_file"
+
+
+# --- Commit and push to github
+jj commit -m "journal: $(date)"
+jj bookmark move main --to @-; jj git push --bookmark main
