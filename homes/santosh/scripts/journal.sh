@@ -8,6 +8,8 @@
 
 set -euo pipefail
 
+CURRENT_DIR=$(pwd)
+
 JOURNAL_DIR="$HOME/Notes/creative/journal"
 
 # --- Derive date pieces from the `date` command ---
@@ -61,5 +63,8 @@ fi
 
 
 # --- Commit and push to github
+cd "$JOURNAL_DIR"
 jj commit -m "journal: $(date)"
 jj bookmark move main --to @-; jj git push --bookmark main
+
+cd "$CURRENT_DIR"
