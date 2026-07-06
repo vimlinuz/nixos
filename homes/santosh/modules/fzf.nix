@@ -2,8 +2,11 @@
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
-    changeDirWidgetCommand = "fd --type d";
-    changeDirWidgetOptions = [
+
+    # disabled history mapping for bash
+    historyWidget.bash.command = "";
+    changeDirWidget.command = "fd --type d";
+    changeDirWidget.options = [
       "--preview 'tree -C {} | head -200'"
     ];
     colors = {
