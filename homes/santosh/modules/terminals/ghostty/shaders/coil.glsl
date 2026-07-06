@@ -121,7 +121,7 @@ const vec4 CURRENT_CURSOR_COLOR = TRAIL_COLOR;
 const vec4 PREVIOUS_CURSOR_COLOR = TRAIL_COLOR;
 const vec4 TRAIL_COLOR_ACCENT = vec4(0.705, 0.831, 0.957, 1.0); // Brighter variant of #81A1C1
 const vec4 ELECTRIC_COLOR = vec4(0.5, 0.8, 1.0, 1.0); // Electric blue color
-const float DURATION = 2.2;
+const float DURATION = 0.5;
 const float OPACITY = .001;
 const float TAIL_EXTENSION = 1.5;
 
