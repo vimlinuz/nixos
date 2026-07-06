@@ -2,8 +2,8 @@
   programs.atuin = {
     enable = true;
     enableBashIntegration = true;
-    enableFishIntegration = true;
-    enableNushellIntegration = true;
+    enableFishIntegration = false;
+    enableNushellIntegration = false;
 
     flags = [ "--disable-up-arrow" ];
 

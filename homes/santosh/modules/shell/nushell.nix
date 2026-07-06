@@ -4,7 +4,7 @@ let
 in
 {
   programs.nushell = {
-    enable = true;
+    enable = false;
     settings = {
       show_banner = false;
     };
