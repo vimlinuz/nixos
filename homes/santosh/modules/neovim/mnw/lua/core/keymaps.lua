@@ -146,18 +146,18 @@ do
       mode = { "n" },
       options = { desc = "Go to context", silent = true },
     },
-    {
-      action = "<cmd>vsplit<CR>",
-      key = "<leader>v",
-      mode = { "n" },
-      options = { desc = "Split window vertically", silent = true },
-    },
-    {
-      action = "<cmd>split<CR>",
-      key = "<leader>o",
-      mode = { "n" },
-      options = { desc = "Split window vertically", silent = true },
-    },
+    -- {
+    --   action = "<cmd>vsplit<CR>",
+    --   key = "<leader>v",
+    --   mode = { "n" },
+    --   options = { desc = "Split window vertically", silent = true },
+    -- },
+    -- {
+    --   action = "<cmd>split<CR>",
+    --   key = "<leader>o",
+    --   mode = { "n" },
+    --   options = { desc = "Split window vertically", silent = true },
+    -- },
     {
       action = "<cmd>close<CR>",
       key = "<leader>q",
