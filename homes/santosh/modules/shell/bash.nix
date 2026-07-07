@@ -25,6 +25,8 @@ in
     shellAliases = {
       cd = "z";
       ".." = "cd ..";
+      "..." = "cd ../../";
+      "...." = "cd ../../../";
       # "ls" = "ls --color";
       r = "rm -f (fzf --reverse)";
 
