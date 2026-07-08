@@ -200,16 +200,16 @@ do
   end
 end
 
-vim.keymap.set("n", "<leader>sv", function()
-  local builtin = require("telescope.builtin")
-  builtin.find_files({
-    attach_mappings = function(_, map)
-      local actions = require("telescope.actions")
-
-      map("i", "<CR>", actions.select_vertical)
-      map("n", "<CR>", actions.select_vertical)
-
-      return true
-    end,
-  })
-end, { desc = "Open file picker (vertical split)" })
+-- vim.keymap.set("n", "<leader>sv", function()
+--   local builtin = require("telescope.builtin")
+--   builtin.find_files({
+--     attach_mappings = function(_, map)
+--       local actions = require("telescope.actions")
+--
+--       map("i", "<CR>", actions.select_vertical)
+--       map("n", "<CR>", actions.select_vertical)
+--
+--       return true
+--     end,
+--   })
+-- end, { desc = "Open file picker (vertical split)" })
