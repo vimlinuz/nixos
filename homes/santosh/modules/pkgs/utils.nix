@@ -20,6 +20,8 @@ with pkgs;
   libreoffice
   microfetch
   zip
+
+  kdePackages.kdenlive
   # Provided via flake inputs (not nixpkgs).
   # inputs.quickshell.packages.${stdenv.hostPlatform.system}.default
   inputs.qml-niri.packages.${stdenv.hostPlatform.system}.quickshell
