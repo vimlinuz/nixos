@@ -34,7 +34,7 @@ mkdir -p "$target_dir"
 if [[ -f "$target_file" ]]; then
   echo "Entry already exists: $target_file"
 else
-  start_time=$(date "+%a, %d %b %Y %H:%M:%S %z")
+  start_time=$(date)
 
   cat > "$target_file" <<EOF
 Start: $start_time
