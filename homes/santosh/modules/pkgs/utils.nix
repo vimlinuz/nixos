@@ -21,6 +21,8 @@ with pkgs;
   microfetch
   zip
 
+  qview
+
   kdePackages.kdenlive
   # Provided via flake inputs (not nixpkgs).
   # inputs.quickshell.packages.${stdenv.hostPlatform.system}.default
