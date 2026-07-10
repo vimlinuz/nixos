@@ -28,13 +28,17 @@ input {
     touchpad {
         // off
         tap
-        // dwt
+
+        // disables while typing
+        dwt
         // dwtp
         // drag false
         // drag-lock
         natural-scroll
-        accel-speed 0.2
-        // accel-profile "flat"
+        accel-speed 0.4
+
+        accel-profile "adaptive"
+
         // scroll-method "two-finger"
         // disabled-on-external-mouse
     }
