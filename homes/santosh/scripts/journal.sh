@@ -59,7 +59,7 @@ EOF
 fi
 
 # --- Open it in your editor ---
-"${EDITOR:-vi}" -c "set spell" "SupermavenStart" "call cursor(2, 9)" "normal ciw" "$target_file"
+"${EDITOR:-vi}" -c "set spell" -c "SupermavenStart"  -c "call cursor(2, 9)"  -c "normal ciw" "$target_file"
 
 
 # --- Commit and push to github
