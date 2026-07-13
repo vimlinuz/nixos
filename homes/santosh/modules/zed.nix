@@ -11,6 +11,8 @@
         copilot = false;
       };
       vim_mode = true;
+      ui_font_family = "JetBrainsMono Nerd Font";
+      buffer_font_family = "JetBrainsMono Nerd Font";
     };
   };
 }
