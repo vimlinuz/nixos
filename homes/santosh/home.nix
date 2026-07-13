@@ -84,6 +84,7 @@
     ./modules/scripts/pomodoro.nix
     ./modules/scripts/quick-rm.nix
     ./modules/scripts/flake-initializer.nix
+    ./modules/scripts/pull.nix
 
     # ╭───────────────────────────────────────────────╮
     # │ Wallpapers                                    │
