@@ -13,6 +13,8 @@
       vim_mode = true;
       ui_font_family = "JetBrainsMono Nerd Font";
       buffer_font_family = "JetBrainsMono Nerd Font";
+
+      format_on_save = "on";
     };
   };
 }
