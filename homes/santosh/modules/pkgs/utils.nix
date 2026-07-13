@@ -5,6 +5,7 @@ with pkgs;
   brightnessctl
   playerctl
   ripgrep
+  libnotify
 
   # vscode
   gimp
