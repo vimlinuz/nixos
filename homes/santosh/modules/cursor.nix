@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   # home.pointerCursor = {
+  #   enable = true;
   #   gtk.enable = true;
   #   x11.enable = true;
   #   package = pkgs.bibata-cursors;
@@ -9,6 +10,7 @@
   # };
 
   home.pointerCursor = {
+    enable = true;
     gtk.enable = true;
     x11.enable = true;
     package = pkgs.nightdiamond-cursors;
@@ -17,6 +19,7 @@
   };
 
   # home.pointerCursor = {
+  #   enable  = true;
   #   gtk.enable = true;
   #   x11.enable = true;
   #   package = pkgs.callPackage ./nightdiamond-cursors.nix { };
