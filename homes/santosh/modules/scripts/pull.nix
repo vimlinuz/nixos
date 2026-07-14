@@ -14,12 +14,12 @@ let
       exit 0
     fi
 
-    if [[ "$MODE" == "--music" ]]; then
+    if [[ "$MODE" == "--music" ]] || [[ -z "$MODE" ]]; then
       ${yt-dlp} -x --audio-format mp3 "$URL"
       exit 0
     fi
 
-    if [[ "$MODE" == "--video" ]] || [[ -z "$MODE" ]]; then
+    if [[ "$MODE" == "--video" ]]; then
       ${yt-dlp} --merge-output-format mp4 -f "bestvideo+bestaudio/best" "$URL"
       exit 0
     fi
