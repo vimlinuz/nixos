@@ -31,7 +31,7 @@ do
     foldenable = true,
     foldlevel = 99,
     foldlevelstart = 99,
-    guicursor = "",
+    -- guicursor = "",
     hlsearch = false,
     ignorecase = true,
     incsearch = true,
