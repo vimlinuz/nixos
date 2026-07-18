@@ -53,6 +53,8 @@ Mood: <mood>
 
 ## <contents of the daily log>
 
+---
+
 End: <time when I am going to end this journal entry>
 Duration: <duration of this journal entry>
 EOF
