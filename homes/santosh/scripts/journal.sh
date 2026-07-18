@@ -11,6 +11,7 @@ set -euo pipefail
 CURRENT_DIR=$(pwd)
 
 JOURNAL_DIR="$HOME/Notes/creative/journal"
+DO_CIW=true
 
 # --- Derive date pieces from the `date` command ---
 year=$(date +%Y)
@@ -33,6 +34,7 @@ mkdir -p "$target_dir"
 # --- Create file from template if it doesn't already exist ---
 if [[ -f "$target_file" ]]; then
   echo "Entry already exists: $target_file"
+  DO_CIW=false
 else
   start_time=$(date)
 
@@ -59,8 +61,11 @@ EOF
 fi
 
 # --- Open it in your editor ---
-"${EDITOR:-vi}" -c "set spell" -c "call cursor(2, 9)"  -c "normal ci\"" "$target_file"
-
+if $DO_CIW; then
+  "${EDITOR:-vi}" -c "set spell" -c "call cursor(2, 9)"  -c "normal ci\"" "$target_file"
+else
+  "${EDITOR:-vi}" -c "set spell" "$target_file"
+fi
 
 # --- Commit and push to github
 cd "$JOURNAL_DIR"
