@@ -1,6 +1,6 @@
 require("nvim-web-devicons").setup({})
 require("nvim-autopairs").setup({
-  disable_filetype = { "TelescopePrompt" , "vim" },
+  disable_filetype = { "TelescopePrompt", "vim" },
 })
 require("nvim-surround").setup({})
 require("todo-comments").setup({ signs = true })
@@ -11,3 +11,5 @@ require("ibl").setup({
   indent = { char = "│" },
   scope = { show_end = false, show_exact_scope = false, show_start = false },
 })
+
+require("present").setup({})

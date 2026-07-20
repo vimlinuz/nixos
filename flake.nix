@@ -114,5 +114,10 @@
       url = "github:metalelf0/black-metal-theme-neovim";
       flake = false;
     };
+
+    present-neovim = {
+      url = "github:chaitanyabsprip/present.nvim";
+      flake = false;
+    };
   };
 }

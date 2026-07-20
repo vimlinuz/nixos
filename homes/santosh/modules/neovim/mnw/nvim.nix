@@ -85,6 +85,7 @@ in
         pkgs.vimPlugins.kanso-nvim
         pkgs.vimPlugins.vague-nvim
         pkgs.vimPlugins.black-metal-theme-neovim
+        pkgs.vimPlugins.present-nvim
 
         pkgs.vimPlugins.lspsaga-nvim
         pkgs.vimPlugins.lspkind-nvim
@@ -124,7 +125,7 @@ in
         pkgs.vimPlugins.vim-tmux-navigator
         pkgs.vimPlugins.telescope-nvim
         pkgs.vimPlugins.telescope-fzf-native-nvim
-
+        pkgs.vimPlugins.presenting-vim
       ];
 
       # Anything that you're loading lazily should be put here

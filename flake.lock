@@ -337,6 +337,22 @@
         "type": "github"
       }
     },
+    "present-neovim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741025557,
+        "narHash": "sha256-EPQlVv4zn3LNgYu58xpp3OlLrFOW+VuRgiP0YzO6REw=",
+        "owner": "chaitanyabsprip",
+        "repo": "present.nvim",
+        "rev": "c76e6996b346ff3ec6260c2461e56946c4a72d0d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chaitanyabsprip",
+        "repo": "present.nvim",
+        "type": "github"
+      }
+    },
     "qml-niri": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -393,6 +409,7 @@
         "nh": "nh",
         "nixpkgs": "nixpkgs_3",
         "nixvim": "nixvim",
+        "present-neovim": "present-neovim",
         "qml-niri": "qml-niri",
         "quickshell": "quickshell",
         "sops-nix": "sops-nix",

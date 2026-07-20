@@ -20,6 +20,13 @@
               src = inputs.black-metal-theme-neovim;
             };
             blink-calc = generated.blink-calc;
+
+            present-nvim = prev.vimUtils.buildVimPlugin {
+              name = "present-neovim";
+              src = inputs.present-neovim;
+            };
+            # present-nvim = generated.present-nvim;
+
           };
         }
       )
