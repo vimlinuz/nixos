@@ -43,6 +43,7 @@ in
       pkgs.rustfmt
       pkgs.prettier
 
+      pkgs.harper
       pkgs.nodejs
     ];
 

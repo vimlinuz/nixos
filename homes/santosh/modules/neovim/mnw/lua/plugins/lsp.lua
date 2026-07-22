@@ -77,4 +77,13 @@ do
     })
   )
   vim.lsp.enable("ts_ls")
+  vim.lsp.config(
+    "harper_ls",
+    __wrapConfig({
+      filetypes = {
+        "markdown",
+      },
+    })
+  )
+  vim.lsp.enable("harper_ls")
 end
