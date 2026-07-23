@@ -127,6 +127,7 @@ in
         pkgs.vimPlugins.telescope-nvim
         pkgs.vimPlugins.telescope-fzf-native-nvim
         pkgs.vimPlugins.presenting-vim
+        pkgs.vimPlugins.fidget-nvim
       ];
 
       # Anything that you're loading lazily should be put here
