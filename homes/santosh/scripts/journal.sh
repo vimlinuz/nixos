@@ -31,12 +31,15 @@ target_file="$target_dir/$day.md"
 # --- Create directory if missing ---
 mkdir -p "$target_dir"
 
+# --- Capture start time ---
+start_epoch=$(date +%s)
+start_time=$(date -d "@$start_epoch")
+
 # --- Create file from template if it doesn't already exist ---
 if [[ -f "$target_file" ]]; then
   echo "Entry already exists: $target_file"
   DO_CIW=false
 else
-  start_time=$(date)
 
   cat > "$target_file" <<EOF
 Start: $start_time
@@ -54,9 +57,6 @@ Mood: <mood>
 ## <contents of the daily log>
 
 ---
-
-End: <time when I am going to end this journal entry>
-Duration: <duration of this journal entry>
 EOF
 
   echo "Created: $target_file"
@@ -68,6 +68,22 @@ if $DO_CIW; then
 else
   "${EDITOR:-vi}" -c "set spell" "$target_file"
 fi
+
+
+# Set the end timestamp
+end_epoch=$(date +%s)
+end_time=$(date -d "@$end_epoch")
+elapsed=$(( (end_epoch - start_epoch + 30) / 60 ))
+
+# --- Append session info to the file
+{
+  echo "---"
+  if ! $DO_CIW; then
+    echo "Start: $start_time"
+  fi
+  echo "End: $end_time"
+  echo "Duration: ${elapsed}min"
+} >> "$target_file"
 
 # --- Commit and push to github
 cd "$JOURNAL_DIR"
