@@ -43,7 +43,9 @@ else
 
   cat > "$target_file" <<EOF
 Start: $start_time
+
 Title: "Option<Here goes the title of specific topic that I am going to talk about>"
+
 Mood: <mood>
 
 ---
@@ -56,7 +58,6 @@ Mood: <mood>
 
 ## <contents of the daily log>
 
----
 EOF
 
   echo "Created: $target_file"
