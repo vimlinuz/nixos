@@ -42,10 +42,9 @@ if [[ -f "$target_file" ]]; then
 else
 
   cat > "$target_file" <<EOF
+---
 Start: $start_time
-
 Title: "Option<Here goes the title of specific topic that I am going to talk about>"
-
 Mood: <mood>
 
 ---
@@ -83,7 +82,9 @@ elapsed=$(( (end_epoch - start_epoch + 30) / 60 ))
     echo "Start: $start_time"
   fi
   echo "End: $end_time"
+
   echo "Duration: ${elapsed}min"
+  echo "---"
 } >> "$target_file"
 
 # --- Commit and push to github
