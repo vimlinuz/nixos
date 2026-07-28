@@ -78,12 +78,14 @@ elapsed=$(( (end_epoch - start_epoch + 30) / 60 ))
 # --- Append session info to the file
 {
   echo "---"
+  echo
   if ! $DO_CIW; then
     echo "Start: $start_time"
   fi
   echo "End: $end_time"
-
+  echo
   echo "Duration: ${elapsed}min"
+  echo
   echo "---"
 } >> "$target_file"
 
