@@ -84,7 +84,7 @@ elapsed=$(( (end_epoch - start_epoch + 30) / 60 ))
   fi
   echo "End: $end_time"
   echo
-  echo "Duration: ${elapsed}min"
+  echo "Duration: ${elapsed} minutes"
   echo
   echo "---"
 } >> "$target_file"
