@@ -6,44 +6,44 @@
       selection-clipboard = "clipboard";
       window-title-basename = "true";
 
-      # Soft warm dark theme for long reading sessions
-      notification-error-bg = "rgba(193,80,78,1)";      # Soft red
-      notification-error-fg = "rgba(232,226,212,1)";    # Foreground
-      notification-warning-bg = "rgba(212,166,83,1)";   # Soft orange
-      notification-warning-fg = "rgba(43,40,35,1)";     # Background
-      notification-bg = "rgba(43,40,35,1)";             # Background
-      notification-fg = "rgba(207,198,180,1)";          # Foreground
+      # Vague colorscheme: https://github.com/vague-theme/vague.nvim
+      notification-error-bg = "rgba(216,100,126,1)";    # error
+      notification-error-fg = "rgba(205,205,205,1)";    # fg
+      notification-warning-bg = "rgba(243,190,124,1)";  # warning
+      notification-warning-fg = "rgba(20,20,21,1)";     # bg
+      notification-bg = "rgba(20,20,21,1)";             # bg
+      notification-fg = "rgba(205,205,205,1)";          # fg
 
-      completion-bg = "rgba(43,40,35,1)";               # Background
-      completion-fg = "rgba(124,116,102,1)";            # Muted
-      completion-group-bg = "rgba(43,40,35,1)";         # Background
-      completion-group-fg = "rgba(124,116,102,1)";      # Muted
-      completion-highlight-bg = "rgba(58,54,46,1)";     # Selection
-      completion-highlight-fg = "rgba(232,226,212,1)";  # Foreground
+      completion-bg = "rgba(20,20,21,1)";               # bg
+      completion-fg = "rgba(96,96,121,1)";              # comment
+      completion-group-bg = "rgba(20,20,21,1)";         # bg
+      completion-group-fg = "rgba(96,96,121,1)";        # comment
+      completion-highlight-bg = "rgba(37,37,48,1)";     # line
+      completion-highlight-fg = "rgba(205,205,205,1)";  # fg
 
-      index-bg = "rgba(43,40,35,1)";                    # Background
-      index-fg = "rgba(207,198,180,1)";                 # Foreground
-      index-active-bg = "rgba(58,54,46,1)";             # Current Line
-      index-active-fg = "rgba(232,226,212,1)";          # Foreground
+      index-bg = "rgba(20,20,21,1)";                    # bg
+      index-fg = "rgba(205,205,205,1)";                 # fg
+      index-active-bg = "rgba(37,37,48,1)";             # line
+      index-active-fg = "rgba(205,205,205,1)";          # fg
 
-      inputbar-bg = "rgba(43,40,35,1)";                 # Background
-      inputbar-fg = "rgba(207,198,180,1)";              # Foreground
-      statusbar-bg = "rgba(43,40,35,1)";                # Background
-      statusbar-fg = "rgba(207,198,180,1)";             # Foreground
+      inputbar-bg = "rgba(20,20,21,1)";                 # bg
+      inputbar-fg = "rgba(205,205,205,1)";              # fg
+      statusbar-bg = "rgba(20,20,21,1)";                # bg
+      statusbar-fg = "rgba(205,205,205,1)";             # fg
 
-      highlight-color = "rgba(212,154,84,0.45)";        # Soft orange
-      highlight-active-color = "rgba(188,122,140,0.45)"; # Soft rose
+      highlight-color = "rgba(64,80,101,0.45)";         # search
+      highlight-active-color = "rgba(174,174,209,0.45)"; # constant
 
-      default-bg = "rgba(35,32,28,1)";                  # Background
-      default-fg = "rgba(207,198,180,1)";               # Foreground
+      default-bg = "rgba(20,20,21,1)";                  # bg
+      default-fg = "rgba(205,205,205,1)";               # fg
 
       render-loading = true;
-      render-loading-fg = "rgba(43,40,35,1)";           # Background
-      render-loading-bg = "rgba(207,198,180,1)";        # Foreground
+      render-loading-fg = "rgba(20,20,21,1)";           # bg
+      render-loading-bg = "rgba(205,205,205,1)";        # fg
 
       # Recolor mode settings
-      recolor-lightcolor = "rgba(46,42,36,1)";          # Warm page background
-      recolor-darkcolor = "rgba(200,191,169,1)";        # Warm page text
+      recolor-lightcolor = "rgba(20,20,21,1)";           # bg
+      recolor-darkcolor = "rgba(205,205,205,1)";        # fg
 
       # Startup options
       adjust-open = "width";
