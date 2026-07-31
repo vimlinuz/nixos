@@ -11,10 +11,10 @@
     ];
     colors = {
       fg = "#cdcdcd";
-      bg = "#141415";
+      # bg = "#141415";
       hl = "#f3be7c";
       "fg+" = "#aeaed1";
-      "bg+" = "#252530";
+      # "bg+" = "#252530";
       "hl+" = "#f3be7c";
       border = "#606079";
       header = "#6e94b2";
