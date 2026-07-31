@@ -14,14 +14,14 @@ PanelWindow {
     visible: Services.Notifs.centerVisible
 
     anchors {
-        left: true
-        bottom: true
+        right: true
+        top: true
     }
 
-    margins.left: 44
-    margins.bottom: 4
+    margins.right: 12
+    margins.top: 4
 
-    implicitWidth: 280
+    implicitWidth: 400
     implicitHeight: 16 + headerH + 6 + 1 + 6 + listH
 
     color: "transparent"
@@ -39,8 +39,8 @@ PanelWindow {
     }
 
     readonly property int headerH: 24
-    readonly property int rowH: 30
-    readonly property int listMaxH: 320
+    readonly property int rowH: 34
+    readonly property int listMaxH: 600
     readonly property int listH: {
         const count = Services.Notifs.notClosed.length;
         return count === 0 ? 30 : Math.min(count * (root.rowH + 2), root.listMaxH);
@@ -78,7 +78,7 @@ PanelWindow {
                 width: header.width - dndBtn.width - clearBtn.width - 8
                 text: Services.Notifs.notClosed.length > 0 ? "Notifications (%1)".arg(Services.Notifs.notClosed.length) : "Notifications"
                 font.family: "JetBrains Mono Nerd Font"
-                font.pixelSize: 11
+                font.pixelSize: 13
                 font.bold: true
                 color: "#b4befe"
                 elide: Text.ElideRight
@@ -87,20 +87,20 @@ PanelWindow {
 
             WidgetButton {
                 id: dndBtn
-                width: 24
-                height: 24
+                width: 26
+                height: 26
                 text: Services.Notifs.dnd ? "\uf1f6" : "\uf0f3"
-                label.font.pixelSize: 12
+                label.font.pixelSize: 14
                 label.color: Services.Notifs.dnd ? "#8888aa" : "#f0f0f0"
                 onLeftClicked: Services.Notifs.toggleDnd()
             }
 
             WidgetButton {
                 id: clearBtn
-                width: 24
-                height: 24
+                width: 26
+                height: 26
                 text: "\uf1f8"
-                label.font.pixelSize: 12
+                label.font.pixelSize: 14
                 onLeftClicked: Services.Notifs.clearAll()
             }
         }
@@ -135,7 +135,7 @@ PanelWindow {
                     visible: Services.Notifs.notClosed.length === 0
                     text: "No notifications"
                     font.family: "JetBrains Mono Nerd Font"
-                    font.pixelSize: 10
+                    font.pixelSize: 12
                     color: "#666688"
                     horizontalAlignment: Text.AlignHCenter
                     topPadding: 8
@@ -157,19 +157,19 @@ PanelWindow {
                             spacing: 6
 
                             IconImage {
-                                Layout.preferredWidth: 16
-                                Layout.preferredHeight: 16
+                                Layout.preferredWidth: 20
+                                Layout.preferredHeight: 20
                                 source: modelData.notification.appIcon
                                 visible: modelData.notification.appIcon.length > 0
                                 enabled: false
                             }
 
                             Text {
-                                Layout.preferredWidth: 16
+                                Layout.preferredWidth: 20
                                 visible: modelData.notification.appIcon.length === 0
                                 text: "\uf0f3"
                                 font.family: "JetBrains Mono Nerd Font"
-                                font.pixelSize: 11
+                                font.pixelSize: 13
                                 color: "#8888aa"
                                 horizontalAlignment: Text.AlignHCenter
                             }
@@ -179,14 +179,14 @@ PanelWindow {
                                 text: modelData.notification.appName + "  " + modelData.notification.summary
                                 elide: Text.ElideRight
                                 font.family: "JetBrains Mono Nerd Font"
-                                font.pixelSize: 10
+                                font.pixelSize: 12
                                 color: "#d0d0e0"
                             }
 
                             Text {
                                 text: "\uf00d"
                                 font.family: "JetBrains Mono Nerd Font"
-                                font.pixelSize: 9
+                                font.pixelSize: 11
                                 color: "#8888aa"
 
                                 MouseArea {
