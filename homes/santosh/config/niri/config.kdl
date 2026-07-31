@@ -294,7 +294,8 @@ spawn-sh-at-startup "qs -p ~/nixos/homes/santosh/config/nyx_panel/main.qml"
 spawn-sh-at-startup "swaybg -m fill -o* -i ~/.current_wallpaper"
 spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
 spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
-spawn-sh-at-startup "swaync"
+// spawn-sh-at-startup "swaync"
+// Native notifications handled by the quickshell panel (services/Notifs.qml).
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.

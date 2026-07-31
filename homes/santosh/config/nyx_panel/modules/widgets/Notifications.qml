@@ -1,9 +1,13 @@
 import QtQuick
 import Quickshell
 
-WidgetButton {
-    text: "\uf0f3"
+import "../../services" as Services
 
-    onLeftClicked: Quickshell.execDetached(["sh", "-lc", "swaync-client -t -sw"])
-    onRightClicked: Quickshell.execDetached(["sh", "-lc", "swaync-client -d -sw"])
+WidgetButton {
+    text: Services.Notifs.dnd ? "\uf1f6" : "\uf0f3"
+    label.font.pixelSize: 13
+    label.color: Services.Notifs.dnd ? "#8888aa" : "#f0f0f0"
+
+    onLeftClicked: Services.Notifs.showCenter()
+    onRightClicked: Services.Notifs.toggleDnd()
 }

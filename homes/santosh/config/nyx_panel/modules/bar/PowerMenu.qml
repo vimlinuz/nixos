@@ -97,6 +97,17 @@ PanelWindow {
         }
     }
 
+    // Auto-close when the cursor leaves the menu window.
+    // HoverHandler is passive, so it never steals clicks from the row MouseAreas.
+    readonly property Timer closeTimer: Timer {
+        interval: 150
+        onTriggered: Services.Power.hide()
+    }
+
+    HoverHandler {
+        onHoveredChanged: if (!hovered) panel.closeTimer.start()
+    }
+
     // Background
     Rectangle {
         anchors.fill: parent
