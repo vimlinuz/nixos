@@ -1,5 +1,6 @@
 import QtQuick
 
+import "../../services" as Services
 import "./" as Widgets
 
 Widgets.WidgetButton {
@@ -11,6 +12,8 @@ Widgets.WidgetButton {
 
     implicitWidth: 26
     implicitHeight: 110
+
+    onLeftClicked: Services.Calendar.toggle()
 
     readonly property int paddingX: 2
     readonly property int paddingTop: 6

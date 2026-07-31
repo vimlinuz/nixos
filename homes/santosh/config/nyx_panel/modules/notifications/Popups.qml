@@ -25,7 +25,20 @@ PanelWindow {
 
     color: "transparent"
     exclusionMode: ExclusionMode.Ignore
-    focusable: false
+    focusable: true
+
+    // Escape hides all popups; the key handler takes focus while popups are shown.
+    Item {
+        id: keyHandler
+        focus: root.visible
+
+        Keys.onPressed: (event) => {
+            if (event.key === Qt.Key_Escape) {
+                Services.Notifs.hidePopups();
+                event.accepted = true;
+            }
+        }
+    }
 
     Column {
         id: popupColumn

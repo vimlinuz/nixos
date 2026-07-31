@@ -23,6 +23,10 @@ Item {
     property bool dnd: false
     property bool centerVisible: false
 
+    // Set when the center is closed by hover-leave/Escape; the next toggle
+    // consumes it so the bell can't immediately re-open a just-closed center.
+    property bool suppressReopen: false
+
     // How long a popup stays before it is hidden (critical notifications never expire).
     readonly property int popupTimeout: 5000
 
@@ -53,19 +57,29 @@ Item {
     onCenterVisibleChanged: if (root.centerVisible) root.popups.forEach(n => n.popup = false)
 
     function toggleCenter(): void {
+        if (root.suppressReopen) {
+            root.suppressReopen = false;
+            return;
+        }
         root.centerVisible = !root.centerVisible;
     }
 
     function showCenter(): void {
+        root.suppressReopen = false;
         root.centerVisible = true;
     }
 
     function hideCenter(): void {
+        root.suppressReopen = true;
         root.centerVisible = false;
     }
 
     function toggleDnd(): void {
         root.dnd = !root.dnd;
+    }
+
+    function hidePopups(): void {
+        root.popups.forEach(n => n.popup = false);
     }
 
     function clearAll(): void {
@@ -95,6 +109,10 @@ Item {
 
         function isDndEnabled(): bool {
             return root.dnd;
+        }
+
+        function hidePopups(): void {
+            root.hidePopups();
         }
 
         function count(): int {

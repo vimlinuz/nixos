@@ -12,9 +12,9 @@ Rectangle {
 
     width: 300
     radius: 10
-    color: "#000000"
+    color: "#bb000000"
     border.width: 1
-    border.color: root.critical ? "#f38ba8" : "#404060"
+    border.color: root.critical ? "#f38ba8" : "#606060"
     opacity: 0
 
     readonly property bool critical: modelData.notification.urgency === NotificationUrgency.Critical
@@ -62,7 +62,10 @@ Rectangle {
                 actions[0].invoke();
             } else if (actions.length === 0) {
                 modelData.close();
+                return;
             }
+            // Dismiss the popup on any left click; it stays in the center history.
+            modelData.popup = false;
         }
 
         ColumnLayout {
@@ -142,7 +145,7 @@ Rectangle {
                 textFormat: root.bodyFormat
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 10
-                color: "#c0c0d0"
+                color: "#d0d0d0"
                 wrapMode: Text.Wrap
                 maximumLineCount: 3
                 elide: Text.ElideRight

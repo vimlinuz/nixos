@@ -38,6 +38,19 @@ PanelWindow {
         onHoveredChanged: if (!hovered) root.closeTimer.start()
     }
 
+    // Escape closes the center.
+    Item {
+        id: keyHandler
+        focus: root.visible
+
+        Keys.onPressed: (event) => {
+            if (event.key === Qt.Key_Escape) {
+                Services.Notifs.hideCenter();
+                event.accepted = true;
+            }
+        }
+    }
+
     readonly property int headerH: 24
     readonly property int rowH: 34
     readonly property int listMaxH: 600
@@ -48,8 +61,7 @@ PanelWindow {
 
     Rectangle {
         anchors.fill: parent
-        color: "#000000"
-        opacity: 0.88
+        color: "#bb000000"
         radius: 12
     }
 
@@ -58,7 +70,7 @@ PanelWindow {
         color: "transparent"
         radius: 12
         border.width: 1
-        border.color: "#404060"
+        border.color: "#606060"
     }
 
     Item {
@@ -80,7 +92,7 @@ PanelWindow {
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 13
                 font.bold: true
-                color: "#b4befe"
+                color: "#ffffff"
                 elide: Text.ElideRight
                 verticalAlignment: Text.AlignVCenter
             }
@@ -112,7 +124,7 @@ PanelWindow {
             anchors.right: parent.right
             anchors.topMargin: 6
             height: 1
-            color: "#404060"
+            color: "#606060"
             opacity: 0.6
         }
 
@@ -180,7 +192,7 @@ PanelWindow {
                                 elide: Text.ElideRight
                                 font.family: "JetBrains Mono Nerd Font"
                                 font.pixelSize: 12
-                                color: "#d0d0e0"
+                                color: "#f0f0f0"
                             }
 
                             Text {

@@ -111,8 +111,7 @@ PanelWindow {
     // Background
     Rectangle {
         anchors.fill: parent
-        color: "#000000"
-        opacity: 0.88
+        color: "#bb000000"
         radius: 12
     }
 
@@ -121,7 +120,7 @@ PanelWindow {
         color: "transparent"
         radius: 12
         border.width: 1
-        border.color: "#404060"
+        border.color: "#606060"
     }
 
     // Content
@@ -139,7 +138,7 @@ PanelWindow {
                 text: "Power Menu"
                 width: parent.width
                 height: panel.headerHeight
-                color: "#8888aa"
+                color: "#a0a0a0"
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 10
                 font.letterSpacing: 1
@@ -187,7 +186,7 @@ PanelWindow {
                             text: row.modelData.icon
                             font.family: "JetBrains Mono Nerd Font"
                             font.pixelSize: 14
-                            color: row.isSelected ? (row.isDanger ? "#f38ba8" : "#b4befe") : (row.isDanger ? "#f38ba8" : "#e0e0e0")
+                            color: row.isSelected ? "#ffffff" : "#f0f0f0"
                         }
 
                         Text {
@@ -198,7 +197,7 @@ PanelWindow {
                             font.family: "JetBrains Mono Nerd Font"
                             font.pixelSize: 12
                             font.bold: row.isSelected
-                            color: row.isSelected ? "#ffffff" : "#e0e0e0"
+                            color: row.isSelected ? "#ffffff" : "#f0f0f0"
                         }
 
                         MouseArea {
