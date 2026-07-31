@@ -77,6 +77,7 @@ PanelWindow {
                 Microphone { Layout.alignment: Qt.AlignHCenter }
                 Battery { Layout.alignment: Qt.AlignHCenter }
                 Notifications { Layout.alignment: Qt.AlignHCenter }
+                Power { Layout.alignment: Qt.AlignHCenter }
             }
         }
     }
