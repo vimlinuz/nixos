@@ -111,7 +111,7 @@ PanelWindow {
     // Background
     Rectangle {
         anchors.fill: parent
-        color: "#bb000000"
+        color: Services.Theme.bgPanel
         radius: 12
     }
 
@@ -120,7 +120,7 @@ PanelWindow {
         color: "transparent"
         radius: 12
         border.width: 1
-        border.color: "#606060"
+        border.color: Services.Theme.border
     }
 
     // Content
@@ -138,7 +138,7 @@ PanelWindow {
                 text: "Power Menu"
                 width: parent.width
                 height: panel.headerHeight
-                color: "#a0a0a0"
+                color: Services.Theme.muted
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 10
                 font.letterSpacing: 1
@@ -172,7 +172,7 @@ PanelWindow {
                         Rectangle {
                             anchors.fill: parent
                             radius: 6
-                            color: row.isSelected ? "#3a3a5a" : "transparent"
+                            color: row.isSelected ? Services.Theme.visual : "transparent"
                             opacity: row.isSelected ? 0.9 : 0.0
                         }
 
@@ -186,7 +186,7 @@ PanelWindow {
                             text: row.modelData.icon
                             font.family: "JetBrains Mono Nerd Font"
                             font.pixelSize: 14
-                            color: row.isSelected ? "#ffffff" : "#f0f0f0"
+                            color: row.isSelected ? Services.Theme.fgBright : Services.Theme.fg
                         }
 
                         Text {
@@ -197,7 +197,7 @@ PanelWindow {
                             font.family: "JetBrains Mono Nerd Font"
                             font.pixelSize: 12
                             font.bold: row.isSelected
-                            color: row.isSelected ? "#ffffff" : "#f0f0f0"
+                            color: row.isSelected ? Services.Theme.fgBright : Services.Theme.fg
                         }
 
                         MouseArea {

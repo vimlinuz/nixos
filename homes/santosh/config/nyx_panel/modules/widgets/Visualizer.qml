@@ -104,10 +104,10 @@ Item {
     Rectangle {
         anchors.fill: parent
         radius: 0
-        color: "#000000"
+        color: Services.Theme.bg
         opacity: 0.20
         border.width: 1
-        border.color: "#606060"
+        border.color: Services.Theme.border
     }
 
     // Vertical stack of horizontal bars; looks like a wave through time.
@@ -130,7 +130,7 @@ Item {
 
                 height: root.lineThickness
                 radius: root.lineThickness
-                color: "#c4a7e7"
+                color: Services.Theme.accentAlt
                 opacity: 0.90
 
                 // Evenly distribute lines vertically.

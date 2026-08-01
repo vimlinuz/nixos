@@ -1,13 +1,15 @@
 import QtQuick
 import QtQuick.Layouts
 
+import "../../services" as Services
+
 Rectangle {
     id: root
 
     property alias text: label.text
-    property color normalColor: "#524f67"
-    property color hoverColor: "#524f67"
-    property color activeColor: "#524f67"
+    property color normalColor: Services.Theme.visual
+    property color hoverColor: Services.Theme.visual
+    property color activeColor: Services.Theme.visual
 
     // Background opacity only (keeps text/icons bright).
     property real normalOpacity: 0.40
@@ -48,7 +50,7 @@ Rectangle {
     Text {
         id: label
         anchors.centerIn: parent
-        color: "#f0f0f0"
+        color: Services.Theme.fg
         opacity: root.normalTextOpacity
         font.family: "JetBrains Mono Nerd Font"
         font.pixelSize: 14

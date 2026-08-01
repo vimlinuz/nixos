@@ -41,7 +41,7 @@ ColumnLayout {
     Rectangle {
         Layout.fillWidth: true
         height: 3
-        color: "#ffffff"
+        color: Services.Theme.fgBright
         opacity: 0.25
     }
 
@@ -62,14 +62,14 @@ ColumnLayout {
                     id: iconBg
                     anchors.fill: parent
                     radius: 0
-                    color: model.isFocused ? "#4a4a6a" : ""
+                    color: model.isFocused ? Services.Theme.visual : ""
                     opacity: 0.55
                 }
 
                 Rectangle {
                     anchors.fill: iconBg
                     radius: 0
-                    color: "#ffffff"
+                    color: Services.Theme.fg
                     opacity: mouseArea.containsMouse ? 0.12 : 0
                 }
 
@@ -89,7 +89,7 @@ ColumnLayout {
                     font.family: "JetBrains Mono Nerd Font"
                     font.pixelSize: 18
                     font.bold: true
-                    color: "#d0d0e0"
+                    color: Services.Theme.fg
                 }
 
                 MouseArea {
@@ -109,7 +109,7 @@ ColumnLayout {
                         text: model.title
                         font.family: "JetBrains Mono Nerd Font"
                         font.pixelSize: 11
-                        color: "#e0e0f0"
+                        color: Services.Theme.fg
                         style: Text.Sunken
                         styleColor: "#000000"
                         padding: 4
@@ -117,7 +117,7 @@ ColumnLayout {
                         Rectangle {
                             anchors.fill: parent
                             radius: 0
-                            color: "#1a1a2e"
+                            color: Services.Theme.bgInactive
                             opacity: 0.92
                             z: -1
                         }

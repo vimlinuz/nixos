@@ -18,7 +18,7 @@ WidgetButton {
     label.font.pixelSize: 12
 
     // Match Waybar disconnected look.
-    label.color: Services.Network.connected ? "#f0f0f0" : "#ff8a80"
+    label.color: Services.Network.connected ? Services.Theme.fg : Services.Theme.error
 
     onLeftClicked: Quickshell.execDetached(["sh", "-lc", "nm-connection-editor"])
 }

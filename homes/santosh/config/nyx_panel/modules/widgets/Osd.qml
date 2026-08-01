@@ -32,7 +32,7 @@ PanelWindow {
 
     Rectangle {
         anchors.fill: parent
-        color: "#bb000000"
+        color: Services.Theme.bgPanel
         radius: 12
     }
 
@@ -41,7 +41,7 @@ PanelWindow {
         color: "transparent"
         radius: 12
         border.width: 1
-        border.color: "#606060"
+        border.color: Services.Theme.border
     }
 
     ColumnLayout {
@@ -65,7 +65,7 @@ PanelWindow {
                 text: Services.Osd.sinkIcon
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 14
-                color: Services.Osd.sinkMuted ? "#a0a0a0" : "#f0f0f0"
+                color: Services.Osd.sinkMuted ? Services.Theme.muted : Services.Theme.fg
             }
 
             Bar { Layout.fillWidth: true; value: Services.Osd.sinkVolume }
@@ -76,7 +76,7 @@ PanelWindow {
                 text: Math.round(Services.Osd.sinkVolume * 100) + "%"
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 14
-                color: "#f0f0f0"
+                color: Services.Theme.fg
             }
         }
 
@@ -92,7 +92,7 @@ PanelWindow {
                 text: Services.Osd.sourceIcon
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 14
-                color: Services.Osd.sourceMuted ? "#a0a0a0" : "#f0f0f0"
+                color: Services.Osd.sourceMuted ? Services.Theme.muted : Services.Theme.fg
             }
 
             Bar { Layout.fillWidth: true; value: Services.Osd.sourceVolume }
@@ -103,7 +103,7 @@ PanelWindow {
                 text: Math.round(Services.Osd.sourceVolume * 100) + "%"
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 14
-                color: "#f0f0f0"
+                color: Services.Theme.fg
             }
         }
 
@@ -119,7 +119,7 @@ PanelWindow {
                 text: Services.Osd.brightnessIcon
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 14
-                color: "#f0f0f0"
+                color: Services.Theme.fg
             }
 
             Bar { Layout.fillWidth: true; value: Services.Osd.brightness }
@@ -130,7 +130,7 @@ PanelWindow {
                 text: Math.round(Services.Osd.brightness * 100) + "%"
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 14
-                color: "#f0f0f0"
+                color: Services.Theme.fg
             }
         }
     }
@@ -144,7 +144,7 @@ PanelWindow {
         Rectangle {
             anchors.fill: parent
             radius: height / 2
-            color: "#f0f0f0"
+            color: Services.Theme.fg
             opacity: 0.15
         }
 
@@ -154,7 +154,7 @@ PanelWindow {
             width: Math.max(8, parent.width * Math.min(1, Math.max(0, value)))
             height: parent.height
             radius: height / 2
-            color: "#f0f0f0"
+            color: Services.Theme.fg
         }
     }
 }

@@ -95,7 +95,7 @@ PanelWindow {
     // Background
     Rectangle {
         anchors.fill: parent
-        color: "#000000"
+        color: Services.Theme.bg
         opacity: 0.88
         radius: 12
     }
@@ -105,7 +105,7 @@ PanelWindow {
         color: "transparent"
         radius: 12
         border.width: 1
-        border.color: "#404060"
+        border.color: Services.Theme.borderDim
     }
 
     // Content
@@ -136,7 +136,7 @@ PanelWindow {
                 width: panel.thumbWidth
                 height: panel.indicatorHeight
                 radius: 2
-                color: "#b4befe"
+                color: Services.Theme.accent
                 z: 10
 
                 Behavior on x {
@@ -184,7 +184,7 @@ PanelWindow {
                                 anchors.margins: 2
                                 radius: 6
                                 clip: true
-                                color: "#1e1e2e"
+                                color: Services.Theme.bgInactive
 
                                 Image {
                                     anchors.fill: parent
@@ -200,7 +200,7 @@ PanelWindow {
                                 Rectangle {
                                     anchors.fill: parent
                                     radius: 6
-                                    color: "#000000"
+                                    color: Services.Theme.bg
                                     opacity: wallpaperItem.isSelected ? 0.0 : 0.4
 
                                     Behavior on opacity {
@@ -236,7 +236,7 @@ PanelWindow {
                                         const base = name.replace(/\.[^.]+$/, "");
                                         return base.length > 22 ? base.substring(0, 19) + "..." : base;
                                     }
-                                    color: "#e0e0e0"
+                                    color: Services.Theme.fg
                                     font.family: "JetBrains Mono Nerd Font"
                                     font.pixelSize: 9
                                     elide: Text.ElideRight
@@ -253,14 +253,14 @@ PanelWindow {
                                 width: 22
                                 height: 22
                                 radius: 11
-                                color: "#40a6e3a1"
+                                color: Services.Theme.successDim
                                 border.width: 1
-                                border.color: "#a6e3a1"
+                                border.color: Services.Theme.success
 
                                 Text {
                                     anchors.centerIn: parent
                                     text: "󰄬"
-                                    color: "#a6e3a1"
+                                    color: Services.Theme.success
                                     font.family: "JetBrains Mono Nerd Font"
                                     font.pixelSize: 12
                                     font.bold: true

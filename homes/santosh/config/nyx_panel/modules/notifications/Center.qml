@@ -61,7 +61,7 @@ PanelWindow {
 
     Rectangle {
         anchors.fill: parent
-        color: "#bb000000"
+        color: Services.Theme.bgPanel
         radius: 12
     }
 
@@ -70,7 +70,7 @@ PanelWindow {
         color: "transparent"
         radius: 12
         border.width: 1
-        border.color: "#606060"
+        border.color: Services.Theme.border
     }
 
     Item {
@@ -92,7 +92,7 @@ PanelWindow {
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 13
                 font.bold: true
-                color: "#ffffff"
+                color: Services.Theme.fgBright
                 elide: Text.ElideRight
                 verticalAlignment: Text.AlignVCenter
             }
@@ -103,7 +103,7 @@ PanelWindow {
                 height: 26
                 text: Services.Notifs.dnd ? "\uf1f6" : "\uf0f3"
                 label.font.pixelSize: 14
-                label.color: Services.Notifs.dnd ? "#8888aa" : "#f0f0f0"
+                label.color: Services.Notifs.dnd ? Services.Theme.muted : Services.Theme.fg
                 onLeftClicked: Services.Notifs.toggleDnd()
             }
 
@@ -124,7 +124,7 @@ PanelWindow {
             anchors.right: parent.right
             anchors.topMargin: 6
             height: 1
-            color: "#606060"
+            color: Services.Theme.border
             opacity: 0.6
         }
 
@@ -148,7 +148,7 @@ PanelWindow {
                     text: "No notifications"
                     font.family: "JetBrains Mono Nerd Font"
                     font.pixelSize: 12
-                    color: "#666688"
+                    color: Services.Theme.comment
                     horizontalAlignment: Text.AlignHCenter
                     topPadding: 8
                 }
@@ -182,7 +182,7 @@ PanelWindow {
                                 text: "\uf0f3"
                                 font.family: "JetBrains Mono Nerd Font"
                                 font.pixelSize: 13
-                                color: "#8888aa"
+                                color: Services.Theme.muted
                                 horizontalAlignment: Text.AlignHCenter
                             }
 
@@ -192,14 +192,14 @@ PanelWindow {
                                 elide: Text.ElideRight
                                 font.family: "JetBrains Mono Nerd Font"
                                 font.pixelSize: 12
-                                color: "#f0f0f0"
+                                color: Services.Theme.fg
                             }
 
                             Text {
                                 text: "\uf00d"
                                 font.family: "JetBrains Mono Nerd Font"
                                 font.pixelSize: 11
-                                color: "#8888aa"
+                                color: Services.Theme.muted
 
                                 MouseArea {
                                     anchors.fill: parent

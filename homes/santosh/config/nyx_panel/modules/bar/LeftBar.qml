@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
 
+import "../../services" as Services
 import "../widgets/"
 
 PanelWindow {
@@ -21,12 +22,12 @@ PanelWindow {
         id: background
         anchors.fill: parent
 
-        color: "#bb000000"
+        color: Services.Theme.bgPanel
 
         radius: 0
 
         border.width: 1
-        border.color: "#606060"
+        border.color: Services.Theme.border
 
         ColumnLayout {
             anchors.fill: parent

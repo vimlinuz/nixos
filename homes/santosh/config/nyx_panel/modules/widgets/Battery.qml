@@ -30,11 +30,11 @@ WidgetButton {
     label.elide: Text.ElideRight
 
     label.color: {
-        if (!Services.BatterySys.available) return "#f0f0f0";
-        if (Services.BatterySys.isCharging) return "#66ff66";
-        if (pct <= 20) return "#ff6666";
-        if (pct <= 30) return "#ffcc66";
-        return "#f0f0f0";
+        if (!Services.BatterySys.available) return Services.Theme.fg;
+        if (Services.BatterySys.isCharging) return Services.Theme.success;
+        if (pct <= 20) return Services.Theme.error;
+        if (pct <= 30) return Services.Theme.warning;
+        return Services.Theme.fg;
     }
 
     implicitWidth: 24

@@ -36,7 +36,7 @@ Widgets.WidgetButton {
                 if (h === 0) h = 12;
                 return String(h).padStart(2, "0");
             }
-            color: "#ffffff"
+            color: Services.Theme.fgBright
             font.family: "JetBrains Mono Nerd Font"
             font.pixelSize: 16
             font.bold: true
@@ -46,7 +46,7 @@ Widgets.WidgetButton {
 
         Text {
             text: String(root.now.getMinutes()).padStart(2, "0")
-            color: "#ffffff"
+            color: Services.Theme.fgBright
             font.family: "JetBrains Mono Nerd Font"
             font.pixelSize: 16
             font.bold: true
@@ -57,13 +57,13 @@ Widgets.WidgetButton {
         Rectangle {
             width: parent.width
             height: 2
-            color: "#ffffff"
+            color: Services.Theme.fgBright
             opacity: 0.25
         }
 
         Text {
             text: Qt.formatDateTime(root.now, "ddd")
-            color: "#ffffff"
+            color: Services.Theme.fgBright
             font.family: "JetBrains Mono Nerd Font"
             font.pixelSize: 11
             font.bold: true
@@ -73,7 +73,7 @@ Widgets.WidgetButton {
 
         Text {
             text: Qt.formatDateTime(root.now, "d")
-            color: "#ffffff"
+            color: Services.Theme.fgBright
             font.family: "JetBrains Mono Nerd Font"
             font.pixelSize: 11
             font.bold: true
@@ -83,7 +83,7 @@ Widgets.WidgetButton {
 
         Text {
             text: Qt.formatDateTime(root.now, "MMM")
-            color: "#ffffff"
+            color: Services.Theme.fgBright
             font.family: "JetBrains Mono Nerd Font"
             font.pixelSize: 11
             font.bold: true

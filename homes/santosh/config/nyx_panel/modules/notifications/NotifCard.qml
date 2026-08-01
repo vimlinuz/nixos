@@ -4,6 +4,8 @@ import Quickshell
 import Quickshell.Widgets
 import Quickshell.Services.Notifications
 
+import "../../services" as Services
+
 // Popup notification card. `modelData` is a Notifs wrapper object.
 Rectangle {
     id: root
@@ -12,9 +14,9 @@ Rectangle {
 
     width: 300
     radius: 10
-    color: "#bb000000"
+    color: Services.Theme.bgPanel
     border.width: 1
-    border.color: root.critical ? "#f38ba8" : "#606060"
+    border.color: root.critical ? Services.Theme.error : Services.Theme.border
     opacity: 0
 
     readonly property bool critical: modelData.notification.urgency === NotificationUrgency.Critical
@@ -92,7 +94,7 @@ Rectangle {
                     text: "\uf0f3"
                     font.family: "JetBrains Mono Nerd Font"
                     font.pixelSize: 12
-                    color: root.critical ? "#f38ba8" : "#b4befe"
+                    color: root.critical ? Services.Theme.error : Services.Theme.accent
                     horizontalAlignment: Text.AlignHCenter
                 }
 
@@ -102,21 +104,21 @@ Rectangle {
                     elide: Text.ElideRight
                     font.family: "JetBrains Mono Nerd Font"
                     font.pixelSize: 10
-                    color: "#8888aa"
+                    color: Services.Theme.muted
                 }
 
                 Text {
                     text: root.relativeTime
                     font.family: "JetBrains Mono Nerd Font"
                     font.pixelSize: 9
-                    color: "#666688"
+                    color: Services.Theme.comment
                 }
 
                 Text {
                     text: "\uf00d"
                     font.family: "JetBrains Mono Nerd Font"
                     font.pixelSize: 10
-                    color: "#8888aa"
+                    color: Services.Theme.muted
 
                     MouseArea {
                         anchors.fill: parent
@@ -133,7 +135,7 @@ Rectangle {
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 12
                 font.bold: true
-                color: root.critical ? "#f38ba8" : "#ffffff"
+                color: root.critical ? Services.Theme.error : Services.Theme.fgBright
                 wrapMode: Text.Wrap
                 maximumLineCount: 2
                 elide: Text.ElideRight
@@ -145,7 +147,7 @@ Rectangle {
                 textFormat: root.bodyFormat
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 10
-                color: "#d0d0d0"
+                color: Services.Theme.fg
                 wrapMode: Text.Wrap
                 maximumLineCount: 3
                 elide: Text.ElideRight
@@ -165,14 +167,14 @@ Rectangle {
                         Layout.fillWidth: true
                         implicitHeight: 24
                         radius: 6
-                        color: "#26263f"
+                        color: Services.Theme.line
 
                         Text {
                             anchors.centerIn: parent
                             text: parent.modelData.text
                             font.family: "JetBrains Mono Nerd Font"
                             font.pixelSize: 10
-                            color: "#b4befe"
+                            color: Services.Theme.accent
                             elide: Text.ElideRight
                         }
 

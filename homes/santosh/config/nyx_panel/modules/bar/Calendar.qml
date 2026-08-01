@@ -75,7 +75,7 @@ PanelWindow {
 
     Rectangle {
         anchors.fill: parent
-        color: "#bb000000"
+        color: Services.Theme.bgPanel
         radius: 12
     }
 
@@ -84,7 +84,7 @@ PanelWindow {
         color: "transparent"
         radius: 12
         border.width: 1
-        border.color: "#606060"
+        border.color: Services.Theme.border
     }
 
     ColumnLayout {
@@ -110,7 +110,7 @@ PanelWindow {
                     text: "\uf104"
                     font.family: "JetBrains Mono Nerd Font"
                     font.pixelSize: 14
-                    color: "#f0f0f0"
+                    color: Services.Theme.fg
                 }
             }
 
@@ -129,7 +129,7 @@ PanelWindow {
                         font.family: "JetBrains Mono Nerd Font"
                         font.pixelSize: 13
                         font.bold: true
-                        color: "#ffffff"
+                        color: Services.Theme.fgBright
                     }
                 }
             }
@@ -146,7 +146,7 @@ PanelWindow {
                     text: "\uf105"
                     font.family: "JetBrains Mono Nerd Font"
                     font.pixelSize: 14
-                    color: "#f0f0f0"
+                    color: Services.Theme.fg
                 }
             }
         }
@@ -169,7 +169,7 @@ PanelWindow {
                     text: root.weekLabel(index)
                     font.family: "JetBrains Mono Nerd Font"
                     font.pixelSize: 10
-                    color: (index === 0 || index === 6) ? "#a0a0a0" : "#8888aa"
+                    color: (index === 0 || index === 6) ? Services.Theme.muted : Services.Theme.comment
                 }
             }
         }
@@ -201,7 +201,7 @@ PanelWindow {
                         anchors.fill: parent
                         anchors.margins: 1
                         radius: 6
-                        color: parent.isToday ? "#606060" : "transparent"
+                        color: parent.isToday ? Services.Theme.border : "transparent"
                         visible: parent.inMonth
                     }
 
@@ -211,7 +211,7 @@ PanelWindow {
                         font.family: "JetBrains Mono Nerd Font"
                         font.pixelSize: 11
                         font.bold: parent.isToday
-                        color: parent.inMonth ? (parent.isToday ? "#000000" : (parent.isWeekend ? "#a0a0a0" : "#f0f0f0")) : "transparent"
+                        color: parent.inMonth ? (parent.isToday ? "#000000" : (parent.isWeekend ? Services.Theme.muted : Services.Theme.fg)) : "transparent"
                     }
                 }
             }
