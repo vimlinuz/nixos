@@ -12,18 +12,26 @@ Rectangle {
 
     required property var modelData
 
+    // modelData is transiently null while the delegate is instantiated;
+    // unwrap defensively so no binding throws.
+    readonly property var notif: modelData ? modelData.notification : null
+
     width: 340
+    height: implicitHeight
     radius: 10
     color: Services.Theme.bgPanel
     border.width: 1
     border.color: root.critical ? Services.Theme.error : Services.Theme.border
     opacity: 0
 
-    readonly property bool critical: modelData.notification.urgency === NotificationUrgency.Critical
-    readonly property int bodyFormat: /[<*_`#\[\]]/.test(modelData.notification.body) ? Text.MarkdownText : Text.PlainText
+    readonly property bool critical: root.notif && root.notif.urgency === NotificationUrgency.Critical
+    readonly property int bodyFormat: root.notif && /[<*_`#\[\]]/.test(root.notif.body) ? Text.MarkdownText : Text.PlainText
+    property bool expanded: false
+    property bool moved: false
 
     readonly property string relativeTime: {
-        const diff = Math.max(0, Date.now() - modelData.time.getTime());
+        if (!root.modelData) return "";
+        const diff = Math.max(0, Date.now() - root.modelData.time.getTime());
         const m = Math.floor(diff / 60000);
         if (m < 1) return "now";
         if (m < 60) return m + "m";
@@ -32,15 +40,56 @@ Rectangle {
         return Math.floor(h / 24) + "d";
     }
 
-    Component.onCompleted: fadeIn.start()
+    // Fraction of the popup timeout remaining (1 = full countdown left).
+    readonly property real popupFraction: root.modelData ? root.modelData.popupFraction : 1
 
+    // Grow/shrink smoothly when expanding and collapsing.
+    Behavior on height {
+        NumberAnimation { duration: 240; easing.type: Easing.OutCubic }
+    }
+
+    // Slide in from the right edge of the screen while fading in.
+    Component.onCompleted: {
+        root.x = root.width;
+        entranceAnim.start();
+    }
+
+    ParallelAnimation {
+        id: entranceAnim
+        NumberAnimation {
+            target: root
+            property: "x"
+            to: 0
+            duration: 380
+            easing.type: Easing.OutQuint
+        }
+        NumberAnimation {
+            target: root
+            property: "opacity"
+            to: 1
+            duration: 240
+            easing.type: Easing.OutCubic
+        }
+    }
+
+    // Fling off to the right/left after a drag past the threshold.
     NumberAnimation {
-        id: fadeIn
+        id: dismissAnim
         target: root
-        property: "opacity"
-        to: 1
-        duration: 200
-        easing.type: Easing.OutCubic
+        property: "x"
+        duration: 280
+        easing.type: Easing.InCubic
+        onStopped: modelData.setPopup(false)
+    }
+
+    // Spring back if the drag did not go far enough.
+    NumberAnimation {
+        id: springBack
+        target: root
+        property: "x"
+        to: 0
+        duration: 300
+        easing.type: Easing.OutBack
     }
 
     MouseArea {
@@ -49,6 +98,12 @@ Rectangle {
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
         acceptedButtons: Qt.LeftButton | Qt.MiddleButton
+        preventStealing: true
+
+        drag.target: root
+        drag.axis: Drag.XAxis
+
+        property int startY
 
         // Pause expiry while hovered and grant a fresh countdown so the
         // popup never disappears while it is being read.
@@ -58,15 +113,40 @@ Rectangle {
         }
         onExited: if (modelData.popup) modelData.resetPopupExpiry()
 
-        onClicked: (mouse) => {
-            if (mouse.button === Qt.MiddleButton) {
-                modelData.close();
+        onPressed: (event) => {
+            modelData.timer.stop();
+            root.moved = false;
+            startY = event.y;
+            if (event.button === Qt.MiddleButton) modelData.close();
+        }
+        onPositionChanged: (event) => {
+            if (!pressed) return;
+            if (drag.active) {
+                root.moved = true;
                 return;
             }
+            const diffY = event.y - startY;
+            if (Math.abs(diffY) > 20) {
+                root.expanded = diffY > 0;
+                root.moved = true;
+            }
+        }
+        onReleased: (event) => {
+            if (!containsMouse) modelData.resetPopupExpiry();
+            if (Math.abs(root.x) > root.width * 0.4) {
+                dismissAnim.to = root.x > 0 ? root.width * 2 : -root.width * 2;
+                dismissAnim.start();
+            } else if (root.x !== 0) {
+                springBack.start();
+            }
+        }
+        onClicked: (mouse) => {
+            if (mouse.button === Qt.MiddleButton) return;
+            if (root.moved) return;
             const actions = modelData.notification.actions;
             if (actions.length === 1) actions[0].invoke();
             // Any left click dismisses the popup; the notification stays in the center history.
-            modelData.popup = false;
+            modelData.setPopup(false);
         }
 
         ColumnLayout {
@@ -79,27 +159,33 @@ Rectangle {
                 Layout.fillWidth: true
                 spacing: 6
 
-                IconImage {
-                    Layout.preferredWidth: 18
-                    Layout.preferredHeight: 18
-                    source: root.modelData.notification.appIcon
-                    visible: root.modelData.notification.appIcon.length > 0
-                    enabled: false
-                }
+                // Icon.
+                Item {
+                    Layout.preferredWidth: 26
+                    Layout.preferredHeight: 26
 
-                Text {
-                    Layout.preferredWidth: 18
-                    visible: root.modelData.notification.appIcon.length === 0
-                    text: "\uf0f3"
-                    font.family: "JetBrains Mono Nerd Font"
-                    font.pixelSize: 12
-                    color: root.critical ? Services.Theme.error : Services.Theme.accent
-                    horizontalAlignment: Text.AlignHCenter
+                    IconImage {
+                        anchors.centerIn: parent
+                        width: 18
+                        height: 18
+                        source: root.notif ? root.notif.appIcon : ""
+                        visible: root.notif && root.notif.appIcon.length > 0
+                        enabled: false
+                    }
+
+                    Text {
+                        anchors.centerIn: parent
+                        visible: root.notif ? root.notif.appIcon.length === 0 : true
+                        text: "\uf0f3"
+                        font.family: "JetBrains Mono Nerd Font"
+                        font.pixelSize: 13
+                        color: root.critical ? Services.Theme.error : Services.Theme.accent
+                    }
                 }
 
                 Text {
                     Layout.fillWidth: true
-                    text: root.modelData.notification.appName
+                    text: root.notif ? root.notif.appName : ""
                     elide: Text.ElideRight
                     font.family: "JetBrains Mono Nerd Font"
                     font.pixelSize: 10
@@ -123,14 +209,14 @@ Rectangle {
                         anchors.fill: parent
                         anchors.margins: -5
                         cursorShape: Qt.PointingHandCursor
-                        onClicked: root.modelData.close()
+                        onClicked: if (root.modelData) root.modelData.close()
                     }
                 }
             }
 
             Text {
                 Layout.fillWidth: true
-                text: root.modelData.notification.summary
+                text: root.notif ? root.notif.summary : ""
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 12
                 font.bold: true
@@ -142,24 +228,24 @@ Rectangle {
 
             Text {
                 Layout.fillWidth: true
-                text: root.modelData.notification.body
+                text: root.notif ? root.notif.body : ""
                 textFormat: root.bodyFormat
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 10
                 color: Services.Theme.fg
                 wrapMode: Text.Wrap
-                maximumLineCount: 3
+                maximumLineCount: root.expanded ? 999 : 3
                 elide: Text.ElideRight
-                visible: root.modelData.notification.body.length > 0
+                visible: root.notif && root.notif.body.length > 0
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                visible: root.modelData.notification.actions.length > 0
+                visible: root.expanded && root.notif && root.notif.actions.length > 0
                 spacing: 6
 
                 Repeater {
-                    model: root.modelData.notification.actions
+                    model: root.notif ? root.notif.actions : []
 
                     Rectangle {
                         required property var modelData
@@ -170,7 +256,7 @@ Rectangle {
 
                         Text {
                             anchors.centerIn: parent
-                            text: parent.modelData.text
+                            text: parent.modelData ? parent.modelData.text : ""
                             font.family: "JetBrains Mono Nerd Font"
                             font.pixelSize: 10
                             color: Services.Theme.accent
@@ -180,11 +266,30 @@ Rectangle {
                         MouseArea {
                             anchors.fill: parent
                             cursorShape: Qt.PointingHandCursor
-                            onClicked: parent.modelData.invoke()
+                            onClicked: if (parent.modelData) parent.modelData.invoke()
                         }
                     }
                 }
             }
+        }
+    }
+
+    // Countdown line: only the remaining portion is drawn, single color,
+    // empty part invisible. Depletes as the popup approaches expiry.
+    Rectangle {
+        id: timeoutFill
+        anchors {
+            right: parent.right
+            bottom: parent.bottom
+            rightMargin: 10
+        }
+        height: 2
+        width: (parent.width - 20) * root.popupFraction
+        radius: 1
+        color: root.critical ? Services.Theme.error : Services.Theme.warning
+
+        Behavior on width {
+            NumberAnimation { duration: 200; easing.type: Easing.Linear }
         }
     }
 

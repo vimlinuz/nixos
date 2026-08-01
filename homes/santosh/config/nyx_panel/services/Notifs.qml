@@ -20,6 +20,10 @@ Item {
     readonly property var popups: root.list.filter(n => n.popup && !n.closed)
     readonly property var notClosed: root.list.filter(n => !n.closed)
 
+    // Incremental model mirroring `popups`, so the popup ListView can animate
+    // insertions/removals/reordering with move and displaced transitions.
+    property ListModel popupsModel: ListModel {}
+
     property bool dnd: false
     property bool centerVisible: false
 
@@ -40,17 +44,18 @@ Item {
             notif.tracked = true;
             const obj = notifComp.createObject(root, {
                 notification: notif,
-                popup: !root.dnd && !root.centerVisible,
+                popup: false,
                 time: new Date(),
                 popupTimeout: root.popupTimeout,
                 removeNotif: root.remove
             });
             root.list = [obj, ...root.list];
+            obj.setPopup(!root.dnd && !root.centerVisible);
         }
     }
 
-    onDndChanged: if (root.dnd) root.popups.forEach(n => n.popup = false)
-    onCenterVisibleChanged: if (root.centerVisible) root.popups.forEach(n => n.popup = false)
+    onDndChanged: if (root.dnd) root.popups.forEach(n => n.setPopup(false))
+    onCenterVisibleChanged: if (root.centerVisible) root.popups.forEach(n => n.setPopup(false))
 
     function toggleCenter(): void {
         root.centerVisible = !root.centerVisible;
@@ -69,7 +74,7 @@ Item {
     }
 
     function hidePopups(): void {
-        root.popups.forEach(n => n.popup = false);
+        root.popups.forEach(n => n.setPopup(false));
     }
 
     function clearAll(): void {
@@ -129,17 +134,41 @@ Item {
             // while the user reads it.
             property date popupStart: new Date()
 
-            // One-second ticker; expires the popup after popupTimeout.
-            // Stopped imperatively while the popup is hovered.
+            // 0..1 fraction of the popup timeout remaining; drives the
+            // countdown line on the card.
+            property real popupFraction: 1
+
+            // 100ms ticker; smooths the countdown line and expires the
+            // popup after popupTimeout. Stopped imperatively while the
+            // popup is hovered.
             readonly property Timer timer: Timer {
-                interval: 1000
+                interval: 100
                 repeat: true
-                running: true
+                running: notif.popup
                 onTriggered: {
                     if (!notif.popup) return;
                     if (notif.notification.urgency === NotificationUrgency.Critical) return;
+                    notif.popupFraction = Math.max(0, 1 - (Date.now() - notif.popupStart.getTime()) / notif.popupTimeout);
                     if (Date.now() - notif.popupStart.getTime() >= notif.popupTimeout) {
-                        notif.popup = false;
+                        notif.setPopup(false);
+                    }
+                }
+            }
+
+            // Keep the popup model in sync with the popup flag.
+            function setPopup(v: bool): void {
+                if (notif.popup === v) return;
+                notif.popup = v;
+                if (v) {
+                    notif.popupStart = new Date();
+                    notif.popupFraction = 1;
+                    root.popupsModel.insert(0, { wrapper: notif });
+                } else {
+                    for (let i = 0; i < root.popupsModel.count; i++) {
+                        if (root.popupsModel.get(i).wrapper === notif) {
+                            root.popupsModel.remove(i);
+                            break;
+                        }
                     }
                 }
             }
@@ -153,7 +182,7 @@ Item {
             readonly property Connections conn: Connections {
                 target: notif.notification
                 function onClosed(): void {
-                    notif.popup = false;
+                    notif.setPopup(false);
                     if (notif.closed) return;
                     notif.closed = true;
                     if (notif.removeNotif) notif.removeNotif(notif);
