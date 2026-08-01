@@ -1,4 +1,4 @@
-/* Wallpaper Selector - Catppuccin Mocha Style */
+/* Wallpaper Selector - Vague Style */
 
 configuration {
     show-icons: true;
@@ -6,33 +6,33 @@ configuration {
 
 * {
     font: "JetBrainsMono Nerd Font 10";
-    /* Catppuccin Mocha Colors with transparency */
-    base:        #1e1e2ed9;   /* 85% opacity */
-    mantle:      #181825d9;
-    crust:       #11111bd9;
-    surface0:    #313244d9;
-    surface1:    #45475ad9;
-    surface2:    #585b70d9;
-    text:        #cdd6f4;
-    subtext1:    #bac2de;
-    subtext0:    #a6adc8;
-    overlay2:    #9399b2;
-    overlay1:    #7f849c;
-    overlay0:    #6c7086;
-    blue:        #89b4fa;
-    lavender:    #b4befe;
-    sapphire:    #74c7ec;
-    sky:         #89dceb;
-    teal:        #94e2d5;
-    green:       #a6e3a1;
-    yellow:      #f9e2af;
-    peach:       #fab387;
-    maroon:      #eba0ac;
-    red:         #f38ba8;
-    mauve:       #cba6f7;
-    pink:        #f5c2e7;
-    flamingo:    #f2cdcd;
-    rosewater:   #f5e0dc;
+    /* Vague Colors with transparency */
+    base:        #141415d9;   /* bg, 85% opacity */
+    mantle:      #1c1c24d9;   /* inactive bg */
+    crust:       #101012d9;
+    surface0:    #252530d9;   /* line */
+    surface1:    #333738d9;   /* visual */
+    surface2:    #878787d9;   /* border */
+    text:        #cdcdcd;
+    subtext1:    #d7d7d7;
+    subtext0:    #878787;
+    overlay2:    #9b9b9b;
+    overlay1:    #878787;
+    overlay0:    #606079;
+    blue:        #7e98e8;
+    lavender:    #aeaed1;
+    sapphire:    #6e94b2;
+    sky:         #b4d4cf;
+    teal:        #b4d4cf;
+    green:       #7fa563;
+    yellow:      #f3be7c;
+    peach:       #e8b589;
+    maroon:      #c48282;
+    red:         #d8647e;
+    mauve:       #aeaed1;
+    pink:        #bb9dbd;
+    flamingo:    #bb9dbd;
+    rosewater:   #c9b1ca;
     background-color: @base;
     text-color: @text;
     margin: 0;
@@ -146,7 +146,7 @@ element selected.normal {
 element-icon {
     size: 100px;
     border-radius: 10px;
-    background-color: #ffffff22;
+    background-color: #cdcdcd22;
     padding: 0;
 }
 
@@ -161,7 +161,7 @@ element-text {
 }
 
 element-text selected.normal {
-    text-color: #181825;
+    text-color: #141415;
 }
 
 
@@ -189,9 +189,9 @@ error-message {
 }
 
 element.urgent {
-    background-color: rgba(247, 118, 142, 0.2);
+    background-color: rgba(216, 100, 126, 0.2);
 }
 
 element.active {
-    background-color: rgba(122, 162, 247, 0.2);
+    background-color: rgba(126, 152, 232, 0.2);
 }
