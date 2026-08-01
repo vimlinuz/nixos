@@ -7,8 +7,17 @@ ColumnLayout {
     id: root
     spacing: 4
 
+    property var hoveredWsId: -1
+    property real hoveredWsY: 0
+
     Component.onCompleted: {
         if (Services.Niri.workspaces) Services.Niri.workspaces.maxCount = 10;
+    }
+
+    Timer {
+        id: hideTimer
+        interval: 300
+        onTriggered: root.hoveredWsId = -1
     }
 
     Repeater {
@@ -16,6 +25,7 @@ ColumnLayout {
         model: Services.Niri.workspaces
 
         WidgetButton {
+            id: wsBtn
             required property var model
             implicitWidth: 25
             label.font.pixelSize: 16
@@ -27,6 +37,14 @@ ColumnLayout {
             active: model.isActive
 
             onLeftClicked: Services.Niri.focusWorkspaceById(model.id)
+
+            onHoverEntered: {
+                hideTimer.stop();
+                root.hoveredWsId = model.id;
+                root.hoveredWsY = wsBtn.mapToGlobal(0, 0).y;
+            }
+
+            onHoverExited: hideTimer.start()
         }
     }
 
@@ -98,6 +116,8 @@ ColumnLayout {
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
 
+                    onClicked: Services.Niri.focusWindow(model.id)
+
                     Text {
                         id: tooltip
                         anchors {
@@ -125,5 +145,14 @@ ColumnLayout {
                 }
             }
         }
+    }
+
+    WorkspacePreview {
+        workspaceId: root.hoveredWsId
+        panelY: root.hoveredWsY
+
+        onEntered: hideTimer.stop()
+        onExited: hideTimer.start()
+        onDismissRequested: root.hoveredWsId = -1
     }
 }
