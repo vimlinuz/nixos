@@ -26,28 +26,30 @@ PanelWindow {
 
     color: "transparent"
     exclusionMode: ExclusionMode.Ignore
-    focusable: true
+    // Never keyboard-focusable: niri gives keyboard focus to on-demand layer
+    // surfaces when they are shown, so opening the center would steal focus
+    // from the active window. Pointer interaction (clicking rows, scrolling)
+    // works regardless of keyboard interactivity.
+    focusable: false
 
-    // Auto-close when the cursor leaves the window (same as the power menu).
+    // Auto-close when the cursor is away from the window. HoverHandler only
+    // fires on hover *changes*, so the timer must also be started when the
+    // window appears — otherwise, because the bell sits at the other end of
+    // the screen, the center would open and never close again.
     readonly property Timer closeTimer: Timer {
-        interval: 250
+        interval: 2500
         onTriggered: Services.Notifs.hideCenter()
     }
 
-    HoverHandler {
-        onHoveredChanged: if (!hovered) root.closeTimer.start()
+    onVisibleChanged: {
+        if (root.visible) root.closeTimer.start();
+        else root.closeTimer.stop();
     }
 
-    // Escape closes the center.
-    Item {
-        id: keyHandler
-        focus: root.visible
-
-        Keys.onPressed: (event) => {
-            if (event.key === Qt.Key_Escape) {
-                Services.Notifs.hideCenter();
-                event.accepted = true;
-            }
+    HoverHandler {
+        onHoveredChanged: {
+            if (hovered) root.closeTimer.stop();
+            else root.closeTimer.start();
         }
     }
 
@@ -161,6 +163,32 @@ PanelWindow {
 
                         width: listCol.width
                         height: root.rowH
+
+                        Rectangle {
+                            anchors.fill: parent
+                            radius: 6
+                            color: Services.Theme.line
+                            opacity: rowMouse.containsMouse ? 0.6 : 0
+                            Behavior on opacity { NumberAnimation { duration: 120 } }
+                        }
+
+                        // Left click invokes the sole action, middle click dismisses.
+                        MouseArea {
+                            id: rowMouse
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            acceptedButtons: Qt.LeftButton | Qt.MiddleButton
+                            cursorShape: Qt.PointingHandCursor
+
+                            onClicked: (mouse) => {
+                                if (mouse.button === Qt.MiddleButton) {
+                                    modelData.close();
+                                    return;
+                                }
+                                const actions = modelData.notification.actions;
+                                if (actions.length === 1) actions[0].invoke();
+                            }
+                        }
 
                         RowLayout {
                             anchors.fill: parent

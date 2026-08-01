@@ -12,7 +12,7 @@ Rectangle {
 
     required property var modelData
 
-    width: 300
+    width: 340
     radius: 10
     color: Services.Theme.bgPanel
     border.width: 1
@@ -50,9 +50,13 @@ Rectangle {
         cursorShape: Qt.PointingHandCursor
         acceptedButtons: Qt.LeftButton | Qt.MiddleButton
 
-        // Pause expiry while hovered.
-        onEntered: modelData.timer.stop()
-        onExited: if (modelData.popup) modelData.timer.start()
+        // Pause expiry while hovered and grant a fresh countdown so the
+        // popup never disappears while it is being read.
+        onEntered: {
+            modelData.timer.stop();
+            modelData.popupStart = new Date();
+        }
+        onExited: if (modelData.popup) modelData.resetPopupExpiry()
 
         onClicked: (mouse) => {
             if (mouse.button === Qt.MiddleButton) {
@@ -60,13 +64,8 @@ Rectangle {
                 return;
             }
             const actions = modelData.notification.actions;
-            if (actions.length === 1) {
-                actions[0].invoke();
-            } else if (actions.length === 0) {
-                modelData.close();
-                return;
-            }
-            // Dismiss the popup on any left click; it stays in the center history.
+            if (actions.length === 1) actions[0].invoke();
+            // Any left click dismisses the popup; the notification stays in the center history.
             modelData.popup = false;
         }
 

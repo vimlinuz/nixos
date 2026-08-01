@@ -20,25 +20,15 @@ PanelWindow {
     margins.top: 10
     margins.right: 10
 
-    implicitWidth: 300
+    implicitWidth: 340
     implicitHeight: popupColumn.implicitHeight
 
     color: "transparent"
     exclusionMode: ExclusionMode.Ignore
-    focusable: true
-
-    // Escape hides all popups; the key handler takes focus while popups are shown.
-    Item {
-        id: keyHandler
-        focus: root.visible
-
-        Keys.onPressed: (event) => {
-            if (event.key === Qt.Key_Escape) {
-                Services.Notifs.hidePopups();
-                event.accepted = true;
-            }
-        }
-    }
+    // Never keyboard-focusable: a notification appearing must not steal focus
+    // from the active window. Pointer clicks still work — layer-shell surfaces
+    // receive pointer events regardless of keyboard interactivity.
+    focusable: false
 
     Column {
         id: popupColumn
