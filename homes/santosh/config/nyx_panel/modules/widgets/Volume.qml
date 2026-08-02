@@ -1,6 +1,6 @@
 import QtQuick
 import Quickshell
-import Quickshell.Io
+import Quickshell.Services.Pipewire
 
 WidgetButton {
     id: root
@@ -9,38 +9,23 @@ WidgetButton {
     property string unmutedIcon: "󰕾"
     property string mutedIcon: "󰝟"
 
-    // Start optimistic; corrected on first poll.
-    text: unmutedIcon
+    readonly property var sink: Pipewire.defaultAudioSink
+    readonly property bool muted: !!root.sink?.audio?.muted
+    readonly property real volume: root.sink?.audio?.volume ?? 0
 
-    function refreshState() {
-        sinkStateProc.running = true;
+    // Nodes must be explicitly tracked or their audio params (volume/mute)
+    // are never fetched from Pipewire.
+    PwObjectTracker {
+        objects: [root.sink].filter(n => n)
     }
 
-    Timer {
-        interval: 1000
-        repeat: true
-        running: true
-        triggeredOnStart: true
-        onTriggered: root.refreshState()
-    }
+    text: root.muted ? root.mutedIcon : root.unmutedIcon
+    active: root.muted
 
-    Process {
-        id: sinkStateProc
-        command: ["sh", "-lc", "wpctl get-volume @DEFAULT_AUDIO_SINK@"]
-
-        stdout: StdioCollector {
-            onStreamFinished: {
-                const out = (this.text ?? "").trim();
-                const muted = out.includes("MUTED");
-                root.active = muted;
-                root.text = muted ? root.mutedIcon : root.unmutedIcon;
-            }
-        }
-
-        stderr: StdioCollector {
-            onStreamFinished: {
-                // Ignore errors; keep current icon/state.
-            }
+    function setVolume(v: real): void {
+        if (root.sink?.ready && root.sink?.audio) {
+            root.sink.audio.muted = false;
+            root.sink.audio.volume = Math.max(0, Math.min(1.0, v));
         }
     }
 
@@ -49,17 +34,11 @@ WidgetButton {
     }
 
     onRightClicked: {
-        Quickshell.execDetached(["sh", "-lc", "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"])
-        root.refreshState()
+        if (root.sink?.ready && root.sink?.audio) {
+            root.sink.audio.muted = !root.sink.audio.muted;
+        }
     }
 
-    onWheelUp: {
-        Quickshell.execDetached(["sh", "-lc", "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"])
-        root.refreshState()
-    }
-
-    onWheelDown: {
-        Quickshell.execDetached(["sh", "-lc", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"])
-        root.refreshState()
-    }
+    onWheelUp: root.setVolume(root.volume + 0.05)
+    onWheelDown: root.setVolume(root.volume - 0.05)
 }

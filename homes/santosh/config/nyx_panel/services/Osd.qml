@@ -7,7 +7,7 @@ import Quickshell.Services.Pipewire
 
 // On-screen display for volume, microphone and brightness.
 // Volume/mic are event-driven via Pipewire (instant response); brightness
-// has no native service, so it is polled at a fast interval.
+// is event-driven via udev (the kernel emits a change uevent on every write).
 Item {
     id: root
     visible: false
@@ -68,14 +68,32 @@ Item {
         hideTimer.restart();
     }
 
-    // Brightness: no native service, so poll at a fast interval.
-    Timer {
-        id: brightTimer
-        interval: 150
-        repeat: true
+    // Brightness: event-driven. Every brightness write (wheel or keyboard
+    // hotkey) makes the kernel emit a 'change' uevent for the backlight, so a
+    // persistent udevadm monitor reports changes instantly — no polling.
+    Process {
+        id: udevMon
+        command: ["udevadm", "monitor", "--subsystem-match=backlight", "--property"]
         running: true
-        triggeredOnStart: true
-        onTriggered: brightProc.running = true
+
+        stdout: SplitParser {
+            splitMarker: "\n"
+            onRead: () => brightProc.running = true
+        }
+
+        stderr: StdioCollector {
+            onStreamFinished: {}
+        }
+
+        function onFinished(exitCode: int, exitStatus: object): void {
+            restartTimer.start();
+        }
+    }
+
+    Timer {
+        id: restartTimer
+        interval: 1000
+        onTriggered: udevMon.running = true
     }
 
     Process {
@@ -85,8 +103,11 @@ Item {
         stdout: StdioCollector {
             onStreamFinished: {
                 const pct = parseFloat((this.text ?? "").trim());
-                if (!isNaN(pct) && Math.abs(pct / 100 - root.brightness) > 0.005) {
-                    root.brightness = pct / 100;
+                if (isNaN(pct)) return;
+                const v = pct / 100;
+                const changed = Math.abs(v - root.brightness) > 0.005;
+                root.brightness = v;
+                if (root.ready && changed) {
                     root.active = "brightness";
                     root.show();
                 }

@@ -23,6 +23,7 @@ with pkgs;
   zip
 
   qview
+  cava
 
   kdePackages.kdenlive
   # Provided via flake inputs (not nixpkgs).

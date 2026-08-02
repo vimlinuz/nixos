@@ -12,6 +12,7 @@ Item {
 
     // Hardcoded for this system.
     property string batPath: "/sys/class/power_supply/BAT0"
+    property string adapterPath: "/sys/class/power_supply/ADP0"
 
     // 0..1 to match the old UPower service expectations.
     property real percentage: 0
@@ -29,50 +30,33 @@ Item {
 
     property bool adapterOnline: false
 
-    property int intervalMs: 5000
+    property int intervalMs: 10000
 
     Timer {
         interval: root.intervalMs
         running: true
         repeat: true
         triggeredOnStart: true
-        onTriggered: {
-            capProc.running = true;
-            statusProc.running = true;
-            adapterProc.running = true;
-        }
+        onTriggered: batProc.running = true
     }
 
+    // One direct read of all three sysfs files (no shell, no fork).
     Process {
-        id: capProc
-        command: ["sh", "-lc", `cat ${root.batPath}/capacity 2>/dev/null || echo 0`]
+        id: batProc
+        command: ["cat", root.batPath + "/capacity", root.batPath + "/status", root.adapterPath + "/online"]
 
         stdout: StdioCollector {
             onStreamFinished: {
-                const out = parseInt((this.text ?? "0").trim(), 10);
-                root.percentage = isNaN(out) ? 0 : (out / 100.0);
-            }
-        }
-    }
+                const lines = (this.text ?? "")
+                    .trim()
+                    .split("\n")
+                    .map(l => l.trim())
+                    .filter(l => l.length > 0);
 
-    Process {
-        id: statusProc
-        command: ["sh", "-lc", `cat ${root.batPath}/status 2>/dev/null || echo Unknown`]
-
-        stdout: StdioCollector {
-            onStreamFinished: {
-                root.status = (this.text ?? "Unknown").trim();
-            }
-        }
-    }
-
-    Process {
-        id: adapterProc
-        command: ["sh", "-lc", "cat /sys/class/power_supply/ADP0/online 2>/dev/null || echo 0"]
-
-        stdout: StdioCollector {
-            onStreamFinished: {
-                root.adapterOnline = ((this.text ?? "0").trim() === "1");
+                const cap = parseInt(lines[0], 10);
+                if (!isNaN(cap)) root.percentage = cap / 100.0;
+                if (lines.length > 1) root.status = lines[1];
+                if (lines.length > 2) root.adapterOnline = (lines[2] === "1");
             }
         }
     }

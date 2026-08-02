@@ -1,6 +1,6 @@
 import QtQuick
 import Quickshell
-import Quickshell.Io
+import Quickshell.Services.Pipewire
 
 WidgetButton {
     id: root
@@ -9,59 +9,35 @@ WidgetButton {
     property string enabledIcon: "󰍬"
     property string disabledIcon: "󰍭"
 
-    // Start optimistic; corrected on first poll.
-    text: enabledIcon
+    readonly property var source: Pipewire.defaultAudioSource
+    readonly property bool sourceMuted: !!root.source?.audio?.muted
+    readonly property real sourceVolume: root.source?.audio?.volume ?? 0
 
-    function refreshState() {
-        micStateProc.running = true;
+    // Nodes must be explicitly tracked or their audio params (volume/mute)
+    // are never fetched from Pipewire.
+    PwObjectTracker {
+        objects: [root.source].filter(n => n)
     }
 
-    Timer {
-        interval: 1000
-        repeat: true
-        running: true
-        triggeredOnStart: true
-        onTriggered: root.refreshState()
-    }
+    text: root.sourceMuted ? root.disabledIcon : root.enabledIcon
 
-    Process {
-        id: micStateProc
-        command: ["sh", "-lc", "wpctl get-volume @DEFAULT_AUDIO_SOURCE@"]
-
-        stdout: StdioCollector {
-            onStreamFinished: {
-                const out = (this.text ?? "").trim();
-                const muted = out.includes("MUTED");
-                // active will change the color of the widget to be different then other which I dont want
-                // root.active = muted;
-                root.text = muted ? root.disabledIcon : root.enabledIcon;
-            }
-        }
-
-        stderr: StdioCollector {
-            onStreamFinished: {
-                // Ignore errors; keep current icon/state.
-            }
+    function setSourceVolume(v: real): void {
+        if (root.source?.ready && root.source?.audio) {
+            root.source.audio.muted = false;
+            root.source.audio.volume = Math.max(0, Math.min(1.0, v));
         }
     }
 
-    // Left click: toggle mute, like waybar mic mute key.
     onLeftClicked: {
         Quickshell.execDetached(["sh", "-lc", "pavucontrol --tab=4"])
-        root.refreshState()
     }
 
-    // Right click: open pavucontrol Input Devices (tab 4) like you had.
-    onRightClicked: Quickshell.execDetached(["sh", "-lc", "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"])
-
-    onWheelUp: {
-        Quickshell.execDetached(["sh", "-lc", "wpctl set-volume -l 1 @DEFAULT_SOURCE@ .05+"])
-        root.refreshState()
+    onRightClicked: {
+        if (root.source?.ready && root.source?.audio) {
+            root.source.audio.muted = !root.source.audio.muted;
+        }
     }
 
-    onWheelDown: {
-        Quickshell.execDetached(["sh", "-lc", "wpctl set-volume @DEFAULT_SOURCE@ .05-"])
-        root.refreshState()
-    }
+    onWheelUp: root.setSourceVolume(root.sourceVolume + 0.05)
+    onWheelDown: root.setSourceVolume(root.sourceVolume - 0.05)
 }
-

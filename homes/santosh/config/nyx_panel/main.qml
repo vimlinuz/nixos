@@ -16,6 +16,7 @@ ShellRoot {
     property var _notifs: Services.Notifs
     property var _calendar: Services.Calendar
     property var _osd: Services.Osd
+    property var _audioVis: Services.AudioVis
     // property var _network: Services.Network
     // property var _wallpaper: Services.Wallpaper
 
