@@ -33,6 +33,8 @@ ColumnLayout {
             property int thisWsId: model.id
             property bool isActiveWs: model.isActive
 
+            visible: model.isActive || model.activeWindowId !== 0
+
             text: model.isActive ? "" : "\udb82\udee3"
             active: model.isActive
 
