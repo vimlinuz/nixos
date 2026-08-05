@@ -89,7 +89,7 @@ PanelWindow {
 
             Text {
                 anchors.verticalCenter: parent.verticalCenter
-                width: header.width - dndBtn.width - clearBtn.width - 8
+                width: header.width - dndBtn.width - clearBtn.width - closeBtn.width - 12
                 text: Services.Notifs.notClosed.length > 0 ? "Notifications (%1)".arg(Services.Notifs.notClosed.length) : "Notifications"
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 13
@@ -116,6 +116,15 @@ PanelWindow {
                 text: "\uf1f8"
                 label.font.pixelSize: 14
                 onLeftClicked: Services.Notifs.clearAll()
+            }
+
+            WidgetButton {
+                id: closeBtn
+                width: 26
+                height: 26
+                text: "\uf00d"
+                label.font.pixelSize: 14
+                onLeftClicked: Services.Notifs.hideCenter()
             }
         }
 
