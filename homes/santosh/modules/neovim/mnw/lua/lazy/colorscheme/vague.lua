@@ -3,7 +3,7 @@ return {
   colorscheme = "vague",
   after = function()
     require("vague").setup({
-      transparent = false,
+      transparent = true,
       bold = false,
       italic = false,
       -- colors = {
