@@ -17,10 +17,26 @@ Item {
     // Thickness of each segment.
     property int lineThickness: Services.Config.visualizerLineThickness
 
-    // Wave color; falls back to the theme accent if left empty in Config.
+    // Wave color override; when unset each bar is tinted from the vague gradient.
     readonly property color waveColor: Services.Config.visualizerColor
-        ? Services.Config.visualizerColor
-        : Services.Theme.accentAlt
+
+    readonly property bool useGradient: !Services.Config.visualizerColor
+
+    // Sample Services.Theme.waveGradient at t (0..1), lerping between stops.
+    function gradientColor(t) {
+        const g = Services.Theme.waveGradient;
+        const pos = Math.max(0, Math.min(0.999999, t)) * (g.length - 1);
+        const i = Math.min(Math.floor(pos), g.length - 2);
+        const f = pos - i;
+        const a = g[i];
+        const b = g[i + 1];
+        return Qt.rgba(
+            a.r + (b.r - a.r) * f,
+            a.g + (b.g - a.g) * f,
+            a.b + (b.b - a.b) * f,
+            a.a + (b.a - a.a) * f
+        );
+    }
 
     Rectangle {
         anchors.fill: parent
@@ -51,7 +67,9 @@ Item {
 
                 height: root.lineThickness
                 radius: root.lineThickness
-                color: root.waveColor
+                color: root.useGradient
+                    ? root.gradientColor(index / Math.max(1, Services.AudioVis.bins - 1))
+                    : root.waveColor
                 opacity: 0.90
 
                 // Evenly distribute lines vertically.

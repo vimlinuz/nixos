@@ -27,4 +27,14 @@ Item {
     readonly property color visual: "#333738"
     readonly property color keyword: "#6e94b2"
     readonly property color string: "#e8b589"
+
+    // Wave gradient for the audio visualizer, sampled through the palette.
+    // Declared as colors (not strings) so .r/.g/.b sampling works.
+    readonly property color wave0: "#6e94b2"  // blue
+    readonly property color wave1: "#7e98e8"  // iris
+    readonly property color wave2: "#aeaed1"  // cyan
+    readonly property color wave3: "#bb9dbd"  // magenta
+    readonly property color wave4: "#9bb4bc"  // teal
+    readonly property color wave5: "#b4d4cf"  // aqua
+    readonly property var waveGradient: [wave0, wave1, wave2, wave3, wave4, wave5]
 }
