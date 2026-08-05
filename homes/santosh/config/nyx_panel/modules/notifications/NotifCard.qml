@@ -143,130 +143,141 @@ Rectangle {
         onClicked: (mouse) => {
             if (mouse.button === Qt.MiddleButton) return;
             if (root.moved) return;
-            const actions = modelData.notification.actions;
-            if (actions.length === 1) actions[0].invoke();
+            // Capture before invoking: the action may close the notification.
+            const notif = modelData.notification;
+            if (notif.actions.length === 1) notif.actions[0].invoke();
+            // Jump to the app that sent this notification, switching
+            // workspace if needed.
+            Services.Niri.focusApp(notif);
             // Any left click dismisses the popup; the notification stays in the center history.
             modelData.setPopup(false);
         }
 
-        ColumnLayout {
+        RowLayout {
             id: content
             anchors.fill: parent
             anchors.margins: 10
-            spacing: 5
+            spacing: 10
 
-            RowLayout {
+            // App icon, left side of the card.
+            Item {
+                Layout.preferredWidth: 40
+                Layout.preferredHeight: 40
+                Layout.alignment: Qt.AlignTop
+
+                IconImage {
+                    anchors.centerIn: parent
+                    width: 32
+                    height: 32
+                    source: root.notif && root.notif.appIcon.length > 0 ? "image://icon/" + root.notif.appIcon : ""
+                    visible: root.notif && root.notif.appIcon.length > 0
+                    enabled: false
+                }
+
+                Text {
+                    anchors.centerIn: parent
+                    visible: root.notif ? root.notif.appIcon.length === 0 : true
+                    text: "\uf0f3"
+                    font.family: "JetBrains Mono Nerd Font"
+                    font.pixelSize: 20
+                    color: root.critical ? Services.Theme.error : Services.Theme.accent
+                }
+            }
+
+            ColumnLayout {
                 Layout.fillWidth: true
-                spacing: 6
+                Layout.alignment: Qt.AlignVCenter
+                spacing: 5
 
-                // Icon.
-                Item {
-                    Layout.preferredWidth: 26
-                    Layout.preferredHeight: 26
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 6
 
-                    IconImage {
-                        anchors.centerIn: parent
-                        width: 18
-                        height: 18
-                        source: root.notif ? root.notif.appIcon : ""
-                        visible: root.notif && root.notif.appIcon.length > 0
-                        enabled: false
+                    Text {
+                        Layout.fillWidth: true
+                        text: root.notif ? root.notif.appName : ""
+                        elide: Text.ElideRight
+                        font.family: "JetBrains Mono Nerd Font"
+                        font.pixelSize: 10
+                        color: Services.Theme.muted
                     }
 
                     Text {
-                        anchors.centerIn: parent
-                        visible: root.notif ? root.notif.appIcon.length === 0 : true
-                        text: "\uf0f3"
+                        text: root.relativeTime
                         font.family: "JetBrains Mono Nerd Font"
-                        font.pixelSize: 13
-                        color: root.critical ? Services.Theme.error : Services.Theme.accent
+                        font.pixelSize: 9
+                        color: Services.Theme.comment
+                    }
+
+                    Text {
+                        text: "\uf00d"
+                        font.family: "JetBrains Mono Nerd Font"
+                        font.pixelSize: 10
+                        color: Services.Theme.muted
+
+                        MouseArea {
+                            anchors.fill: parent
+                            anchors.margins: -5
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: if (root.modelData) root.modelData.close()
+                        }
                     }
                 }
 
                 Text {
                     Layout.fillWidth: true
-                    text: root.notif ? root.notif.appName : ""
+                    text: root.notif ? root.notif.summary : ""
+                    font.family: "JetBrains Mono Nerd Font"
+                    font.pixelSize: 12
+                    font.bold: true
+                    color: root.critical ? Services.Theme.error : Services.Theme.fgBright
+                    wrapMode: Text.Wrap
+                    maximumLineCount: 2
                     elide: Text.ElideRight
-                    font.family: "JetBrains Mono Nerd Font"
-                    font.pixelSize: 10
-                    color: Services.Theme.muted
                 }
 
                 Text {
-                    text: root.relativeTime
-                    font.family: "JetBrains Mono Nerd Font"
-                    font.pixelSize: 9
-                    color: Services.Theme.comment
-                }
-
-                Text {
-                    text: "\uf00d"
+                    Layout.fillWidth: true
+                    text: root.notif ? root.notif.body : ""
+                    textFormat: root.bodyFormat
                     font.family: "JetBrains Mono Nerd Font"
                     font.pixelSize: 10
-                    color: Services.Theme.muted
-
-                    MouseArea {
-                        anchors.fill: parent
-                        anchors.margins: -5
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: if (root.modelData) root.modelData.close()
-                    }
+                    color: Services.Theme.fg
+                    wrapMode: Text.Wrap
+                    maximumLineCount: root.expanded ? 999 : 3
+                    elide: Text.ElideRight
+                    visible: root.notif && root.notif.body.length > 0
                 }
-            }
 
-            Text {
-                Layout.fillWidth: true
-                text: root.notif ? root.notif.summary : ""
-                font.family: "JetBrains Mono Nerd Font"
-                font.pixelSize: 12
-                font.bold: true
-                color: root.critical ? Services.Theme.error : Services.Theme.fgBright
-                wrapMode: Text.Wrap
-                maximumLineCount: 2
-                elide: Text.ElideRight
-            }
+                RowLayout {
+                    Layout.fillWidth: true
+                    visible: root.expanded && root.notif && root.notif.actions.length > 0
+                    spacing: 6
 
-            Text {
-                Layout.fillWidth: true
-                text: root.notif ? root.notif.body : ""
-                textFormat: root.bodyFormat
-                font.family: "JetBrains Mono Nerd Font"
-                font.pixelSize: 10
-                color: Services.Theme.fg
-                wrapMode: Text.Wrap
-                maximumLineCount: root.expanded ? 999 : 3
-                elide: Text.ElideRight
-                visible: root.notif && root.notif.body.length > 0
-            }
+                    Repeater {
+                        model: root.notif ? root.notif.actions : []
 
-            RowLayout {
-                Layout.fillWidth: true
-                visible: root.expanded && root.notif && root.notif.actions.length > 0
-                spacing: 6
+                        Rectangle {
+                            required property var modelData
+                            Layout.fillWidth: true
+                            implicitHeight: 24
+                            radius: 6
+                            color: Services.Theme.line
 
-                Repeater {
-                    model: root.notif ? root.notif.actions : []
+                            Text {
+                                anchors.centerIn: parent
+                                text: parent.modelData ? parent.modelData.text : ""
+                                font.family: "JetBrains Mono Nerd Font"
+                                font.pixelSize: 10
+                                color: Services.Theme.accent
+                                elide: Text.ElideRight
+                            }
 
-                    Rectangle {
-                        required property var modelData
-                        Layout.fillWidth: true
-                        implicitHeight: 24
-                        radius: 6
-                        color: Services.Theme.line
-
-                        Text {
-                            anchors.centerIn: parent
-                            text: parent.modelData ? parent.modelData.text : ""
-                            font.family: "JetBrains Mono Nerd Font"
-                            font.pixelSize: 10
-                            color: Services.Theme.accent
-                            elide: Text.ElideRight
-                        }
-
-                        MouseArea {
-                            anchors.fill: parent
-                            cursorShape: Qt.PointingHandCursor
-                            onClicked: if (parent.modelData) parent.modelData.invoke()
+                            MouseArea {
+                                anchors.fill: parent
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: if (parent.modelData) parent.modelData.invoke()
+                            }
                         }
                     }
                 }

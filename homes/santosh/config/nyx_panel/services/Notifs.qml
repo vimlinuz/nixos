@@ -41,6 +41,7 @@ Item {
         persistenceSupported: true
 
         onNotification: notif => {
+            console.log("[notifs] received appName=", notif.appName, "desktopEntry=", notif.desktopEntry, "actions=", notif.actions.length);
             notif.tracked = true;
             const obj = notifComp.createObject(root, {
                 notification: notif,

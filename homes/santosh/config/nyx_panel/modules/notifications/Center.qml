@@ -54,11 +54,16 @@ PanelWindow {
     }
 
     readonly property int headerH: 24
-    readonly property int rowH: 34
+    readonly property int rowBaseH: 34
+    readonly property int rowBodyH: 54
     readonly property int listMaxH: 600
     readonly property int listH: {
-        const count = Services.Notifs.notClosed.length;
-        return count === 0 ? 30 : Math.min(count * (root.rowH + 2), root.listMaxH);
+        if (Services.Notifs.notClosed.length === 0) return 30;
+        let total = 0;
+        for (const n of Services.Notifs.notClosed) {
+            total += (n.notification.body.length > 0 ? root.rowBodyH : root.rowBaseH) + 2;
+        }
+        return Math.min(total, root.listMaxH);
     }
 
     Rectangle {
@@ -168,10 +173,13 @@ PanelWindow {
                     model: Services.Notifs.notClosed
 
                     delegate: Item {
+                        id: row
                         required property var modelData
 
+                        readonly property bool hasBody: modelData.notification.body.length > 0
+
                         width: listCol.width
-                        height: root.rowH
+                        height: row.hasBody ? root.rowBodyH : root.rowBaseH
 
                         Rectangle {
                             anchors.fill: parent
@@ -194,8 +202,14 @@ PanelWindow {
                                     modelData.close();
                                     return;
                                 }
-                                const actions = modelData.notification.actions;
-                                if (actions.length === 1) actions[0].invoke();
+                                // Capture before invoking: the action may close
+                                // the notification and destroy this delegate.
+                                const notif = modelData.notification;
+                                if (notif.actions.length === 1) notif.actions[0].invoke();
+                                // Jump to the app that sent this notification,
+                                // switching workspace if needed.
+                                Services.Niri.focusApp(notif);
+                                Services.Notifs.hideCenter();
                             }
                         }
 
@@ -205,31 +219,58 @@ PanelWindow {
                             anchors.rightMargin: 6
                             spacing: 6
 
-                            IconImage {
-                                Layout.preferredWidth: 20
-                                Layout.preferredHeight: 20
-                                source: modelData.notification.appIcon
-                                visible: modelData.notification.appIcon.length > 0
-                                enabled: false
+                            // App icon, left side of the row.
+                            Item {
+                                Layout.preferredWidth: 24
+                                Layout.preferredHeight: 24
+                                Layout.alignment: Qt.AlignTop
+
+                                IconImage {
+                                    anchors.centerIn: parent
+                                    width: 18
+                                    height: 18
+                                    source: modelData.notification.appIcon.length > 0 ? "image://icon/" + modelData.notification.appIcon : ""
+                                    visible: modelData.notification.appIcon.length > 0
+                                    enabled: false
+                                }
+
+                                Text {
+                                    anchors.centerIn: parent
+                                    visible: modelData.notification.appIcon.length === 0
+                                    text: "\uf0f3"
+                                    font.family: "JetBrains Mono Nerd Font"
+                                    font.pixelSize: 12
+                                    color: Services.Theme.muted
+                                    horizontalAlignment: Text.AlignHCenter
+                                }
                             }
 
-                            Text {
-                                Layout.preferredWidth: 20
-                                visible: modelData.notification.appIcon.length === 0
-                                text: "\uf0f3"
-                                font.family: "JetBrains Mono Nerd Font"
-                                font.pixelSize: 13
-                                color: Services.Theme.muted
-                                horizontalAlignment: Text.AlignHCenter
-                            }
-
-                            Text {
+                            ColumnLayout {
                                 Layout.fillWidth: true
-                                text: modelData.notification.appName + "  " + modelData.notification.summary
-                                elide: Text.ElideRight
-                                font.family: "JetBrains Mono Nerd Font"
-                                font.pixelSize: 12
-                                color: Services.Theme.fg
+                                Layout.alignment: Qt.AlignVCenter
+                                spacing: 2
+
+                                Text {
+                                    Layout.fillWidth: true
+                                    text: modelData.notification.appName + "  " + modelData.notification.summary
+                                    elide: Text.ElideRight
+                                    font.family: "JetBrains Mono Nerd Font"
+                                    font.pixelSize: 12
+                                    color: Services.Theme.fg
+                                }
+
+                                Text {
+                                    Layout.fillWidth: true
+                                    visible: row.hasBody
+                                    text: modelData.notification.body
+                                    textFormat: /[<*_`#\[\]]/.test(modelData.notification.body) ? Text.MarkdownText : Text.PlainText
+                                    font.family: "JetBrains Mono Nerd Font"
+                                    font.pixelSize: 10
+                                    color: Services.Theme.muted
+                                    wrapMode: Text.Wrap
+                                    maximumLineCount: 2
+                                    elide: Text.ElideRight
+                                }
                             }
 
                             Text {
