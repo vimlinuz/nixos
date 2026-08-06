@@ -119,5 +119,10 @@
       url = "github:chaitanyabsprip/present.nvim";
       flake = false;
     };
+
+    vague-gtk = {
+      url = "github:vague-theme/vague-gtk";
+      flake = false;
+    };
   };
 }

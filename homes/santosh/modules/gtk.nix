@@ -1,4 +1,15 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
+let
+  vague-gtk-theme = pkgs.stdenvNoCC.mkDerivation {
+    pname = "vague-gtk-theme";
+    version = "unstable-2026-08-07";
+    src = inputs.vague-gtk;
+    installPhase = ''
+      mkdir -p $out/share/themes
+      cp -r Vague $out/share/themes/
+    '';
+  };
+in
 {
   gtk = {
     enable = true;
@@ -11,8 +22,8 @@
     };
 
     theme = {
-      name = "Tokyonight-Dark";
-      package = pkgs.tokyonight-gtk-theme;
+      name = "Vague";
+      package = vague-gtk-theme;
     };
 
     gtk2 = {
@@ -24,7 +35,10 @@
     };
 
     gtk4 = {
-      theme = null;
+      theme = {
+        name = "Vague";
+        package = vague-gtk-theme;
+      };
     };
 
   };
