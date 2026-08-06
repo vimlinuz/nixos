@@ -14,9 +14,13 @@
 
       listener = [
         {
+          timeout = 180;
+          on-timeout = "notify-send -t 3000 'Zzz...' 'You seem away, dimming the screen.'";
+        }
+        {
           timeout = 185;
           on-timeout = "niri msg action power-off-monitors";
-          on-resume = "niri msg action power-on-monitors";
+          on-resume = "niri msg action power-on-monitors && notify-send -t 2000 'Awake!' 'Good to see you again.'";
         }
         {
           timeout = 300;
