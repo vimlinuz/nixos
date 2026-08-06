@@ -26,6 +26,16 @@ Rectangle {
 
     readonly property bool critical: root.notif && root.notif.urgency === NotificationUrgency.Critical
     readonly property int bodyFormat: root.notif && /[<*_`#\[\]]/.test(root.notif.body) ? Text.MarkdownText : Text.PlainText
+
+    // Prefer the desktop-entry icon, fall back to the notification's image
+    // hint (e.g. `notify-send -i /path/to.png`), then the bell glyph.
+    readonly property string iconSource: {
+        if (!root.notif) return "";
+        if (root.notif.appIcon.length > 0) return "image://icon/" + root.notif.appIcon;
+        if (root.notif.image.length > 0) return root.notif.image;
+        return "";
+    }
+    readonly property bool hasIcon: root.iconSource.length > 0
     property bool expanded: false
     property bool moved: false
 
@@ -159,57 +169,75 @@ Rectangle {
             anchors.margins: 10
             spacing: 10
 
-            // App icon, left side of the card.
+            // App icon, left side of the card, top-aligned with the title line.
             Item {
-                Layout.preferredWidth: 40
-                Layout.preferredHeight: 40
+                Layout.preferredWidth: 36
+                Layout.preferredHeight: 36
                 Layout.alignment: Qt.AlignTop
 
                 IconImage {
                     anchors.centerIn: parent
-                    width: 32
-                    height: 32
-                    source: root.notif && root.notif.appIcon.length > 0 ? "image://icon/" + root.notif.appIcon : ""
-                    visible: root.notif && root.notif.appIcon.length > 0
+                    width: 24
+                    height: 24
+                    source: root.iconSource
+                    visible: root.hasIcon
                     enabled: false
                 }
 
                 Text {
                     anchors.centerIn: parent
-                    visible: root.notif ? root.notif.appIcon.length === 0 : true
+                    visible: !root.hasIcon
                     text: "\uf0f3"
                     font.family: "JetBrains Mono Nerd Font"
-                    font.pixelSize: 20
+                    font.pixelSize: 16
                     color: root.critical ? Services.Theme.error : Services.Theme.accent
                 }
             }
 
             ColumnLayout {
                 Layout.fillWidth: true
-                Layout.alignment: Qt.AlignVCenter
-                spacing: 5
+                Layout.alignment: Qt.AlignTop
+                spacing: 4
 
                 RowLayout {
                     Layout.fillWidth: true
                     spacing: 6
 
+                    // Title: bold, dominant element next to the icon.
                     Text {
                         Layout.fillWidth: true
-                        text: root.notif ? root.notif.appName : ""
-                        elide: Text.ElideRight
+                        text: root.notif ? root.notif.summary : ""
                         font.family: "JetBrains Mono Nerd Font"
-                        font.pixelSize: 10
-                        color: Services.Theme.muted
+                        font.pixelSize: 12
+                        font.bold: true
+                        color: root.critical ? Services.Theme.error : Services.Theme.fgBright
+                        wrapMode: Text.Wrap
+                        maximumLineCount: 2
+                        elide: Text.ElideRight
                     }
 
+                    // App name + age, top right, quiet.
                     Text {
-                        text: root.relativeTime
+                        Layout.alignment: Qt.AlignVCenter
+                        Layout.maximumWidth: 130
+                        text: root.notif ? root.notif.appName : ""
+                        elide: Text.ElideRight
                         font.family: "JetBrains Mono Nerd Font"
                         font.pixelSize: 9
                         color: Services.Theme.comment
                     }
 
                     Text {
+                        Layout.alignment: Qt.AlignVCenter
+                        text: root.relativeTime
+                        font.family: "JetBrains Mono Nerd Font"
+                        font.pixelSize: 9
+                        color: Services.Theme.comment
+                    }
+
+                    // Close button, top right corner.
+                    Text {
+                        Layout.alignment: Qt.AlignVCenter
                         text: "\uf00d"
                         font.family: "JetBrains Mono Nerd Font"
                         font.pixelSize: 10
@@ -224,18 +252,7 @@ Rectangle {
                     }
                 }
 
-                Text {
-                    Layout.fillWidth: true
-                    text: root.notif ? root.notif.summary : ""
-                    font.family: "JetBrains Mono Nerd Font"
-                    font.pixelSize: 12
-                    font.bold: true
-                    color: root.critical ? Services.Theme.error : Services.Theme.fgBright
-                    wrapMode: Text.Wrap
-                    maximumLineCount: 2
-                    elide: Text.ElideRight
-                }
-
+                // Body under the title.
                 Text {
                     Layout.fillWidth: true
                     text: root.notif ? root.notif.body : ""
@@ -249,6 +266,7 @@ Rectangle {
                     visible: root.notif && root.notif.body.length > 0
                 }
 
+                // Action buttons, bottom of the card, only when expanded.
                 RowLayout {
                     Layout.fillWidth: true
                     visible: root.expanded && root.notif && root.notif.actions.length > 0
@@ -285,8 +303,10 @@ Rectangle {
         }
     }
 
-    // Countdown line: only the remaining portion is drawn, single color,
-    // empty part invisible. Depletes as the popup approaches expiry.
+    // Countdown line: spans the card (inset past the rounded corners) and
+    // depletes as the popup approaches expiry. Anchored to the right only —
+    // setting left+right would force the width to fill the anchors and kill
+    // the popupFraction binding.
     Rectangle {
         id: timeoutFill
         anchors {

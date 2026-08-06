@@ -27,6 +27,11 @@ Item {
     property bool dnd: false
     property bool centerVisible: false
 
+    // Max simultaneous popups on screen. Newest wins; when the stack is full,
+    // new notifications skip the popup and land only in the center history so
+    // the popup stack can never overflow the screen.
+    property int maxPopups: 4
+
     // How long a popup stays before it is hidden (critical notifications never expire).
     readonly property int popupTimeout: 5000
 
@@ -51,7 +56,8 @@ Item {
                 removeNotif: root.remove
             });
             root.list = [obj, ...root.list];
-            obj.setPopup(!root.dnd && !root.centerVisible);
+            const fits = !root.dnd && !root.centerVisible && root.popups.length < root.maxPopups;
+            obj.setPopup(fits);
         }
     }
 
