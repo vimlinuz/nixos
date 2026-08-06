@@ -9,7 +9,7 @@
         };
         tabs.bar.bg = "#000000";
       };
-      tabs.tabs_are_windows = true;
+      tabs.tabs_are_windows = false;
     };
   };
 }
