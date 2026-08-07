@@ -17,7 +17,10 @@ Item {
 
     // All active notifications (newest first), each a wrapper QtObject.
     property var list: []
-    readonly property var popups: root.list.filter(n => n.popup && !n.closed)
+    // Popups mid-exit are excluded so they no longer occupy a slot; without
+    // this a 4th notification arriving while the 1st is animating out would be
+    // denied its popup (maxPopups only counts live, visible popups).
+    readonly property var popups: root.list.filter(n => n.popup && !n.closed && !n.dismissing)
     readonly property var notClosed: root.list.filter(n => !n.closed)
 
     // Incremental model mirroring `popups`, so the popup ListView can animate
@@ -26,11 +29,6 @@ Item {
 
     property bool dnd: false
     property bool centerVisible: false
-
-    // Max simultaneous popups on screen. Newest wins; when the stack is full,
-    // new notifications skip the popup and land only in the center history so
-    // the popup stack can never overflow the screen.
-    property int maxPopups: 4
 
     // How long a popup stays before it is hidden (critical notifications never expire).
     readonly property int popupTimeout: 5000
@@ -56,7 +54,9 @@ Item {
                 removeNotif: root.remove
             });
             root.list = [obj, ...root.list];
-            const fits = !root.dnd && !root.centerVisible && root.popups.length < root.maxPopups;
+            // Every notification becomes a popup; the stack scrolls when it
+            // outgrows the screen instead of dropping toasts on the floor.
+            const fits = !root.dnd && !root.centerVisible;
             obj.setPopup(fits);
         }
     }
@@ -131,6 +131,7 @@ Item {
             required property var notification
             property bool popup: false
             property bool closed: false
+            property bool dismissing: false
             property date time: new Date()
             property int popupTimeout: 5000
             property var removeNotif: null
@@ -157,9 +158,31 @@ Item {
                     if (notif.notification.urgency === NotificationUrgency.Critical) return;
                     notif.popupFraction = Math.max(0, 1 - (Date.now() - notif.popupStart.getTime()) / notif.popupTimeout);
                     if (Date.now() - notif.popupStart.getTime() >= notif.popupTimeout) {
-                        notif.setPopup(false);
+                        notif.dismissPopup();
                     }
                 }
+            }
+
+            // Safety net: if the card never finishes its exit animation (e.g.
+            // it is not visible), force the popup out so nothing gets stuck.
+            readonly property Timer forceHideTimer: Timer {
+                interval: 800
+                repeat: false
+                onTriggered: if (notif.popup) notif.setPopup(false)
+            }
+
+            // Request an animated exit. The popup card watches `dismissing`,
+            // plays its slide/fade/collapse animation, and then calls
+            // setPopup(false) itself once it is done.
+            //
+            // `closed` is deliberately not part of the guard: a notification
+            // that was just closed by its app still needs to animate out, and
+            // onClosed() marks `closed` before calling us.
+            function dismissPopup(): void {
+                if (!notif.popup || notif.dismissing) return;
+                notif.dismissing = true;
+                notif.timer.stop();
+                notif.forceHideTimer.restart();
             }
 
             // Keep the popup model in sync with the popup flag.
@@ -171,12 +194,17 @@ Item {
                     notif.popupFraction = 1;
                     root.popupsModel.insert(0, { wrapper: notif });
                 } else {
+                    notif.forceHideTimer.stop();
                     for (let i = 0; i < root.popupsModel.count; i++) {
                         if (root.popupsModel.get(i).wrapper === notif) {
                             root.popupsModel.remove(i);
                             break;
                         }
                     }
+                    // A closed popup is dropped from the master list only once
+                    // its popup slot is gone, so the exiting card can always
+                    // reach its wrapper until the removal completes.
+                    if (notif.closed && notif.removeNotif) notif.removeNotif(notif);
                 }
             }
 
@@ -189,10 +217,13 @@ Item {
             readonly property Connections conn: Connections {
                 target: notif.notification
                 function onClosed(): void {
-                    notif.setPopup(false);
                     if (notif.closed) return;
                     notif.closed = true;
-                    if (notif.removeNotif) notif.removeNotif(notif);
+                    if (notif.popup) {
+                        notif.dismissPopup();
+                    } else if (notif.removeNotif) {
+                        notif.removeNotif(notif);
+                    }
                 }
             }
 

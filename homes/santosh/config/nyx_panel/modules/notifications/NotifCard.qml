@@ -53,6 +53,30 @@ Rectangle {
     // Fraction of the popup timeout remaining (1 = full countdown left).
     readonly property real popupFraction: root.modelData ? root.modelData.popupFraction : 1
 
+    // ---- Timeout countdown pulse ----
+    // 0..1 how far into the popup's lifetime we are; drives the color shift,
+    // comet sweep speed, and border breathing of the countdown below.
+    readonly property real pulsePhase: 1 - root.popupFraction
+    property real cometPos: -64
+    property real pulseTick: 0
+
+    function lerp(a: real, b: real, t: real): real {
+        return a + (b - a) * t;
+    }
+
+    function mixColor(c1: color, c2: color, t: real): color {
+        return Qt.rgba(root.lerp(c1.r, c2.r, t), root.lerp(c1.g, c2.g, t), root.lerp(c1.b, c2.b, t), root.lerp(c1.a, c2.a, t));
+    }
+
+    // Accent → warning → error as the popup expires; error for criticals so
+    // the whole card (border, bar, pulse) stays consistent with its styling.
+    readonly property color timeoutColor: {
+        if (root.critical) return Services.Theme.error;
+        const f = root.popupFraction;
+        if (f >= 0.5) return root.mixColor(Services.Theme.accent, Services.Theme.warning, 2 * (1 - f));
+        return root.mixColor(Services.Theme.warning, Services.Theme.error, 2 * (0.5 - f));
+    }
+
     // Grow/shrink smoothly when expanding and collapsing.
     Behavior on height {
         NumberAnimation { duration: 240; easing.type: Easing.OutCubic }
@@ -82,24 +106,49 @@ Rectangle {
         }
     }
 
-    // Fling off to the right/left after a drag past the threshold.
-    NumberAnimation {
-        id: dismissAnim
-        target: root
-        property: "x"
-        duration: 280
-        easing.type: Easing.InCubic
-        onStopped: modelData.setPopup(false)
+    // Exit: slide out to the right while fading, keeping its height so the
+    // window never resizes mid-animation (resizing the layer-surface each
+    // frame throttles the render loop and the exit stutters). Once the
+    // animation finishes the card removes itself from the popup model and
+    // the rows below glide up to fill the space.
+    ParallelAnimation {
+        id: exitAnim
+        NumberAnimation {
+            target: root
+            property: "x"
+            to: root.width * 2
+            duration: 280
+            easing.type: Easing.InCubic
+        }
+        NumberAnimation {
+            target: root
+            property: "opacity"
+            to: 0
+            duration: 220
+            easing.type: Easing.OutCubic
+        }
+        onStopped: if (root.modelData && root.modelData.dismissing) root.modelData.setPopup(false)
     }
 
-    // Spring back if the drag did not go far enough.
+    // Snap a partially-swiped card back into place after an aborted swipe.
     NumberAnimation {
         id: springBack
         target: root
         property: "x"
         to: 0
-        duration: 300
-        easing.type: Easing.OutBack
+        duration: 220
+        easing.type: Easing.OutCubic
+    }
+
+    // Start the exit when the wrapper requests an animated dismissal.
+    Connections {
+        target: root.modelData
+        function onDismissingChanged(): void {
+            if (root.modelData && root.modelData.dismissing) {
+                entranceAnim.stop();
+                exitAnim.start();
+            }
+        }
     }
 
     MouseArea {
@@ -110,10 +159,9 @@ Rectangle {
         acceptedButtons: Qt.LeftButton | Qt.MiddleButton
         preventStealing: true
 
-        drag.target: root
-        drag.axis: Drag.XAxis
-
+        property int startX
         property int startY
+        property bool swiping: false
 
         // Pause expiry while hovered and grant a fresh countdown so the
         // popup never disappears while it is being read.
@@ -124,8 +172,12 @@ Rectangle {
         onExited: if (modelData.popup) modelData.resetPopupExpiry()
 
         onPressed: (event) => {
+            entranceAnim.stop();
+            springBack.stop();
             modelData.timer.stop();
             root.moved = false;
+            swiping = false;
+            startX = event.x;
             startY = event.y;
             if (event.button === Qt.MiddleButton) modelData.close();
         }
@@ -135,32 +187,48 @@ Rectangle {
                 root.moved = true;
                 return;
             }
+            const diffX = event.x - startX;
             const diffY = event.y - startY;
+            // A horizontal swipe slides the card along (clamped to its width);
+            // it wins over the vertical expand/collapse once it is clearly a
+            // sideways drag.
+            if (Math.abs(diffX) > 10 && Math.abs(diffX) > Math.abs(diffY)) {
+                swiping = true;
+                root.moved = true;
+                root.x = Math.max(0, Math.min(diffX, root.width));
+                return;
+            }
+            if (swiping) return;
             if (Math.abs(diffY) > 20) {
                 root.expanded = diffY > 0;
                 root.moved = true;
             }
         }
         onReleased: (event) => {
-            if (!containsMouse) modelData.resetPopupExpiry();
-            if (Math.abs(root.x) > root.width * 0.4) {
-                dismissAnim.to = root.x > 0 ? root.width * 2 : -root.width * 2;
-                dismissAnim.start();
-            } else if (root.x !== 0) {
-                springBack.start();
+            if (swiping) {
+                // Past 30% of the card width: dismiss. Otherwise snap back.
+                if (root.x > root.width * 0.3) {
+                    modelData.dismissPopup();
+                } else {
+                    springBack.start();
+                }
+                return;
             }
+            if (!containsMouse) modelData.resetPopupExpiry();
         }
         onClicked: (mouse) => {
             if (mouse.button === Qt.MiddleButton) return;
             if (root.moved) return;
             // Capture before invoking: the action may close the notification.
             const notif = modelData.notification;
+            // Any left click dismisses the popup; the notification stays in
+            // the center history. Dismiss first so the exit starts even if
+            // the action/focus-app closes the notification mid-handler.
+            modelData.dismissPopup();
             if (notif.actions.length === 1) notif.actions[0].invoke();
             // Jump to the app that sent this notification, switching
             // workspace if needed.
             Services.Niri.focusApp(notif);
-            // Any left click dismisses the popup; the notification stays in the center history.
-            modelData.setPopup(false);
         }
 
         RowLayout {
@@ -303,25 +371,119 @@ Rectangle {
         }
     }
 
-    // Countdown line: spans the card (inset past the rounded corners) and
-    // depletes as the popup approaches expiry. Anchored to the right only —
-    // setting left+right would force the width to fill the anchors and kill
-    // the popupFraction binding.
+    // ---- Timeout countdown: sweeping color pulse ----
+    // The remaining-time fill depletes from full to nothing while a comet
+    // sweeps the track, a radiating ping fires off the tip of the remaining
+    // time, and the card border breathes. As the popup nears dismissal the
+    // sweep accelerates and the color shifts accent → warning → error.
+
+    Timer {
+        id: pulseTimer
+        interval: 16
+        repeat: true
+        running: root.popupFraction > 0
+        onTriggered: {
+            root.pulseTick++;
+            const speed = 2.2 + 4.5 * root.pulsePhase;
+            root.cometPos += speed * (pulseTrack.width / 300);
+            if (root.cometPos > pulseTrack.width) root.cometPos = -comet.width;
+            cardPulse.opacity = 0.12 + 0.16 * (0.5 + 0.5 * Math.sin(root.pulseTick * 0.05 * speed));
+        }
+    }
+
     Rectangle {
-        id: timeoutFill
+        id: pulseTrack
         anchors {
             right: parent.right
             bottom: parent.bottom
             rightMargin: 10
         }
+        width: parent.width - 20
         height: 2
-        width: (parent.width - 20) * root.popupFraction
         radius: 1
-        color: root.critical ? Services.Theme.error : Services.Theme.warning
+        color: Services.Theme.line
 
-        Behavior on width {
-            NumberAnimation { duration: 200; easing.type: Easing.Linear }
+        // Remaining time: shrinks from full width to nothing.
+        Rectangle {
+            id: timeoutFill
+            anchors.left: parent.left
+            anchors.verticalCenter: parent.verticalCenter
+            width: parent.width * root.popupFraction
+            height: parent.height
+            radius: 1
+            color: root.timeoutColor
+
+            Behavior on width {
+                NumberAnimation { duration: 200; easing.type: Easing.Linear }
+            }
         }
+
+        // Comet: bright head with a fading tail sweeping left → right.
+        Item {
+            id: comet
+            x: root.cometPos
+            y: (parent.height - height) / 2
+            width: 64
+            height: 6
+
+            Repeater {
+                model: 10
+                Rectangle {
+                    required property int index
+                    width: 6
+                    height: comet.height
+                    radius: 3
+                    x: comet.width - width * (index + 1)
+                    color: root.timeoutColor
+                    opacity: Math.pow((index + 1) / 10, 2) * 0.65
+                }
+            }
+
+            Rectangle {
+                width: 4
+                height: parent.height
+                radius: 2
+                x: parent.width - 4
+                color: Qt.lighter(root.timeoutColor, 1.7)
+            }
+        }
+
+        // Radiating ping fired off the leading edge of the remaining time.
+        Rectangle {
+            id: tipGlow
+            anchors.right: timeoutFill.right
+            anchors.verticalCenter: parent.verticalCenter
+            width: 8
+            height: 8
+            radius: 4
+            color: root.timeoutColor
+            opacity: 0
+            scale: 0.5
+
+            SequentialAnimation {
+                id: tipPulse
+                loops: Animation.Infinite
+                running: root.popupFraction > 0
+                ParallelAnimation {
+                    NumberAnimation { target: tipGlow; property: "opacity"; to: 0; duration: 900; easing.type: Easing.OutQuad }
+                    NumberAnimation { target: tipGlow; property: "scale"; to: 3.0; duration: 900; easing.type: Easing.OutQuad }
+                }
+                ScriptAction {
+                    script: { tipGlow.scale = 0.5; tipGlow.opacity = 0.85; }
+                }
+            }
+        }
+    }
+
+    // Breathing border pulse, tinted by the countdown color.
+    Rectangle {
+        id: cardPulse
+        anchors.fill: parent
+        radius: root.radius
+        border.width: 1
+        border.color: root.timeoutColor
+        color: "transparent"
+        opacity: 0.12
     }
 
     implicitHeight: content.implicitHeight + 20

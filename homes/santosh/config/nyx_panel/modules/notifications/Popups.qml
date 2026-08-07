@@ -21,7 +21,10 @@ PanelWindow {
     margins.right: 10
 
     implicitWidth: 340
-    implicitHeight: popupList.contentHeight
+    // Cap the stack height so a long list scrolls instead of running off the
+    // screen; compact while there are only a few popups.
+    readonly property int maxHeight: 600
+    implicitHeight: flick.height
 
     color: "transparent"
     exclusionMode: ExclusionMode.Ignore
@@ -30,63 +33,78 @@ PanelWindow {
     // receive pointer events regardless of keyboard interactivity.
     focusable: false
 
-    ListView {
-        id: popupList
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
+    // Plain Column + Repeater instead of a ListView: a Column reflows its
+    // children continuously as card heights change, so the stack never leaves
+    // gaps between popups (a stock ListView only lays out on model changes,
+    // leaving holes when a card's height settles or an exit animation holds
+    // its slot). A `Behavior on y` on each row turns that reflow into a glide.
+    Flickable {
+        id: flick
+        width: root.width
+        height: Math.min(stack.height, root.maxHeight)
+        clip: true
 
-        interactive: false
-        spacing: 8
-        clip: false
+        // The Flickable does not auto-derive content size from its child
+        // Column, so bind it explicitly or there is nothing to scroll.
+        contentWidth: stack.width
+        contentHeight: stack.height
 
-        model: Services.Notifs.popupsModel
+        Column {
+            id: stack
+            width: flick.width
+            height: stack.implicitHeight
+            spacing: 8
 
-        // Glide remaining popups into place when one leaves.
-        move: Transition {
-            NumberAnimation { properties: "y"; duration: 220; easing.type: Easing.OutCubic }
-        }
-        displaced: Transition {
-            NumberAnimation { properties: "y"; duration: 220; easing.type: Easing.OutCubic }
-        }
+            Repeater {
+                model: Services.Notifs.popupsModel
 
-        delegate: Item {
-            id: row
-            required property var wrapper
-            width: popupList.width
-            height: card.height
+                Item {
+                    id: row
+                    required property var wrapper
+                    width: stack.width
+                    height: card.height
+                    implicitHeight: card.height
 
-            // Slide the card off screen before it is actually removed.
-            SequentialAnimation {
-                id: exitAnim
-                ParallelAnimation {
-                    NumberAnimation {
-                        target: card
-                        property: "x"
-                        to: card.x >= 0 ? row.width * 2 : -row.width * 2
-                        duration: 280
-                        easing.type: Easing.InCubic
+                    Behavior on y {
+                        NumberAnimation { duration: 220; easing.type: Easing.OutCubic }
                     }
-                    NumberAnimation {
-                        target: card
-                        property: "opacity"
-                        to: 0
-                        duration: 200
+
+                    Notifications.NotifCard {
+                        id: card
+                        width: row.width
+                        modelData: row.wrapper
                     }
                 }
-                onStopped: row.ListView.delayRemove = false
+            }
+        }
+
+        // Thin scrollbar, shown only while the stack overflows.
+        Item {
+            anchors.fill: parent
+            visible: flick.contentHeight > flick.height
+
+            property real thumbH: Math.max(24, flick.height * flick.height / flick.contentHeight)
+            property real thumbY: flick.contentHeight > flick.height
+                ? flick.contentY * (flick.height - thumbH) / (flick.contentHeight - flick.height)
+                : 0
+
+            Rectangle {
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.right: parent.right
+                anchors.rightMargin: 1
+                width: 3
+                radius: 1.5
+                color: Services.Theme.line
             }
 
-            ListView.onRemove: {
-                row.ListView.delayRemove = true;
-                exitAnim.start();
-            }
-
-            Notifications.NotifCard {
-                id: card
-                width: row.width
-                height: card.implicitHeight
-                modelData: row.wrapper
+            Rectangle {
+                x: parent.width - 4
+                y: parent.thumbY
+                width: 3
+                height: parent.thumbH
+                radius: 1.5
+                color: Services.Theme.muted
             }
         }
     }
