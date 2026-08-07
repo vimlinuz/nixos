@@ -55,12 +55,12 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell?rev=28771c7c74b42e20afca0b1b63980cb46515537c";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     qml-niri = {
-      url = "github:imiric/qml-niri/main";
+      url = "github:imiric/qml-niri?rev=168e1e0e96d3fe0c06b444e70b6cd10148a7bd94";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.quickshell.follows = "quickshell";
     };
