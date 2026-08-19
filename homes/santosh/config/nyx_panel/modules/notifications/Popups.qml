@@ -77,35 +77,36 @@ PanelWindow {
                 }
             }
         }
+    }
 
-        // Thin scrollbar, shown only while the stack overflows.
-        Item {
-            anchors.fill: parent
-            visible: flick.contentHeight > flick.height
+    // Thin scrollbar, shown only while the stack overflows. Sits as a
+    // sibling of the Flickable so it does not scroll with the content.
+    Item {
+        anchors.fill: flick
+        visible: flick.contentHeight > flick.height
 
-            property real thumbH: Math.max(24, flick.height * flick.height / flick.contentHeight)
-            property real thumbY: flick.contentHeight > flick.height
-                ? flick.contentY * (flick.height - thumbH) / (flick.contentHeight - flick.height)
-                : 0
+        property real thumbH: Math.max(24, flick.height * flick.height / flick.contentHeight)
+        property real thumbY: flick.contentHeight > flick.height
+            ? flick.contentY * (flick.height - thumbH) / (flick.contentHeight - flick.height)
+            : 0
 
-            Rectangle {
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                anchors.right: parent.right
-                anchors.rightMargin: 1
-                width: 3
-                radius: 1.5
-                color: Services.Theme.line
-            }
+        Rectangle {
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.rightMargin: 1
+            width: 3
+            radius: 1.5
+            color: Services.Theme.line
+        }
 
-            Rectangle {
-                x: parent.width - 4
-                y: parent.thumbY
-                width: 3
-                height: parent.thumbH
-                radius: 1.5
-                color: Services.Theme.muted
-            }
+        Rectangle {
+            x: parent.width - 4
+            y: parent.thumbY
+            width: 3
+            height: parent.thumbH
+            radius: 1.5
+            color: Services.Theme.muted
         }
     }
 }
