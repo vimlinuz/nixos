@@ -27,5 +27,27 @@ in
     theme = {
       flavor.dark = "vague";
     };
+
+    settings = {
+      opener = {
+        zathura = [
+          {
+            run = "zathura %s";
+            desc = "Open with zathura";
+            block = false;
+            for = "unix";
+          }
+        ];
+      };
+
+      open = {
+        prepend_rules = [
+          {
+            url = "*.pdf";
+            use = "zathura";
+          }
+        ];
+      };
+    };
   };
 }
