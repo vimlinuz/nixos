@@ -566,11 +566,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788125430,
-        "narHash": "sha256-iFZN9+24+IRiyKIAOHaPZUxf4C+dz0sR6zdJcTZWVPs=",
+        "lastModified": 1788764959,
+        "narHash": "sha256-4VlxET4080z/cwjFnwzDTUQ/kK0x8uYmQjhFL1RmDf0=",
         "owner": "vimlinuz",
         "repo": "wall-archive",
-        "rev": "1ed77bf34325d7de2d8ca300a5b42c1ab15dce2b",
+        "rev": "c3b5feb4935af0fecec2e0a56edabe8ff6a9b7ba",
         "type": "github"
       },
       "original": {
