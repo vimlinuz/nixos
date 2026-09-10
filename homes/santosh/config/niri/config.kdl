@@ -320,7 +320,7 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // https://yalter.github.io/niri/Configuration:-Animations
 // swipe
 animations {
-    // off
+    off
     workspace-switch {
         // off
         spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
