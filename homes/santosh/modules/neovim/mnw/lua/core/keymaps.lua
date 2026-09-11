@@ -4,6 +4,13 @@ vim.g.maplocalleader = " "
 -- UndotreeToggle keymap
 vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Toggle undo tree" })
 
+-- Open markdown previewer
+vim.keymap.set("n", "<leader>md", function()
+  if vim.bo.filetype == "markdown" then
+    vim.cmd("MarkdownPreviewToggle")
+  end
+end, { desc = "Open markdown previewer" })
+
 do
   local junk_maps = {
     { action = "<cmd>cnext<CR>zz", key = "]q", mode = { "n" }, options = { desc = "Go to next quickfix item" } },
