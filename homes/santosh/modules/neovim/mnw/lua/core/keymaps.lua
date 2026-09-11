@@ -8,6 +8,8 @@ vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Toggle und
 vim.keymap.set("n", "<leader>md", function()
   if vim.bo.filetype == "markdown" then
     vim.cmd("MarkdownPreviewToggle")
+  else
+    io.write("Not a markdown file")
   end
 end, { desc = "Open markdown previewer" })
 
