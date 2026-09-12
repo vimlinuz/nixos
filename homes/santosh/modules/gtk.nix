@@ -9,36 +9,47 @@ let
       cp -r Vague $out/share/themes/
     '';
   };
+
+  iconTheme = {
+    name = "Papirus-Dark";
+    package = pkgs.papirus-icon-theme;
+  };
+
+  font = {
+    name = "JetBrainsMono Nerd Font";
+    size = 8;
+  };
+
+  theme = {
+    name = "Vague";
+    package = vague-gtk-theme;
+  };
+
 in
 {
   gtk = {
     enable = true;
-
     colorScheme = "dark";
-
-    font = {
-      name = "JetBrainsMono Nerd Font";
-      size = 8;
-    };
-
-    theme = {
-      name = "Vague";
-      package = vague-gtk-theme;
-    };
+    inherit iconTheme;
+    inherit font;
+    inherit theme;
 
     gtk2 = {
-      iconTheme = {
-        name = "Papirus-Dark";
-        package = pkgs.papirus-icon-theme;
-      };
+      enable = true;
+      inherit font;
+      inherit iconTheme;
+    };
 
+    gtk3 = {
+      enable = true;
+      inherit font;
+      inherit iconTheme;
     };
 
     gtk4 = {
-      theme = {
-        name = "Vague";
-        package = vague-gtk-theme;
-      };
+      inherit theme;
+      inherit iconTheme;
+      inherit font;
     };
 
   };
