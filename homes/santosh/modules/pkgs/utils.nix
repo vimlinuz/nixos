@@ -11,7 +11,6 @@ with pkgs;
   gimp
   code-cursor
 
-  opencode
   opencode-desktop
 
   obs-studio

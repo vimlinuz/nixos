@@ -1,7 +1,6 @@
 {
   programs.opencode = {
     enable = true;
-    package = null;
 
     agents = {
       note-formatter = ''
