@@ -39,6 +39,7 @@
     ./modules/direnv.nix
     ./modules/gh.nix
     ./modules/jujutsu.nix
+    ./modules/opencode.nix
 
     ./modules/swaync.nix
     ./modules/yazi.nix
