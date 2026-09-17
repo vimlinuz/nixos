@@ -42,8 +42,12 @@
         - Add a comparison table at the end of a section when the topic is comparative
 
         ## Correspondence
-        - Topic "computer network" → acedemics/computer_network/introduction_to_computer_network.md
-        - Topic "physical layer" or "network media" → acedemics/computer_network/physical_layer_and_network_media.md
+        The directory that we are in will be the subject that we are preparing for
+        The target file information will be given to you and also if there is not such file then you can create another file which the topic out there
+
+        You aren't supposed to write content in the file automatically, if user paste content then you can append it to the file with proepr fromatting
+        And if user asks to do some thing differently then only you can do that
+        eg. user can ask you to add exampses with the definition that they are pasting there
 
         ## Syncing with jj
         - Commit with: jj commit -m "notes: <topic>"
