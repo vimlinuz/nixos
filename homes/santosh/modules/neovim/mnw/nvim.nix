@@ -57,7 +57,10 @@ in
         pkgs.vimPlugins.vim-tpipeline
         pkgs.vimPlugins.lualine-nvim
         pkgs.vimPlugins.nvim-surround
+
         pkgs.vimPlugins.markdown-preview-nvim
+        pkgs.vimPlugins.render-markdown-nvim
+
         pkgs.vimPlugins.undotree
         pkgs.vimPlugins.nvim-autopairs
         pkgs.vimPlugins.todo-comments-nvim
