@@ -53,6 +53,7 @@
     ./modules/zed.nix
     ./modules/helix.nix
     ./modules/neovim/nixvim/nvim.nix
+    ./modules/obsidian.nix
 
     # ╭───────────────────────────────────────────────╮
     # │ Shell                                         │
