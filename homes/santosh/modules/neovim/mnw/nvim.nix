@@ -60,6 +60,7 @@ in
 
         pkgs.vimPlugins.markdown-preview-nvim
         pkgs.vimPlugins.render-markdown-nvim
+        pkgs.vimPlugins.vimtex
 
         pkgs.vimPlugins.undotree
         pkgs.vimPlugins.nvim-autopairs

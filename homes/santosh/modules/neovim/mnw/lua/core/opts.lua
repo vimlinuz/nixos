@@ -90,3 +90,6 @@ vim.g.netrw_keepdir = 1
 
 -- Command to use for copying files in netrw (default: 'cp -r')
 vim.g.netrw_localcopydircmd = "cp -r"
+
+-- configuration for vimtex
+vim.g.vimtex_view_method = "zathura"

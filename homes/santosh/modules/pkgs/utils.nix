@@ -21,6 +21,8 @@ with pkgs;
   microfetch
   zip
 
+  texliveFull
+
   qview
 
   kdePackages.kdenlive
