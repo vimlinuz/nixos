@@ -33,6 +33,8 @@ in
       pkgs.lua-language-server
 
       pkgs.marksman
+      pkgs.texlab
+
       pkgs.nixd
       pkgs.tailwindcss-language-server
       pkgs.typescript

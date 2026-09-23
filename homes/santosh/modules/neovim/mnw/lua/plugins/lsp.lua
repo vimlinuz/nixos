@@ -44,8 +44,12 @@ do
   vim.lsp.enable("html")
   vim.lsp.config("lua_ls", __wrapConfig({}))
   vim.lsp.enable("lua_ls")
+
   vim.lsp.config("marksman", __wrapConfig({}))
   vim.lsp.enable("marksman")
+  vim.lsp.config("texlab", __wrapConfig({}))
+  vim.lsp.enable("texlab")
+
   vim.lsp.config("nixd", __wrapConfig({}))
   vim.lsp.enable("nixd")
   vim.lsp.config("nushell", __wrapConfig({}))
