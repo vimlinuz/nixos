@@ -14,19 +14,20 @@ configuration {
 * {
     font: "JetBrainsMono Nerd Font 10";
 
-    /* Catppuccin Mocha Colors with transparency */
+    /* Niri grayscale palette (focus ring active #404040 -> #606060,
+       inactive #505050 -> #808080, urgent #9b0000) */
     base:        #000000cc;   /* 80% opacity */
     mantle:      #181818cc;   /* near black */
     crust:       #111111cc;   /* darker */
     surface0:    #222222cc;   /* dark gray */
     surface1:    #2f2f2fcc;   /* mid gray */
-    surface2:    #606060cc;   /* light gray border */
+    surface2:    #404040cc;   /* light gray border */
     overlay1:    #7f7f7fcc;   /* overlay text gray */
     overlay2:    #969696cc;   /* lighter overlay */
-    blue:        #444444cc;   /* gray accent, replaces blue */
-    lavender:    #606060cc;   /* gray accent, replaces lavender */
-    sky:         #444444cc;   /* gray accent, replaces sky */
-    red:         #606060cc;   /* gray accent, replaces red */
+    blue:        #404040cc;   /* niri active focus ring */
+    lavender:    #606060cc;   /* niri active gradient end */
+    sky:         #505050cc;   /* niri inactive focus ring */
+    red:         #9b0000;     /* niri urgent color */
     text:        #ffffff;
 
     background-color: @base;
@@ -42,9 +43,9 @@ window {
     transparency: "real";
     blur: true;
     background-color: @base;
-    border: 2px;
+    border: 1px;
     border-color: @surface2;
-    border-radius: 18px;
+    border-radius: 0px;
     padding: 8px;
 }
 
@@ -58,7 +59,7 @@ mainbox {
 inputbar {
     children: [textbox-prompt-colon, entry, num-filtered-rows];
     background-color: @surface1;
-    border-radius: 14px;
+    border-radius: 0px;
     padding: 8px;
     border: 1px;
     border-color: @surface2;
@@ -95,7 +96,7 @@ listview {
     dynamic: true;
     scrollbar: true;
     background-color: transparent;
-    border-radius: 14px;
+    border-radius: 0px;
     margin: 0 6px;
     spacing: 6px;
     padding: 8px;
@@ -113,7 +114,7 @@ scrollbar {
 element {
     padding: 8px 12px;
     margin: 2px 0;
-    border-radius: 6px;
+    border-radius: 0px;
     spacing: 10px;
     cursor: pointer;
 }
@@ -125,11 +126,11 @@ element alternate.normal {
 }
 
 element selected.normal {
-    background-color: #444444cc;
+    background-color: @blue;
     text-color: #ffffff;
     border: 1px;
-    border-color: #606060cc;
-    border-radius: 12px;
+    border-color: @lavender;
+    border-radius: 0px;
 }
 
 element-icon {
@@ -148,7 +149,7 @@ element-text {
 
 button {
     text-color: #ffffff;
-    border-radius: 12px;
+    border-radius: 0px;
     background-color: @surface2;
     padding: 6px 8px;
     horizontal-align: 0.5;
@@ -157,22 +158,22 @@ button {
 }
 
 button selected {
-    background-color: #444444cc;
+    background-color: @blue;
     text-color: #ffffff;
-    border-color: #606060cc;
+    border-color: @lavender;
 }
 
 error-message {
     background-color: @red;
     text-color: #ffffff;
-    border-radius: 12px;
+    border-radius: 0px;
     padding: 12px;
 }
 
 element.urgent {
-    background-color: rgba(247, 118, 142, 0.2);
+    background-color: rgba(155, 0, 0, 0.2);
 }
 
 element.active {
-    background-color: rgba(122, 162, 247, 0.2);
+    background-color: rgba(64, 64, 64, 0.2);
 }

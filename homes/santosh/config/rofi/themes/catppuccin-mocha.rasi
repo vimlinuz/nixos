@@ -29,19 +29,20 @@ configuration {
 * {
     font: "JetBrainsMono Nerd Font 10";
 
-    /* Catppuccin Mocha Colors */
+    /* Niri grayscale palette (focus ring active #404040 -> #606060,
+       inactive #505050 -> #808080, urgent #9b0000) */
     base:        #000000cc;   /* 80% opacity */
     mantle:      #181818cc;   /* near black */
     crust:       #111111cc;   /* darker */
     surface0:    #222222cc;   /* dark gray */
     surface1:    #2f2f2fcc;   /* mid gray */
-    surface2:    #606060cc;   /* light gray border */
+    surface2:    #404040cc;   /* light gray border */
     overlay1:    #7f7f7fcc;   /* overlay text gray */
     overlay2:    #969696cc;   /* lighter overlay */
-    blue:        #444444cc;   /* dark gray accent, replaces blue */
-    lavender:    #606060cc;     /* gray accent, replaces lavender */
-    sky:         #89dceb;     /* accent sky */
-    red:         #f38ba8;     /* accent red */
+    blue:        #404040cc;   /* niri active focus ring */
+    lavender:    #606060cc;   /* niri active gradient end */
+    sky:         #505050cc;   /* niri inactive focus ring */
+    red:         #9b0000;     /* niri urgent color */
     mantle:      #181818cc;
     text:        #ffffff;
     background-color: @base;
@@ -55,9 +56,9 @@ window {
     transparency: "real";
     blur: true;
     background-color: @base;
-    border: 2px;
+    border: 1px;
     border-color: @surface2;
-    border-radius: 18px;
+    border-radius: 0px;
     padding: 8px;
 }
 
@@ -71,7 +72,7 @@ mainbox {
 inputbar {
     children: [prompt, entry];
     background-color: @surface1;
-    border-radius: 14px;
+    border-radius: 0px;
     padding: 8px;
     border: 1px;
     border-color: @surface2;
@@ -92,7 +93,7 @@ entry {
 }
 
 message {
-    border-radius: 14px;
+    border-radius: 0px;
     padding: 4px;
     background-color: @surface0;
     margin: 0 6px;
@@ -110,14 +111,14 @@ listview {
     dynamic: true;
     scrollbar: true;
     background-color: transparent;
-    border-radius: 14px;
+    border-radius: 0px;
     margin: 0 6px;
     spacing: 6px;
 }
 
 scrollbar {
     width: 1px;
-    border-radius: 4px;
+    border-radius: 0px;
     background-color: @surface1;
     handle-color: @blue;
     handle-width: 2px;
@@ -127,7 +128,7 @@ scrollbar {
 element {
     padding: 6px;
     margin: 3px 0;
-    border-radius: 12px;
+    border-radius: 0px;
     spacing: 6px;
 }
 
@@ -142,7 +143,7 @@ element selected.normal {
     text-color: #ffffff;
     border: 1px;
     border-color: @lavender;
-    border-radius: 12px;
+    border-radius: 0px;
 }
 
 element-icon {
@@ -159,7 +160,7 @@ element-text {
 element-text selected, element.selected.normal element-text {
     background-color: #444444cc;
     text-color: #ffffff;
-    border-radius: 8px;
+    border-radius: 0px;
     padding-left: 8px;
     padding-right: 8px;
 }
@@ -178,7 +179,7 @@ mode-switcher {
 
 button {
     text-color: #ffffff;
-    border-radius: 12px;
+    border-radius: 0px;
     background-color: @surface2;
     padding: 6px 8px;
     horizontal-align: 0.5;
@@ -195,7 +196,7 @@ button selected {
 error-message {
     background-color: @red;
     text-color: #ffffff;
-    border-radius: 12px;
+    border-radius: 0px;
     padding: 12px;
 }
 
