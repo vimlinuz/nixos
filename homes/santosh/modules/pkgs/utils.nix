@@ -11,14 +11,14 @@ with pkgs;
   gimp
   code-cursor
 
-  opencode-desktop
+  # opencode-desktop
 
   obs-studio
-  vlc
+  # vlc
   mpv
   swaybg
-  libreoffice
-  microfetch
+  # libreoffice
+  # microfetch
   zip
 
   texliveFull
