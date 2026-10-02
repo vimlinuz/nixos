@@ -156,7 +156,12 @@
   keyd.enable = true;
 
   # https://nix.dev/guides/faq#how-to-run-non-nix-executables
-  programs.command-not-found.enable = true;
+  # NOTE: programs.command-not-found does not work with flakes -- its
+  # dbPath defaults to `pkgs.path + "/programs.sqlite"`, and that file only
+  # exists in nixpkgs *channel tarballs*, not in the git source we use as a
+  # flake input. Use nix-index-database (see flake.nix) instead, which
+  # provides the same shell "did you mean" suggestions via nix-locate.
+  programs.command-not-found.enable = false;
   programs.nix-ld.enable = true;
 
   programs.nix-ld.libraries = with pkgs; [ clang-tools ];

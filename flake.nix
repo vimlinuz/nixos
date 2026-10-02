@@ -8,6 +8,7 @@
       home-manager,
       nixvim,
       mnw,
+      nix-index-database,
       ...
     }:
     let
@@ -22,6 +23,7 @@
           modules = [
             ./hosts/helios/configuration.nix
             ./overlay.nix
+            nix-index-database.nixosModules.default
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -82,6 +84,11 @@
 
     nh = {
       url = "github:nix-community/nh";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
