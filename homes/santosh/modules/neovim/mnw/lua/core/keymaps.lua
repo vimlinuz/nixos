@@ -54,18 +54,6 @@ do
     },
     { action = '"_dP', key = "p", mode = { "v" }, options = { noremap = true, silent = true } },
     {
-      action = ">gv",
-      key = "<C-l>",
-      mode = { "v" },
-      options = { desc = "> without loosing indent mode", noremap = true, silent = true },
-    },
-    {
-      action = "<gv",
-      key = "<C-h>",
-      mode = { "v" },
-      options = { desc = "< without loosing indent mode", noremap = true, silent = true },
-    },
-    {
       action = ":m '>+1<CR>gv",
       key = "<C-j>",
       mode = { "v" },
@@ -222,3 +210,7 @@ end
 --     end,
 --   })
 -- end, { desc = "Open file picker (vertical split)" })
+
+-- move content without loosing indent mode
+-- vim.keymap.set("v", "<C-l>", ">gv", { desc = "> without loosing indent mode", noremap = true, silent = true })
+-- vim.keymap.set("v", "<C-h", "<gv", { desc = "< without loosing indent mode", noremap = true, silent = true })
