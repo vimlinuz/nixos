@@ -204,10 +204,24 @@
   services.fail2ban.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [
-    8080
-    8081
-  ];
+  networking.firewall = rec {
+    # These are for rust dev environment
+    allowedTCPPorts = [
+      8000
+      8001
+    ];
+
+    # These are for the kdeconnect
+    allowedTCPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+
+    ];
+    allowedUDPPortRanges = allowedTCPPortRanges;
+  };
+
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = true;

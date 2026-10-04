@@ -24,6 +24,8 @@
     ./modules/eza.nix
     ./modules/lsd.nix
 
+    ./modules/kdeconnect.nix
+
     ./modules/gtk.nix
     ./modules/fastfetch.nix
     ./modules/starship/starship.nix
