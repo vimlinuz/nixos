@@ -46,6 +46,7 @@
     ./modules/swaync.nix
     ./modules/yazi.nix
     ./modules/vesktop/vesktop.nix
+    ./modules/matrix.nix
 
     # ╭───────────────────────────────────────────────╮
     # │ Code editors                                  │
