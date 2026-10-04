@@ -1,9 +1,19 @@
 { pkgs, ... }:
 let
   flakeInitializer = pkgs.writeShellScriptBin "flake-initializer" ''
+    RED='\033[31m'
+    GREEN='\033[32m'
+    RESET='\033[0m'
+
+    if [ ! -t 1 ]; then
+      RED=""
+      GREEN=""
+      RESET=""
+    fi
+
     if [ "$1" = "--list" ] || [ "$1" = "-l" ]; then
-        echo "Available flake types:"
-        curl -fsSL https://api.github.com/repos/vimlinuz/initflake/contents | ${pkgs.jq}/bin/jq '.[] | select(.type == "dir") | .name'
+        printf "''${GREEN}Available flake types:''${RESET}\n"
+        curl -fsSL https://api.github.com/repos/vimlinuz/initflake/contents | ${pkgs.jq}/bin/jq -r '.[] | select(.type == "dir") | .name'
         exit 0
     fi
 
@@ -11,10 +21,10 @@ let
     LOCAL_FLAG="$2"
 
     if [ "$LOCAL_FLAG" = "--local" ] || [ -z "$LOCAL_FLAG" ]; then
-        echo "Setting up local flake files..."
+        printf "''${GREEN}==> Setting up local flake files...''${RESET}\n"
 
         if ! wget -q "https://raw.githubusercontent.com/vimlinuz/initflake/main/$FLAKE_TYPE/flake.nix"; then
-          echo "Error: flake not found"
+          printf "''${RED}Error: flake '%s' not found''${RESET}\n" "$FLAKE_TYPE"
           exit 1
         fi
 
@@ -22,7 +32,7 @@ let
         wget -q "https://raw.githubusercontent.com/vimlinuz/initflake/main/$FLAKE_TYPE/treefmt.nix"
 
         if [ -d ".git" ]; then
-            echo "Git repository detected, adding files to git..."
+            printf "''${GREEN}==> Git repository detected, adding files to git...''${RESET}\n"
 
             echo ".direnv/" >>.gitignore
 
@@ -34,31 +44,31 @@ let
             git add flake.nix treefmt.nix flake.lock .envrc
             git commit -m "chore(flakes): add initial flake.nix"
         else
-            echo "No git repository found, skipping git operations"
+            printf "''${RED}==> No git repository found, skipping git operations''${RESET}\n"
 
             echo ".direnv/" >>.gitignore
             echo "use flake" >.envrc
         fi
 
         direnv allow
-        echo "✓ Local flake files downloaded and configured"
-        echo "Development environment ready!"
+        printf "''${GREEN}✓ Local flake files downloaded and configured''${RESET}\n"
+        printf "''${GREEN}✓ Development environment ready!''${RESET}\n"
       exit 0
     fi
 
     if [ "$LOCAL_FLAG" = "--remote" ] || [ "$LOCAL_FLAG" = "--git" ]; then
-        echo "Setting up remote flake reference..."
+        printf "''${GREEN}==> Setting up remote flake reference...''${RESET}\n"
         echo "use flake \"github:vimlinuz/initflake?dir=$FLAKE_TYPE\"" >.envrc
         direnv allow
-        echo "✓ Remote flake configured"
-        echo "Development environment ready!"
+        printf "''${GREEN}✓ Remote flake configured''${RESET}\n"
+        printf "''${GREEN}✓ Development environment ready!''${RESET}\n"
       exit 0
     fi
 
-    echo "Usage: $0 <flake-type> [--local | --remote | --git]"
-    echo "Example: $0 rust"
-    echo "Example: $0 rust --local"
-    echo "Example: $0 rust --git"
+    printf "''${RED}Usage:''${RESET} %s <flake-type> [--local | --remote | --git]\n" "$0"
+    printf "''${RED}Example:''${RESET} %s rust\n" "$0"
+    printf "''${RED}Example:''${RESET} %s rust --local\n" "$0"
+    printf "''${RED}Example:''${RESET} %s rust --git\n" "$0"
   '';
 in
 {
