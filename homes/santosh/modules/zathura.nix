@@ -43,7 +43,10 @@
 
       # Recolor mode settings
       recolor-lightcolor = "rgba(20,20,21,1)"; # bg
-      recolor-darkcolor = "rgba(205,205,205,1)"; # fg
+      # recolor-darkcolor = "rgba(205,205,205,1)"; # fg
+
+      # reduced the brightness for the text
+      recolor-darkcolor = "rgba(120,120,120,1)"; # fg
 
       # Startup options
       adjust-open = "width";
