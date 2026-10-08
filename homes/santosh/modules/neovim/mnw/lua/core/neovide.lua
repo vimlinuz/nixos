@@ -1,5 +1,28 @@
 if vim.g.neovide then
   print("YAY!!! we are in neovim max")
+
+  vim.g.neovide_scale_factor = 1
+
+  vim.keymap.set("n", "<C-=>", function()
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.2
+  end, {
+    desc = "Increase scale factor",
+    noremap = true,
+  })
+
+  vim.keymap.set("n", "<C-->", function()
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.2
+  end, {
+    desc = "Decrease scale factor",
+    noremap = true,
+  })
+
+  vim.keymap.set("n", "<C-0>", function()
+    vim.g.neovide_scale_factor = 1
+  end, {
+    desc = "Reset scale factor",
+    noremap = true,
+  })
 end
 
 vim.o.guifont = "JetBrainsMono Nerd Font:h14"
@@ -30,9 +53,8 @@ vim.g.neovide_progress_bar_animation_speed = 200.0
 vim.g.neovide_progress_bar_hide_delay = 0.2
 
 vim.opt.linespace = 0
-vim.g.neovide_scale_factor = 1.0
 
 vim.g.neovide_text_gamma = 0.0
 vim.g.neovide_text_contrast = 0.5
 
-vim.g.neovide_profiler = true
+vim.g.neovide_profiler = false
