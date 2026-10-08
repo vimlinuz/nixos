@@ -38,7 +38,7 @@ blink.setup({
       "path",
       "snippets",
       "spell",
-      "buffer",
+      -- "buffer",
       "emoji",
       "env",
       -- "omni",
