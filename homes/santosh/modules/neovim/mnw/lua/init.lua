@@ -3,6 +3,7 @@ require("core.keymaps")
 require("core.opts")
 require("core.autocommand")
 require("core.diagnostics")
+require("core.neovide")
 
 require("plugins.treesitter")
 require("plugins.lualine")

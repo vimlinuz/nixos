@@ -53,6 +53,7 @@
     # ╰───────────────────────────────────────────────╯
     ./modules/neovim/mnw/nvim.nix
     ./modules/vim.nix
+    ./modules/neovide.nix
     ./modules/zed.nix
     ./modules/helix.nix
     ./modules/neovim/nixvim/nvim.nix
