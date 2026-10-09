@@ -4,14 +4,22 @@ if vim.g.neovide then
   vim.g.neovide_scale_factor = 1
 
   vim.keymap.set("n", "<C-=>", function()
-    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.2
+    if vim.g.neovide_scale_factor < 3 then
+      vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.2
+    else
+      print("Max scale factor reached")
+    end
   end, {
     desc = "Increase scale factor",
     noremap = true,
   })
 
   vim.keymap.set("n", "<C-->", function()
-    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.2
+    if vim.g.neovide_scale_factor > 0.6 then
+      vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.2
+    else
+      print("Min scale factor reached")
+    end
   end, {
     desc = "Decrease scale factor",
     noremap = true,
