@@ -3,7 +3,7 @@ if vim.g.neovide then
 
   vim.g.neovide_scale_factor = 1
 
-  vim.keymap.set("n", "<C-=>", function()
+  vim.keymap.set("", "<C-=>", function()
     if vim.g.neovide_scale_factor < 3 then
       vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.2
     else
@@ -14,7 +14,7 @@ if vim.g.neovide then
     noremap = true,
   })
 
-  vim.keymap.set("n", "<C-->", function()
+  vim.keymap.set("", "<C-->", function()
     if vim.g.neovide_scale_factor > 0.6 then
       vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.2
     else
@@ -25,7 +25,7 @@ if vim.g.neovide then
     noremap = true,
   })
 
-  vim.keymap.set("n", "<C-0>", function()
+  vim.keymap.set("", "<C-0>", function()
     vim.g.neovide_scale_factor = 1
   end, {
     desc = "Reset scale factor",
