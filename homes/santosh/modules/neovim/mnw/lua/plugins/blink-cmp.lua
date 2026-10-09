@@ -110,6 +110,7 @@ blink.setup({
       end,
       winhighlight = "Normal:None,FloatBorder:BlinkCmpMenuBorder,CursorLine:CurSearch,Search:None",
       border = "rounded",
+      auto_show_delay_ms = 200,
       draw = {
         treesitter = { "lsp" },
         columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "source_name" } },
