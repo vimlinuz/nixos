@@ -179,7 +179,7 @@
   #  /etc/profiles/per-user/santosh/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "neovide";
   };
 
   # Let Home Manager install and manage itself.
