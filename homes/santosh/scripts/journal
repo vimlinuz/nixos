@@ -64,9 +64,9 @@ fi
 
 # --- Open it in your editor ---
 if $DO_CIW; then
-  "${EDITOR:-vi}" -c "set spell" -c "call cursor(2, 9)"  -c "normal ci\"" "$target_file"
+neovide "$target_file" -- -c "set spell" -c "call cursor(2, 9)" -c 'normal ci"'
 else
-  "${EDITOR:-vi}" -c "set spell" "$target_file"
+neovide "$target_file" -- -c "set spell"
 fi
 
 
