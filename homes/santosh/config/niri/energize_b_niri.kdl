@@ -13,7 +13,7 @@ animations {
         curve "linear"
 
         custom-shader r"
-            const vec3 EFFECT_COLOR = vec3(0.35, 0.85, 1.00);
+            const vec3 EFFECT_COLOR = vec3(0.61, 0.71, 0.74);
 
             const float SHOWER_TIME  = 0.30;
             const float SHOWER_WIDTH = 0.30;
@@ -210,7 +210,7 @@ animations {
         curve "linear"
 
         custom-shader r"
-            const vec3 EFFECT_COLOR = vec3(0.35, 0.85, 1.00);
+            const vec3 EFFECT_COLOR = vec3(0.61, 0.71, 0.74);
 
             const float SHOWER_TIME  = 0.30;
             const float SHOWER_WIDTH = 0.30;
