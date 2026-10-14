@@ -1,3 +1,4 @@
+include "energize_b_niri.kdl"
 // This config is in the KDL format: https://kdl.dev
 // "/-" comments out the following node.
 // https://yalter.github.io/niri/Configuration:-Introduction
@@ -314,104 +315,11 @@ prefer-no-csd
 // The path is formatted with strftime(3) to give you the screenshot date and time.
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
-// You can also set this to null to disable saving screenshots to disk.
-// screenshot-path null
-
-// https://yalter.github.io/niri/Configuration:-Animations
-// swipe
 animations {
-    // off
     workspace-switch {
         // off
         spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
     }
-    window-open {
-        duration-ms 1400
-        curve "ease-out-expo"
-        custom-shader r"
-        float ease_curve(float x) {
-        return x < 0.5 ? 4.0*x*x*x : 1.0 - pow(-2.0*x + 2.0, 3.0)/2.0;
-        }
-
-        vec4 open_color(vec3 coords_geo, vec3 size_geo) {
-        float t = niri_clamped_progress;
-        float prog = ease_curve(t);
-
-        // bottom-right corner
-        vec2 start = vec2(1.0, 1.0);
-
-        // compute distance along diagonal from corner
-        vec2 p = coords_geo.xy;
-        vec2 dir = vec2(-1.0, -1.0); // vector toward top-left
-        float dist = dot(p - start, dir);
-
-        // normalize distance to max diagonal (from corner to opposite)
-        float max_diag = 2.0;
-        float norm_dist = dist / max_diag;
-
-        // pixels not yet reached by sweep are invisible
-        if (norm_dist > prog) {
-        return vec4(0.0);
-        }
-
-        // sample normally
-        vec3 coords_tex = niri_geo_to_tex * coords_geo;
-        vec4 col = texture2D(niri_tex, coords_tex.xy);
-
-        return col;
-        }"
-    }
-
-
-    window-close {
-        duration-ms 1400
-        curve "ease-out-expo"
-        custom-shader r"
-        // ease-in-out cubic curve helper
-        float ease_curve(float x) {
-        return x < 0.5 ? 4.0*x*x*x : 1.0 - pow(-2.0*x + 2.0, 3.0)/2.0;
-        }
-
-        vec4 close_color(vec3 coords_geo, vec3 size_geo) {
-        float t = niri_clamped_progress;
-
-
-        float prog = ease_curve(t);
-
-        // choose corner: 0=top-left,1=top-right,2=bottom-left,3=bottom-right
-
-        int corner = 0;
-        vec2 start;
-        if (corner == 0) start = vec2(0.0,0.0);
-        else if (corner == 1) start = vec2(1.0,0.0);
-        else if (corner == 2) start = vec2(0.0,1.0);
-        else start = vec2(1.0,1.0);
-
-
-        // compute distance along diagonal from corner
-
-        vec2 p = coords_geo.xy;
-        float dist = dot(p - start, vec2(1.0,1.0));
-
-        // normalize distance to max diagonal
-        float max_diag = 2.0; // max of vec2(1,1)
-        float norm_dist = dist / max_diag;
-
-
-        // If pixel is behind the sweeping line, make it invisible
-
-        if (norm_dist <= prog) {
-        return vec4(0.0);
-        }
-
-        // sample normally
-        vec3 coords_tex = niri_geo_to_tex * coords_geo;
-        vec4 col = texture2D(niri_tex, coords_tex.xy);
-
-        return col;
-        }"
-    }
-
 
     horizontal-view-movement {
         spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
@@ -439,85 +347,7 @@ animations {
         spring damping-ratio=0.85 stiffness=800 epsilon=0.0001
     }
 }
-// pixelated
-// animations {
-//   on
-//   workspace-switch {
-//     off
-//     duration-ms 300
-//     curve "ease-out-cubic"
-//   }
-//   window-open {
-//     duration-ms 400
-//     curve "linear"
-//     custom-shader r"
-//       vec4 pixelate_open(vec3 coords_geo, vec3 size_geo) {
-//           // Discard pixels outside window bounds
-//           if (coords_geo.x < 0.0 || coords_geo.x > 1.0 || coords_geo.y < 0.0 || coords_geo.y > 1.0) {
-//               return vec4(0.0);
-//           }
-//           float progress = niri_clamped_progress;
-//           float border_width = 0.008; // Adjust based on your border size
-//           vec2 coords = coords_geo.xy;
-//           // Check if we're in the border region
-//           bool in_border = coords.x < border_width || coords.x > (1.0 - border_width) ||
-//                           coords.y < border_width || coords.y > (1.0 - border_width);
-//           // Only pixelate the inner content, not the border
-//           if (!in_border) {
-//               float pixel_size = (1.0 - progress) * 0.1;
-//               if (pixel_size > 0.0) {
-//                   coords = floor(coords / pixel_size) * pixel_size + pixel_size * 0.5;
-//               }
-//               // Clamp sampling to avoid border area
-//               coords = clamp(coords, border_width, 1.0 - border_width);
-//           }
-//           vec3 new_coords = vec3(coords, 1.0);
-//           vec3 coords_tex = niri_geo_to_tex * new_coords;
-//           vec4 color = texture2D(niri_tex, coords_tex.st);
-//           color.a *= progress;
-//           return color;
-//       }
-//       vec4 open_color(vec3 coords_geo, vec3 size_geo) {
-//         return pixelate_open(coords_geo, size_geo);
-//       }
-//     "
-//   }
-//   window-close {
-//     duration-ms 400
-//     curve "linear"
-//     custom-shader r"
-//       vec4 pixelate_close(vec3 coords_geo, vec3 size_geo) {
-//           // Discard pixels outside window bounds
-//           if (coords_geo.x < 0.0 || coords_geo.x > 1.0 || coords_geo.y < 0.0 || coords_geo.y > 1.0) {
-//               return vec4(0.0);
-//           }
-//           float progress = niri_clamped_progress;
-//           float border_width = 0.008;
-//           vec2 coords = coords_geo.xy;
-//           // Check if we're in the border region
-//           bool in_border = coords.x < border_width || coords.x > (1.0 - border_width) ||
-//                           coords.y < border_width || coords.y > (1.0 - border_width);
-//           // Only pixelate the inner content, not the border
-//           if (!in_border) {
-//               float pixel_size = progress * 0.1;
-//               if (pixel_size > 0.0) {
-//                   coords = floor(coords / pixel_size) * pixel_size + pixel_size * 0.5;
-//               }
-//               // Clamp sampling to avoid border area
-//               coords = clamp(coords, border_width, 1.0 - border_width);
-//           }
-//           vec3 new_coords = vec3(coords, 1.0);
-//           vec3 coords_tex = niri_geo_to_tex * new_coords;
-//           vec4 color = texture2D(niri_tex, coords_tex.st);
-//           color.a *= (1.0 - progress);
-//           return color;
-//       }
-//       vec4 close_color(vec3 coords_geo, vec3 size_geo) {
-//         return pixelate_close(coords_geo, size_geo);
-//       }
-//     "
-//   }
-// }
+
 
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
