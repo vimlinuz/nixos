@@ -29,6 +29,8 @@ in
       pkgs.emmet-language-server
       pkgs.glslls
 
+      pkgs.ruff
+
       pkgs.stylua
       pkgs.lua-language-server
 
