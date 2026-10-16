@@ -123,7 +123,8 @@ animations {
                 float streakProgress = clamp((progress - SHOWER_TIME) / STREAK_TIME, 0.0, 1.0);
                 float fadeProgress   = clamp((progress - SHOWER_TIME) / (1.0 - SHOWER_TIME), 0.0, 1.0);
 
-                float t = uv.y;
+                // Flip v so the sweep band travels bottom -> top on screen (niri y goes down).
+                float t = 1.0 - uv.y;
 
                 float showerMask = smoothstep(
                     1.0, 0.0,
@@ -174,22 +175,22 @@ animations {
                 oColor.rgb = mix(EFFECT_COLOR, oColor.rgb, 0.5 * masks.w + 0.5);
                 oColor.a   = oColor.a * masks.w;
 
-                // Add leading shower particles.
-                vec2 showerUV = uv + vec2(0.0, -0.7 * progress / SHOWER_TIME);
+                // Add leading shower particles (scroll upward).
+                vec2 showerUV = uv + vec2(0.0, 0.7 * progress / SHOWER_TIME);
                 showerUV *= 0.02 * size_geo.xy;
                 float shower = pow(simplex2D(showerUV), 10.0);
                 oColor.rgb += EFFECT_COLOR * shower * masks.x;
                 oColor.a   += shower * masks.x;
 
-                // Add trailing streak lines.
-                vec2 streakUV = uv + vec2(0.0, -progress / SHOWER_TIME);
+                // Add trailing streak lines (scroll upward).
+                vec2 streakUV = uv + vec2(0.0, progress / SHOWER_TIME);
                 streakUV *= vec2(0.05 * size_geo.x, 0.001 * size_geo.y);
                 float streaks = simplex2DFractal(streakUV) * 0.5;
                 oColor.rgb += EFFECT_COLOR * streaks * masks.y;
                 oColor.a   += streaks * masks.y;
 
                 // Add glimmering atoms.
-                vec2 atomUV = uv + vec2(0.0, -0.025 * progress / SHOWER_TIME);
+                vec2 atomUV = uv + vec2(0.0, 0.025 * progress / SHOWER_TIME);
                 atomUV *= 0.2 * size_geo.xy;
                 float atoms = pow(simplex3D(vec3(atomUV, niri_clamped_progress * 3.8 + niri_random_seed * 10.0)), 5.0);
                 oColor.rgb += EFFECT_COLOR * atoms * masks.z;
