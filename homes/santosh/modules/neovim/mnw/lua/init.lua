@@ -12,6 +12,7 @@ require("plugins.telescope")
 require("plugins.lspsaga")
 require("plugins.blink-cmp")
 require("plugins.lsp")
+require("plugins.direnv")
 
 -- require("plugins.null-ls")
 require("plugins.conform-nvim")

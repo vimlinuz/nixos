@@ -53,9 +53,11 @@ require("lualine").setup({
     },
     lualine_y = { "location", "progress" },
     lualine_z = {
-      function()
-        return " "
-      end,
+      {
+        function()
+          return " " .. require("direnv").statusline()
+        end,
+      },
     },
   },
 })
