@@ -13,7 +13,7 @@
       font-family-bold-italic = "JetBrainsMono Nerd Font";
       custom-shader-animation = true;
       custom-shader = [
-        "${config.home.homeDirectory}/nixos/homes/santosh/modules/terminals/ghostty/shaders/coil.glsl"
+        # "${config.home.homeDirectory}/nixos/homes/santosh/modules/terminals/ghostty/shaders/coil.glsl"
         "${config.home.homeDirectory}/nixos/homes/santosh/modules/terminals/ghostty/shaders/glow.glsl"
       ];
       mouse-hide-while-typing = true;
