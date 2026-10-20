@@ -31,6 +31,35 @@ if vim.g.neovide then
     desc = "Reset scale factor",
     noremap = true,
   })
+
+  -- Smooth cursor while begin in insert mode
+  local animation_length = 0.12
+  local short_animation_length = 0.04
+
+  local group = vim.api.nvim_create_augroup("NeovideInsertCursorAnimation", { clear = true })
+
+  local function set_cursor_animation(enabled)
+    vim.g.neovide_cursor_animation_length = enabled and animation_length or 0
+
+    vim.g.neovide_cursor_short_animation_length = enabled and short_animation_length or 0
+  end
+
+  vim.api.nvim_create_autocmd("InsertEnter", {
+    group = group,
+    callback = function()
+      set_cursor_animation(true)
+    end,
+  })
+
+  vim.api.nvim_create_autocmd("InsertLeave", {
+    group = group,
+    callback = function()
+      set_cursor_animation(false)
+    end,
+  })
+
+  -- Start with animations disabled outside Insert mode
+  set_cursor_animation(false)
 end
 
 vim.o.guifont = "JetBrainsMono Nerd Font:h12"
@@ -49,12 +78,13 @@ vim.g.neovide_hide_mouse_when_typing = true
 vim.g.neovide_refresh_rate = 60
 vim.g.neovide_highlight_matching_pair = true
 
-vim.g.neovide_cursor_animation_length = 0
+vim.g.neovide_cursor_animate_in_insert_mode = true
 vim.g.neovide_cursor_trail_size = 0
-vim.g.neovide_scroll_animation_length = 0.2
-vim.g.neovide_cursor_animate_in_insert_mode = false
 vim.g.neovide_cursor_antialiasing = true
 vim.g.neovide_cursor_vfx_mode = ""
+
+-- Keep scroll animation
+vim.g.neovide_scroll_animation_length = 0.2
 
 vim.g.neovide_progress_bar_enabled = true
 vim.g.neovide_progress_bar_height = 1.0
