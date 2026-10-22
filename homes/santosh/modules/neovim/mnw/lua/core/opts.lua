@@ -42,7 +42,7 @@ do
     numberwidth = 4,
     pumheight = 10,
     relativenumber = true,
-    scrolloff = 10,
+    scrolloff = 999,
     shiftwidth = 4,
     showmode = false,
     showtabline = 0,
