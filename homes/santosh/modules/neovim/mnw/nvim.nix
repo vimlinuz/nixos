@@ -74,8 +74,8 @@ in
         pkgs.vimPlugins.nvim-web-devicons
         pkgs.vimPlugins.nvim-ufo
 
-        # pkgs.vimPlugins.nvim-notify
-        # pkgs.vimPlugins.noice-nvim
+        pkgs.vimPlugins.nvim-notify
+        pkgs.vimPlugins.noice-nvim
         # pkgs.vimPlugins.neoscroll-nvim
         pkgs.vimPlugins.fidget-nvim
 
