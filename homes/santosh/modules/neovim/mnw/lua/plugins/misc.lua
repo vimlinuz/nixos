@@ -15,3 +15,4 @@ require("ibl").setup({
 require("present").setup({})
 
 require("fidget").setup({})
+require("jj").setup({})

@@ -79,6 +79,7 @@ in
         # pkgs.vimPlugins.neoscroll-nvim
         pkgs.vimPlugins.fidget-nvim
 
+        pkgs.vimPlugins.jj-nvim
         pkgs.vimPlugins.vim-fugitive
         pkgs.vimPlugins.gitsigns-nvim
         pkgs.vimPlugins.vim-rhubarb
