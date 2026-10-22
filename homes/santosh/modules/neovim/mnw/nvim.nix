@@ -76,11 +76,12 @@ in
 
         # pkgs.vimPlugins.nvim-notify
         # pkgs.vimPlugins.noice-nvim
+        # pkgs.vimPlugins.neoscroll-nvim
+        pkgs.vimPlugins.fidget-nvim
 
         pkgs.vimPlugins.vim-fugitive
         pkgs.vimPlugins.gitsigns-nvim
         pkgs.vimPlugins.vim-rhubarb
-        # pkgs.vimPlugins.neoscroll-nvim
 
         pkgs.vimPlugins.indent-blankline-nvim
         pkgs.vimPlugins.oil-nvim
@@ -96,6 +97,7 @@ in
         pkgs.vimPlugins.black-metal-theme-neovim
         pkgs.vimPlugins.present-nvim
 
+        pkgs.vimPlugins.luasnip
         pkgs.vimPlugins.lspsaga-nvim
         pkgs.vimPlugins.lspkind-nvim
         pkgs.vimPlugins.nvim-lspconfig
@@ -104,10 +106,8 @@ in
         # pkgs.vimPlugins.lsp-format-nvim
         pkgs.vimPlugins.conform-nvim
 
-        pkgs.vimPlugins.luasnip
-
         pkgs.vimPlugins.blink-cmp
-        pkgs.vimPlugins.blink-cmp-spell
+        # pkgs.vimPlugins.blink-cmp-spell
         pkgs.vimPlugins.blink-emoji-nvim
         pkgs.vimPlugins.blink-cmp-env
         # pkgs.vimPlugins.blink-cmp-copilot
@@ -135,7 +135,6 @@ in
         pkgs.vimPlugins.telescope-nvim
         pkgs.vimPlugins.telescope-fzf-native-nvim
         pkgs.vimPlugins.presenting-vim
-        pkgs.vimPlugins.fidget-nvim
 
         pkgs.vimPlugins.direnv-nvim
       ];
