@@ -10,6 +10,7 @@
     settings = {
       invert = true;
       show_help = false;
+      show_tabs = false;
       style = "full";
 
       enter_accept = true;
