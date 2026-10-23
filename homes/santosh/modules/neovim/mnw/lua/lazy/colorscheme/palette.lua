@@ -2,7 +2,7 @@ return {
   "palette.nvim",
   colorscheme = "palette",
   after = function()
-    require("palette").setup({ bolds = false, italics = true, transparent_background = true })
+    require("palette").setup({ bolds = false, italics = true, transparent_background = false })
     vim.env.BAT_THEME = "palette"
   end,
 }

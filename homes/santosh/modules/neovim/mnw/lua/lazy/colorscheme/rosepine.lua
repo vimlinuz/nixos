@@ -7,7 +7,7 @@ return {
       disable_float_background = true,
       flavor = "main",
       show_end_of_buffer = false,
-      styles = { bold = false, italic = false, transparency = true },
+      styles = { bold = false, italic = false, transparency = false },
     })
     vim.env.BAT_THEME = "rose-pine"
   end,

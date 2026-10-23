@@ -14,7 +14,7 @@ return {
       -- if true favor treesitter highlights over semantic highlights
       favor_treesitter_hl = true,
       -- Don't set background
-      transparent = true,
+      transparent = false,
       -- Don't set background of floating windows. Recommended for when using floating
       -- windows with borders.
       plain_float = false,
