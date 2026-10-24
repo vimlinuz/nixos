@@ -1,0 +1,22 @@
+:root {
+    --zen-element-separation: 0px !important;
+    --zen-content-element-separation: 0px !important;
+    --zen-toolbar-padding: 0px !important;
+}
+
+#navigator-toolbox,
+#browser,
+#appcontent,
+#tabbrowser-tabbox,
+#tabbrowser-tabpanels,
+.browserSidebarContainer,
+#sidebar-box,
+#sidebar-main,
+#sidebar-wrapper,
+#vertical-tabs,
+#zen-appcontent-wrapper,
+#zen-appcontent-navbar-wrapper,
+#zen-tabbox-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+}

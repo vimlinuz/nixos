@@ -107,7 +107,7 @@
     # │  Browsers                                     │
     # ╰───────────────────────────────────────────────╯
     ./modules/firefox/firefox.nix
-    ./modules/zen-browser.nix
+    ./modules/zen-browser/zen-browser.nix
     ./modules/qute-browser.nix
   ];
 
