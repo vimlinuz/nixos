@@ -6,9 +6,9 @@ return {
       transparent = false,
       bold = false,
       italic = false,
-      colors = {
-        bg = "#191d33",
-      },
+      -- colors = {
+      --   bg = "#191d33",
+      -- },
       on_highlights = function(highlights, colors)
         -- GitSigns
         highlights.GitSignsAdd = { fg = "#ffffff", bg = "NONE" }
