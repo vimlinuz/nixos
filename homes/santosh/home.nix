@@ -106,9 +106,9 @@
     # ╭───────────────────────────────────────────────╮
     # │  Browsers                                     │
     # ╰───────────────────────────────────────────────╯
-    ./modules/firefox/firefox.nix
-    ./modules/zen-browser/zen-browser.nix
-    ./modules/qute-browser.nix
+    ./modules/browsers/firefox.nix
+    ./modules/browsers/zen-browser.nix
+    ./modules/browsers/qute-browser.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should

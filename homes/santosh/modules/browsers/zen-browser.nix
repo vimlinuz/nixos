@@ -9,6 +9,9 @@
   programs.zen-browser = {
     enable = true;
 
+    policies = {
+      ExtensionSettings = import ./extension.nix;
+    };
     profiles.default = {
       settings = {
         # Remove the border spacing around the browser content
