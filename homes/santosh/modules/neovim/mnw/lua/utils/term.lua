@@ -29,17 +29,6 @@ function run.open_float_term(cmd)
   -- Open the window
   local win = vim.api.nvim_open_win(buf, true, opts)
 
-  -- Or we can do this directly
-  -- local win = vim.api.nvim_open_win(buf, true, {
-  --   relative = 'editor',
-  --   width = width,
-  --   height = height,
-  --   col = col,
-  --   row = row,
-  --   style = 'minimal',
-  --   border = 'rounded',
-  -- })
-
   -- Start terminal in the buffer with the specified command
   vim.fn.termopen(cmd)
 
