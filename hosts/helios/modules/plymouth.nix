@@ -36,14 +36,6 @@
           nixos-bgrt-plymouth
         ];
       };
-
-      consoleLogLevel = 3;
-      kernelParams = [
-        "quiet"
-        "udev.log_level=3"
-        "systemd.show_status=auto"
-      ];
-
     };
   };
 }
