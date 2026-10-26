@@ -143,7 +143,7 @@
   security.polkit.enable = true;
 
   # Enable Bluetooth and Blueman service
-  bluetooth.enable = false;
+  bluetooth.enable = true;
 
   # Enable TLP for power management
   tlp.enable = true;
