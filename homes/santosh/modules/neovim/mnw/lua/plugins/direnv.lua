@@ -5,7 +5,7 @@ require("direnv").setup({
     enabled = true,
     icon = "envyy",
   },
-
+  keybindings = false,
   notifications = {
     level = vim.log.levels.INFO,
     silent_autoload = true,
