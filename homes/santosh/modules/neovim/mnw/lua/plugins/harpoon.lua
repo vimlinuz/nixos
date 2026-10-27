@@ -22,7 +22,7 @@ local harpoon_maps = {
     end,
     key = "<leader>d",
     mode = "n",
-    options = { desc = "Select 1 ih list of harpoon" },
+    options = { desc = "Select 1 in list of harpoon" },
   },
   {
     action = function()
