@@ -33,25 +33,13 @@ order = [ "default" ]
     capsule_opacity = 1.0
     capsule_padding = 6.0
     capsule_thickness = 0.75999999046325684
-    center = [ "clock", "spacer_2", "date" ]
+    center = [ "clock", "date" ]
     compositor_blur = true
     concave_edge_corners = true
     contact_shadow = false
     enabled = true
-    end = [
-        "media",
-        "tray",
-        "notifications",
-        "clipboard",
-        "network",
-        "bluetooth",
-        "input_volume",
-        "volume",
-        "brightness",
-        "battery",
-        "session"
-    ]
-    font_scale = 1.0
+    end = [ "tray", "notifications", "clipboard", "network", "bluetooth", "volume", "brightness", "battery", "session" ]
+    font_scale = 0.89999997615814209
     font_weight = 500
     hover_highlight = true
     layer = "top"
@@ -60,7 +48,7 @@ order = [ "default" ]
     margin_opposite_edge = 0
     padding = 14
     panel_overlap = 1
-    position = "top"
+    position = "left"
     radius = 12
     radius_bottom_left = 12
     radius_bottom_right = 12
@@ -71,7 +59,7 @@ order = [ "default" ]
     shadow = true
     show_on_workspace_switch = true
     show_tooltip = true
-    smart_auto_hide = false
+    smart_auto_hide = true
     start = [ "workspaces", "spacer_2", "active_window" ]
     thickness = 34
     widget_spacing = 6
@@ -688,7 +676,7 @@ wallpaper_scheme = "m3-content"
     enable_community_templates = true
 
 [wallpaper]
-directory = "/nix/store/q6mk9978f3pwwz8nvz1q9m9w6bsc100n-source/wallpapers"
+# directory = "/nix/store/q6mk9978f3pwwz8nvz1q9m9w6bsc100n-source/wallpapers"
 directory_dark = ""
 directory_light = ""
 edge_smoothness = 0.30000001192092896
@@ -720,10 +708,10 @@ title_scroll = "none"
 type = "active_window"
 
 [widget.clock]
-font_scale = 1.1000000000000001
+font_scale = 1.0
 font_weight = 700
 format = "{:%I:%M}"
-scale = 1.1000000000000001
+scale = 1.0
 type = "clock"
 
 [widget.cpu]
@@ -731,10 +719,10 @@ stat = "cpu_usage"
 type = "sysmon"
 
 [widget.date]
-font_scale = 1.1000000000000001
+font_scale = 1.0
 font_weight = 700
 format = "{:%a %d %b}"
-scale = 1.1000000000000001
+scale = 1.0
 type = "clock"
 
 [widget.input_volume]
