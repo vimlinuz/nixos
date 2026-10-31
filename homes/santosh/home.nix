@@ -32,7 +32,6 @@
     ./modules/zoxide.nix
     ./modules/btop.nix
     ./modules/bat.nix
-    ./modules/rofi.nix
     ./modules/wlsunset.nix
     ./modules/nh.nix
     ./modules/zathura.nix
@@ -96,7 +95,7 @@
     # ╭───────────────────────────────────────────────╮
     # │ Wallpapers                                    │
     # ╰───────────────────────────────────────────────╯
-    ./modules/scripts/rofi-wallpaper-selector.nix
+    # ./modules/scripts/rofi-wallpaper-selector.nix
 
     # ╭───────────────────────────────────────────────╮
     # │  Ricing                                        │
@@ -140,10 +139,10 @@
       source = ./scripts;
       recursive = true;
     };
-    ".config/rofi" = {
-      source = ./config/rofi;
-      recursive = true;
-    };
+    # ".config/rofi" = {
+    #   source = ./config/rofi;
+    #   recursive = true;
+    # };
     ".config/niri" = {
       source = ./config/niri;
       recursive = true;
