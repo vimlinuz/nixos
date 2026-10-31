@@ -87,7 +87,7 @@
     ./modules/scripts/music-player.nix
     ./modules/scripts/cliphist-reset.nix
 
-    ./modules/scripts/clipManager.nix
+    # ./modules/scripts/clipManager.nix
     ./modules/scripts/pomodoro.nix
     ./modules/scripts/quick-rm.nix
     ./modules/scripts/flake-initializer.nix

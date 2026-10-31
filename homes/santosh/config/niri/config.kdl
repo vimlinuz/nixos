@@ -452,7 +452,7 @@ binds {
     Mod+Shift+Slash hotkey-overlay-title="Transform main monitor to normal :" { spawn-sh "niri msg output eDP-1 transform normal";}
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Super+V hotkey-overlay-title="Open a clipManager: " { spawn-sh "clipManager"; }
+    // Super+V hotkey-overlay-title="Open a clipManager: " { spawn-sh "clipManager"; }
     Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
     // Mod+Space hotkey-overlay-title="Run an Application: rofi" { spawn-sh "rofi -i -show drun"; }
     Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
@@ -460,7 +460,7 @@ binds {
     Mod+B hotkey-overlay-title="Open the Web Browser: zen" { spawn "zen-beta"; }
 
     // wallpaper selector binds
-    Mod+W hotkey-overlay-title="Open wallpaper change: rofi-wallpaper-selector" { spawn-sh "rofi-wallpaper-selector";}
+    // Mod+W hotkey-overlay-title="Open wallpaper change: rofi-wallpaper-selector" { spawn-sh "rofi-wallpaper-selector";}
     // Mod+W hotkey-overlay-title="Toggle wallpaper switcher panel" { spawn-sh "qs ipc -p ~/nixos/homes/santosh/config/nyx_panel/main.qml call wallpaper toggle";}
 
     // Screenshot binds. (hyprshot)
