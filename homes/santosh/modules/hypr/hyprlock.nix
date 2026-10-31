@@ -4,7 +4,7 @@ let
 in
 {
   programs.hyprlock = {
-    enable = false;
+    enable = true;
 
     settings = {
       background = {

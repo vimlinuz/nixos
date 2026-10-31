@@ -1,7 +1,7 @@
 { config, ... }:
 {
   programs.fish = {
-    enable = false;
+    enable = true;
     generateCompletions = true;
     # interactiveShellInit = "fastfetch";
 

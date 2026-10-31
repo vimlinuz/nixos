@@ -1,6 +1,6 @@
 {
   services.swaync = {
-    enable = false;
+    enable = true;
     settings = {
       positionX = "right";
       positionY = "top";

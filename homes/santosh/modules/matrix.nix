@@ -1,5 +1,5 @@
 {
   programs.element-desktop = {
-    enable = false;
+    enable = true;
   };
 }

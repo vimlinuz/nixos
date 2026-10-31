@@ -12,7 +12,7 @@
     # If you are enabling hyprland then you want the following thing to be done
     # (optional) enable hyprilde and change the idle timeout of logind to avoid
     # add the hyprland modules in the waybar config
-    enable = false;
+    enable = true;
 
     package = pkgs.hyprland;
 

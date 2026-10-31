@@ -294,8 +294,8 @@ cursor {
 // spawn-sh-at-startup "upower-notify"
 // spawn-sh-at-startup "swaybg -m fill -o* -i ~/.current_wallpaper"
 
-spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
-spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
+// spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
+// spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
 // spawn-sh-at-startup "swaync"
 // Native notifications handled by the quickshell panel (services/Notifs.qml).
 

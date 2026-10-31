@@ -1,6 +1,6 @@
 {
   services.hypridle = {
-    enable = false;
+    enable = true;
     settings = {
       general = {
         lock_cmd = "pidof hyprlock || hyprlock";

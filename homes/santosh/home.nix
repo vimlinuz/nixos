@@ -1,15 +1,6 @@
 {
   imports = [
     # ╭───────────────────────────────────────────────╮
-    # │ Hyprland Configuration Modules                │
-    # ╰───────────────────────────────────────────────╯
-    ./modules/hypr/hyprland/hyprland.nix
-    ./modules/hypr/hypridle.nix
-    ./modules/hypr/hyprpaper.nix
-    ./modules/hypr/hyprlock.nix
-    ./modules/hypr/hyprsunset.nix
-
-    # ╭───────────────────────────────────────────────╮
     # │ Terminals                                     │
     # ╰───────────────────────────────────────────────╯
     ./modules/terminals/kitty.nix
@@ -23,18 +14,14 @@
     ./modules/fzf.nix
     ./modules/eza.nix
     ./modules/lsd.nix
-
     ./modules/kdeconnect.nix
-
-    ./modules/gtk.nix
-    ./modules/fastfetch.nix
-    ./modules/starship/starship.nix
     ./modules/zoxide.nix
     ./modules/btop.nix
     ./modules/bat.nix
-    ./modules/wlsunset.nix
     ./modules/nh.nix
     ./modules/zathura.nix
+
+    ./modules/gtk.nix
 
     ./modules/git.nix
     ./modules/direnv.nix
@@ -42,10 +29,8 @@
     ./modules/jujutsu.nix
     ./modules/opencode.nix
 
-    ./modules/swaync.nix
     ./modules/yazi.nix
     ./modules/vesktop/vesktop.nix
-    ./modules/matrix.nix
 
     # ╭───────────────────────────────────────────────╮
     # │ Code editors                                  │
@@ -61,8 +46,6 @@
     # ╭───────────────────────────────────────────────╮
     # │ Shell                                         │
     # ╰───────────────────────────────────────────────╯
-    ./modules/shell/fish.nix
-    ./modules/shell/nushell.nix
     ./modules/shell/carapace.nix
     ./modules/shell/bash.nix
     ./modules/shell/atuin.nix
@@ -70,7 +53,6 @@
     # ╭───────────────────────────────────────────────╮
     # │ Wayland and Terminal Tools                    │
     # ╰───────────────────────────────────────────────╯
-    ./modules/waybar/default.nix
     ./modules/tmux/default.nix
     ./modules/nyx_panel/default.nix
 
@@ -84,7 +66,6 @@
     # ╰───────────────────────────────────────────────╯
     ./modules/scripts/sessionizer.nix
     ./modules/scripts/music-player.nix
-    ./modules/scripts/cliphist-reset.nix
 
     # ./modules/scripts/clipManager.nix
     ./modules/scripts/pomodoro.nix
@@ -92,23 +73,9 @@
     ./modules/scripts/flake-initializer.nix
     ./modules/scripts/pull.nix
 
-    # ╭───────────────────────────────────────────────╮
-    # │ Wallpapers                                    │
-    # ╰───────────────────────────────────────────────╯
-    # ./modules/scripts/rofi-wallpaper-selector.nix
-
-    # ╭───────────────────────────────────────────────╮
-    # │  Ricing                                        │
-    # ╰───────────────────────────────────────────────╯
     ./modules/cursor.nix
     ./modules/cava.nix
-
-    # ╭───────────────────────────────────────────────╮
-    # │  Browsers                                     │
-    # ╰───────────────────────────────────────────────╯
-    ./modules/browsers/firefox.nix
     ./modules/browsers/zen-browser.nix
-    ./modules/browsers/qute-browser.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -139,10 +106,6 @@
       source = ./scripts;
       recursive = true;
     };
-    # ".config/rofi" = {
-    #   source = ./config/rofi;
-    #   recursive = true;
-    # };
     ".config/niri" = {
       source = ./config/niri;
       recursive = true;

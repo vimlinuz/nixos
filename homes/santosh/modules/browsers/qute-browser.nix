@@ -1,6 +1,6 @@
 {
   programs.qutebrowser = {
-    enable = false;
+    enable = true;
     settings = {
       colors = {
         hints = {
