@@ -1,6 +1,6 @@
 {
   services.wlsunset = {
-    enable = true;
+    enable = false;
     # sunrise = "06:00";
     # sunset = "18:00";
     latitude = 27;
