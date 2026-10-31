@@ -143,14 +143,14 @@ Item {
             property date popupStart: new Date()
 
             // 0..1 fraction of the popup timeout remaining; drives the
-            // countdown line on the card.
+            // countdown gauge on the card.
             property real popupFraction: 1
 
-            // 100ms ticker; smooths the countdown line and expires the
-            // popup after popupTimeout. Stopped imperatively while the
-            // popup is hovered.
+            // 200ms ticker; drives the countdown gauge and expires the popup
+            // after popupTimeout. Stopped imperatively while the popup is
+            // hovered.
             readonly property Timer timer: Timer {
-                interval: 100
+                interval: 200
                 repeat: true
                 running: notif.popup
                 onTriggered: {

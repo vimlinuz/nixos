@@ -53,13 +53,6 @@ Rectangle {
     // Fraction of the popup timeout remaining (1 = full countdown left).
     readonly property real popupFraction: root.modelData ? root.modelData.popupFraction : 1
 
-    // ---- Timeout countdown pulse ----
-    // 0..1 how far into the popup's lifetime we are; drives the color shift,
-    // comet sweep speed, and border breathing of the countdown below.
-    readonly property real pulsePhase: 1 - root.popupFraction
-    property real cometPos: -64
-    property real pulseTick: 0
-
     function lerp(a: real, b: real, t: real): real {
         return a + (b - a) * t;
     }
@@ -371,28 +364,14 @@ Rectangle {
         }
     }
 
-    // ---- Timeout countdown: sweeping color pulse ----
-    // The remaining-time fill depletes from full to nothing while a comet
-    // sweeps the track, a radiating ping fires off the tip of the remaining
-    // time, and the card border breathes. As the popup nears dismissal the
-    // sweep accelerates and the color shifts accent → warning → error.
-
-    Timer {
-        id: pulseTimer
-        interval: 16
-        repeat: true
-        running: root.popupFraction > 0
-        onTriggered: {
-            root.pulseTick++;
-            const speed = 2.2 + 4.5 * root.pulsePhase;
-            root.cometPos += speed * (pulseTrack.width / 300);
-            if (root.cometPos > pulseTrack.width) root.cometPos = -comet.width;
-            cardPulse.opacity = 0.12 + 0.16 * (0.5 + 0.5 * Math.sin(root.pulseTick * 0.05 * speed));
-        }
-    }
+    // ---- Timeout countdown: single depleting hairline ----
+    // One thin line instead of a row of segmented boxes. Its width is a plain
+    // binding on `popupFraction` (ticked every 200 ms by services/Notifs.qml)
+    // and the Behavior smooths the steps, so there is no per-frame JS and no
+    // continuous animation for the toast's whole lifetime.
 
     Rectangle {
-        id: pulseTrack
+        id: gaugeTrack
         anchors {
             right: parent.right
             bottom: parent.bottom
@@ -403,10 +382,9 @@ Rectangle {
         radius: 1
         color: Services.Theme.line
 
-        // Remaining time: shrinks from full width to nothing.
+        // Remaining lifetime; the colored line drains toward the right edge.
         Rectangle {
-            id: timeoutFill
-            anchors.left: parent.left
+            anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
             width: parent.width * root.popupFraction
             height: parent.height
@@ -414,68 +392,14 @@ Rectangle {
             color: root.timeoutColor
 
             Behavior on width {
-                NumberAnimation { duration: 200; easing.type: Easing.Linear }
-            }
-        }
-
-        // Comet: bright head with a fading tail sweeping left → right.
-        Item {
-            id: comet
-            x: root.cometPos
-            y: (parent.height - height) / 2
-            width: 64
-            height: 6
-
-            Repeater {
-                model: 10
-                Rectangle {
-                    required property int index
-                    width: 6
-                    height: comet.height
-                    radius: 3
-                    x: comet.width - width * (index + 1)
-                    color: root.timeoutColor
-                    opacity: Math.pow((index + 1) / 10, 2) * 0.65
-                }
-            }
-
-            Rectangle {
-                width: 4
-                height: parent.height
-                radius: 2
-                x: parent.width - 4
-                color: Qt.lighter(root.timeoutColor, 1.7)
-            }
-        }
-
-        // Radiating ping fired off the leading edge of the remaining time.
-        Rectangle {
-            id: tipGlow
-            anchors.right: timeoutFill.right
-            anchors.verticalCenter: parent.verticalCenter
-            width: 8
-            height: 8
-            radius: 4
-            color: root.timeoutColor
-            opacity: 0
-            scale: 0.5
-
-            SequentialAnimation {
-                id: tipPulse
-                loops: Animation.Infinite
-                running: root.popupFraction > 0
-                ParallelAnimation {
-                    NumberAnimation { target: tipGlow; property: "opacity"; to: 0; duration: 900; easing.type: Easing.OutQuad }
-                    NumberAnimation { target: tipGlow; property: "scale"; to: 3.0; duration: 900; easing.type: Easing.OutQuad }
-                }
-                ScriptAction {
-                    script: { tipGlow.scale = 0.5; tipGlow.opacity = 0.85; }
-                }
+                NumberAnimation { duration: 220; easing.type: Easing.Linear }
             }
         }
     }
 
-    // Breathing border pulse, tinted by the countdown color.
+    // Static border tint, following the countdown color. Deliberately not
+    // animated: a breathing border would repaint the whole popup at 60 fps
+    // for the toast's entire lifetime.
     Rectangle {
         id: cardPulse
         anchors.fill: parent
@@ -483,7 +407,7 @@ Rectangle {
         border.width: 1
         border.color: root.timeoutColor
         color: "transparent"
-        opacity: 0.12
+        opacity: 0.14 + 0.10 * (1 - root.popupFraction)
     }
 
     implicitHeight: content.implicitHeight + 20
