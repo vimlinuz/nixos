@@ -1,5 +1,0 @@
-{
-  programs.noctalia = {
-    enable = true;
-  };
-}

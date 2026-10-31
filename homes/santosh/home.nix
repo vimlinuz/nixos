@@ -73,7 +73,7 @@
     # ╰───────────────────────────────────────────────╯
     ./modules/waybar/default.nix
     ./modules/tmux/default.nix
-    ./modules/noctalia.nix
+    ./modules/nyx_panel/default.nix
 
     # ╭───────────────────────────────────────────────╮
     # │ Package Management                            │
