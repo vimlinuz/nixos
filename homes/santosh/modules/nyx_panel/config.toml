@@ -335,7 +335,7 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
 
 [nightlight]
 enabled = true
-force = false
+force = true
 temperature_day = 6000
 temperature_night = 4000
 
