@@ -8,5 +8,5 @@ with pkgs;
   # mpvpaper
   wl-mirror
   xwayland-satellite
-  # wl-clipboard
+  wl-clipboard
 ]
