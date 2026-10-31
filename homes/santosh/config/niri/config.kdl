@@ -290,9 +290,11 @@ cursor {
 //spawn-at-startup "waybar"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
-spawn-sh-at-startup "qs -p ~/nixos/homes/santosh/config/nyx_panel/main.qml"
+// spawn-sh-at-startup "qs -p ~/nixos/homes/santosh/config/nyx_panel/main.qml"
 // spawn-sh-at-startup "upower-notify"
-spawn-sh-at-startup "swaybg -m fill -o* -i ~/.current_wallpaper"
+// spawn-sh-at-startup "swaybg -m fill -o* -i ~/.current_wallpaper"
+
+spawn-at-startup "noctalia"
 spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
 spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
 // spawn-sh-at-startup "swaync"
@@ -412,9 +414,23 @@ window-rule {
 
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
+
 window-rule {
     geometry-corner-radius 0
     clip-to-geometry true
+}
+
+// Floating Noctalia settings window.
+window-rule {
+  match app-id="dev.noctalia.Noctalia"
+  open-floating true
+  default-column-width { fixed 1080; }
+  default-window-height { fixed 920; }
+}
+
+debug {
+  // Allows notification actions and window activation from Noctalia.
+  honor-xdg-activation-with-invalid-serial
 }
 
 binds {
@@ -439,7 +455,8 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Super+V hotkey-overlay-title="Open a clipManager: " { spawn-sh "clipManager"; }
     Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
-    Mod+Space hotkey-overlay-title="Run an Application: rofi" { spawn-sh "rofi -i -show drun"; }
+    // Mod+Space hotkey-overlay-title="Run an Application: rofi" { spawn-sh "rofi -i -show drun"; }
+    Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
     Super+L hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
     Mod+B hotkey-overlay-title="Open the Web Browser: zen" { spawn "zen-beta"; }
 
@@ -452,6 +469,13 @@ binds {
     // Print hotkey-overlay-title="Screenshot a monitor: hyprshot" { spawn-sh "hyprshot -m output -o /home/santosh/Pictures/Screenshots";}
     // Shift+Print hotkey-overlay-title="Screenshot a region: hyprshot" { spawn-sh "hyprshot -m region -o /home/santosh/Pictures/Screenshots";}
     // Mod+S hotkey-overlay-title="Screenshot a region to clipboard-only: hyprshot" {spawn-sh "hyprshot -m region -o /home/santosh/Pictures/Screenshots --clipboard-only"; }
+        // Core Noctalia binds
+    // Audio & Brightness
+    XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
+    XF86AudioLowerVolume { spawn-sh "noctalia msg volume-down"; }
+    XF86AudioMute { spawn-sh "noctalia msg volume-mute"; }
+    XF86MonBrightnessUp { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown { spawn-sh "noctalia msg brightness-down"; }
 
 
 
@@ -464,9 +488,10 @@ binds {
     // The allow-when-locked=true property makes them work even when the session is locked.
     // Using spawn-sh allows to pass multiple arguments together with the command.
     // "-l 1.0" limits the volume to 100%.
-    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
-    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+
+    // XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+    // XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+    // XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
     // Example media keys mapping using playerctl.
@@ -479,8 +504,8 @@ binds {
     // Example brightness key mappings for brightnessctl.
     // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
     // but you need to manually put each argument in separate "" quotes.
-    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
+    // XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
+    // XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,

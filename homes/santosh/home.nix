@@ -73,6 +73,7 @@
     # ╰───────────────────────────────────────────────╯
     ./modules/waybar/default.nix
     ./modules/tmux/default.nix
+    ./modules/noctalia.nix
 
     # ╭───────────────────────────────────────────────╮
     # │ Package Management                            │
