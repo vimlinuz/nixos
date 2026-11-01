@@ -26,8 +26,5 @@
         };
       };
     };
-    services.blueman = {
-      enable = true;
-    };
   };
 }

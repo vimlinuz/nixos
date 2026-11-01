@@ -9,7 +9,6 @@
     vim
     neovim
     stow
-    networkmanagerapplet
     pavucontrol
     fzf
     unzip
