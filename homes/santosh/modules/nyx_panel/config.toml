@@ -57,7 +57,7 @@ order = [ "default" ]
     reserve_space = false
     scale = 1.0
     shadow = true
-    show_on_workspace_switch = true
+    show_on_workspace_switch = false
     show_tooltip = true
     smart_auto_hide = true
     start = [ "workspaces", "spacer_2", "active_window" ]
@@ -402,7 +402,7 @@ enabled = []
 
 [shell]
 app_icon_colorize = false
-avatar_path = ""
+avatar_path = "/home/santosh/Pictures/Pic/vimlinuz.png"
 button_borders = true
 card_borders = true
 clipboard_auto_paste = "auto"
@@ -676,7 +676,7 @@ wallpaper_scheme = "m3-content"
     enable_community_templates = true
 
 [wallpaper]
-# directory = "/nix/store/q6mk9978f3pwwz8nvz1q9m9w6bsc100n-source/wallpapers"
+directory = "/nix/store/q6mk9978f3pwwz8nvz1q9m9w6bsc100n-source/wallpapers"
 directory_dark = ""
 directory_light = ""
 edge_smoothness = 0.30000001192092896
