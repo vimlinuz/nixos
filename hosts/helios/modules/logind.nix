@@ -13,7 +13,8 @@
       settings.Login = {
 
         # when the lid is closed
-        HandleLidSwitch = "suspend-then-hibernate";
+        # HandleLidSwitch = "suspend-then-hibernate";
+        HandleLidSwitch = "ignore";
         # when multiple displays are connected
         lidSwitchDocked = "ignore";
         # when on external power and multiple displays are connected

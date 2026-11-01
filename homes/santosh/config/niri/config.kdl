@@ -104,6 +104,10 @@ output "eDP-1" {
     transform "normal"
 }
 
+switch-events {
+    lid-close { spawn "noctalia" "msg" "session" "lock-and-suspend"; }
+}
+
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
 
