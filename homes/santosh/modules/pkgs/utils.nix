@@ -16,7 +16,7 @@ with pkgs;
   obs-studio
   # vlc
   mpv
-  swaybg
+  # swaybg
   # libreoffice
   # microfetch
   zip
