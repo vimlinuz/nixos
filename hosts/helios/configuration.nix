@@ -53,6 +53,12 @@
       "udev.log_level=3"
       "systemd.show_status=auto"
     ];
+
+    # Kernel 6.18 enables the ACPI "tiny" power button driver, which grabs
+    # the power button and sends SIGRTMIN+4 (= systemd poweroff) straight to
+    # PID 1, bypassing logind.  Blacklist it so the normal ACPI button driver
+    # delivers the key to logind and HandlePowerKey is honoured.
+    blacklistedKernelModules = [ "tiny_power_button" ];
   };
 
   networking.hostName = "helios"; # Define your hostname.

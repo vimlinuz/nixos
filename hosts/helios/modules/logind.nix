@@ -25,7 +25,8 @@
         IdleActionSec = "600"; # 10 minutes
 
         # power button settings
-        HandlePowerKey = "hibernate";
+        # HandlePowerKey = "hibernate";
+        HandlePowerKey = "ignore";
         HandlePowerKeyLongPress = "poweroff";
 
         PowerKeyIgnoreInhibited = "no";
