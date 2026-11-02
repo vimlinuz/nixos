@@ -707,6 +707,16 @@ min_length = 80.0
 title_scroll = "none"
 type = "active_window"
 
+[widget.battery]
+font_scale = 0.75
+scale = 1.1000000000000001
+type = "battery"
+
+[widget.brightness]
+font_scale = 0.65000000000000002
+scale = 1.3500000000000001
+type = "brightness"
+
 [widget.clock]
 font_scale = 1.0
 font_weight = 700
@@ -749,6 +759,7 @@ title_scroll = "none"
 type = "media"
 
 [widget.network]
+scale = 1.1000000000000001
 show_label = false
 type = "network"
 
@@ -779,6 +790,10 @@ type = "spacer"
 [widget.temp]
 stat = "cpu_temp"
 type = "sysmon"
+
+[widget.volume]
+font_scale = 0.90999999999999992
+type = "volume"
 
 [widget.workspaces]
 pill_scale = 0.70000000000000007
