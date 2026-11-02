@@ -466,7 +466,7 @@ binds {
     Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
     // Mod+Space hotkey-overlay-title="Run an Application: rofi" { spawn-sh "rofi -i -show drun"; }
     Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
-    Super+L hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
+    Super+L hotkey-overlay-title="Lock Screen" { spawn-sh "noctalia msg session lock"; }
     Mod+B hotkey-overlay-title="Open the Web Browser: zen" { spawn "zen-beta"; }
 
     // wallpaper selector binds
