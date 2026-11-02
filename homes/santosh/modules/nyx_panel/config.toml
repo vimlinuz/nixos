@@ -107,11 +107,11 @@ width = 700
     [control_center.calendar]
     hide_past_events = false
     past_events_threshold_minutes = 30
-    show_events_card = true
+    show_events_card = false
     show_week_numbers = false
 
     [control_center.media]
-    show_visualizer = true
+    show_visualizer = false
 
     [[control_center.shortcuts]]
     type = "wifi"
@@ -436,7 +436,7 @@ shared_gl_context = true
 show_close_buttons = false
 show_location = true
 telemetry_enabled = false
-time_format = "{%H:%M}"
+time_format = "%H:%M"
 umbriel_audio_provider_enabled = false
 umbriel_overview_close_on_launch_enabled = false
 umbriel_overview_type_to_launch_enabled = false
@@ -672,8 +672,8 @@ wallpaper_scheme = "m3-content"
     [theme.templates]
     builtin_ids = []
     community_ids = []
-    enable_builtin_templates = true
-    enable_community_templates = true
+    enable_builtin_templates = false
+    enable_community_templates = false
 
 [wallpaper]
 directory = "/nix/store/q6mk9978f3pwwz8nvz1q9m9w6bsc100n-source/wallpapers"
