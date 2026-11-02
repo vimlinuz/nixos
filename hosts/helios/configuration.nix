@@ -17,7 +17,6 @@
     ./modules/packages.nix
     ./modules/bluetooth.nix
     inputs.sops-nix.nixosModules.sops
-    ./modules/tlp.nix
     ./modules/upower.nix
     ./modules/logind.nix
     ./modules/keyd.nix
@@ -148,18 +147,6 @@
 
   security.polkit.enable = true;
 
-  # Enable Bluetooth and Blueman service
-  bluetooth.enable = true;
-
-  # Enable TLP for power management
-  tlp.enable = false;
-
-  # Enable upower for power actions
-  upower.enable = true;
-
-  # remap
-  keyd.enable = true;
-
   # https://nix.dev/guides/faq#how-to-run-non-nix-executables
   # NOTE: programs.command-not-found does not work with flakes -- its
   # dbPath defaults to `pkgs.path + "/programs.sqlite"`, and that file only
@@ -174,16 +161,6 @@
   #i18n.inputMethod.enable = "fcitx5";
   #i18n.inputMethod.fcitx5.addons= with pkgs;
   #[fcitx5-mozc];
-
-  # Enable the systemd configuration.
-  systemd.enable = true;
-
-  # Enable the systemd logind service to manage user logins.
-  logind.enable = true;
-
-  plymouth.enable = true;
-
-  docker.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

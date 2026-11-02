@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
@@ -24,25 +22,20 @@ let
   '';
 in
 {
-  options = {
-    systemd.enable = lib.mkEnableOption "Enable systemd settings";
-  };
-  config = lib.mkIf config.systemd.enable {
-    systemd = {
-      sleep.settings.Sleep = {
-        HibernateDelaySec = "20min";
-      };
-
-      # services.capslock-blink = {
-      #   description = "Blink the capslock LED";
-      #   wantedBy = [ "multi-user.target" ];
-      #   serviceConfig = {
-      #     ExecStart = "${blink}";
-      #     Restart = "always";
-      #     User = "root";
-      #   };
-      # };
-
+  systemd = {
+    sleep.settings.Sleep = {
+      HibernateDelaySec = "20min";
     };
+
+    # services.capslock-blink = {
+    #   description = "Blink the capslock LED";
+    #   wantedBy = [ "multi-user.target" ];
+    #   serviceConfig = {
+    #     ExecStart = "${blink}";
+    #     Restart = "always";
+    #     User = "root";
+    #   };
+    # };
+
   };
 }
