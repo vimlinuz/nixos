@@ -283,9 +283,14 @@ transition_duration = 1500.0
 wallpaper = ""
 
 [lockscreen_widgets]
-enabled = false
+enabled = true
 schema_version = 2
-widget_order = [ "lockscreen-login-box@eDP-1" ]
+widget_order = [
+    "lockscreen-login-box@eDP-1",
+    "lockscreen-widget-0000000000000004",
+    "lockscreen-widget-0000000000000005",
+    "lockscreen-widget-0000000000000006"
+]
 
     [lockscreen_widgets.grid]
     cell_size = 16
@@ -293,10 +298,10 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
     visible = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
-    box_height = 196.0
-    box_width = 810.0
+    box_height = 70.0
+    box_width = 400.0
     cx = 960.0
-    cy = 898.0
+    cy = 639.0
     enabled = true
     output = "eDP-1"
     placement_height = 1080.0
@@ -306,20 +311,74 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
 
         [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
         background_color = "surface_container"
-        background_opacity = 0.88
-        background_radius = 12.0
-        center_password_text = false
+        background_opacity = 0.0
+        background_radius = 0.0
+        center_password_text = true
         input_opacity = 1.0
         input_radius = 6.0
-        layout = "regular"
-        show_caps_lock = true
-        show_keyboard_layout = true
-        show_login_button = true
+        layout = "compact"
+        show_caps_lock = false
+        show_keyboard_layout = false
+        show_login_button = false
         show_media = true
-        show_password_reveal = true
+        show_password_reveal = false
         show_session_buttons = true
-        show_unlock_hint = true
+        show_unlock_hint = false
         show_weather = true
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000004]
+    box_height = 144.0
+    box_width = 752.0
+    cx = 976.0
+    cy = 820.0
+    enabled = true
+    output = "eDP-1"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "media_player"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000004.settings]
+        album_art_background = true
+        album_art_blur = 44
+        audio_visualizer = true
+        background = false
+        background_opacity = 1.0
+        hide_when_no_media = true
+        layout = "horizontal"
+        shadow = true
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000005]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 278.0
+    cy = 824.0
+    enabled = true
+    output = "eDP-1"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "fancy_audio_visualizer"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000005.settings]
+        background = false
+        visualization_mode = "all"
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000006]
+    box_height = 208.0
+    box_width = 640.0
+    cx = 960.0
+    cy = 420.0
+    enabled = true
+    output = "eDP-1"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000006.settings]
+        background = false
+        format = "{:%I:%M:%S %p}"
 
 [nightlight]
 enabled = true
