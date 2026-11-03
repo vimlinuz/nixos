@@ -63,9 +63,9 @@
     ./modules/shell/atuin.nix
 
     # ╭───────────────────────────────────────────────╮
-    # │ Bars                                         │
+    # │ Bars                                          │
     # ╰───────────────────────────────────────────────╯
-    ./modules/nyx_panel/default.nix
+    ./modules/bars/nyx_panel/default.nix
 
     # ╭───────────────────────────────────────────────╮
     # │ Package Management                            │
