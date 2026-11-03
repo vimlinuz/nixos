@@ -24,13 +24,10 @@
     ./modules/zathura.nix
     ./modules/direnv.nix
 
-    ./modules/gtk.nix
-
     # ╭───────────────────────────────────────────────╮
     # │ Theming                                       │
     # ╰───────────────────────────────────────────────╯
-    ./modules/theme/nord.nix
-    ./modules/theme/gruvbox.nix
+    ./modules/gtk.nix
 
     # ╭───────────────────────────────────────────────╮
     # │ Version Control Systems                       │
