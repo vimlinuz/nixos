@@ -26,7 +26,7 @@ It provides a reproducible, declarative setup for my daily development and deskt
 
 - **NixOS System Configuration:** Full system-level setup, hardware-specific
 - **Home Manager Integration:** User-level dotfiles and app configs, managed via flakes
-- **Modern Desktop:** Hyprland (Wayland), custom theming, multi-monitor support
+- **Modern Desktop:** Niri (Wayland), custom theming, multi-monitor support
 - **Development Environment:** Neovim (nixvim), dev tools, shells, and utilities
 - **Modular Structure:** Organized for easy personal maintenance and extension
 
@@ -36,11 +36,13 @@ It provides a reproducible, declarative setup for my daily development and deskt
 
 ```
 .
-├── .editorconfig
 ├── .github/
 │   └── assets/
+├── docs/
+│   └── power-button-shutdown.md
 ├── flake.nix
 ├── flake.lock
+├── overlay.nix
 ├── hosts/
 │   └── helios/
 │       ├── configuration.nix
@@ -49,14 +51,29 @@ It provides a reproducible, declarative setup for my daily development and deskt
 ├── homes/
 │   └── santosh/
 │       ├── home.nix
-│       ├── modules/
+│       ├── assets/
 │       ├── config/
-│       ├── scripts/
-│       └── assets/
+│       │   ├── kitty/
+│       │   ├── niri/
+│       │   ├── nyx_panel/
+│       │   └── rofi/
+│       ├── modules/
+│       │   ├── bars/
+│       │   ├── browsers/
+│       │   ├── editors/
+│       │   ├── hypr/
+│       │   ├── pkgs/
+│       │   ├── scripts/
+│       │   ├── shell/
+│       │   ├── starship/
+│       │   ├── terminals/
+│       │   ├── tmux/
+│       │   └── vesktop/
+│       └── scripts/
 ├── secrets/
 ├── wallpapers/
-├── README.md
-├── TODO.md
+├── LICENSE
+└── README.md
 ```
 
 ---
