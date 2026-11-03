@@ -11,7 +11,7 @@ with pkgs;
   gimp
   code-cursor
 
-  # opencode-desktop
+  opencode-desktop
 
   obs-studio
   # vlc
