@@ -8,6 +8,8 @@
     ./modules/terminals/ghostty/ghostty.nix
     ./modules/terminals/foot.nix
 
+    ./modules/tmux/default.nix
+
     # ╭───────────────────────────────────────────────╮
     # │ General Utility Modules                       │
     # ╰───────────────────────────────────────────────╯
@@ -20,16 +22,30 @@
     ./modules/bat.nix
     ./modules/nh.nix
     ./modules/zathura.nix
+    ./modules/direnv.nix
 
     ./modules/gtk.nix
 
+    # ╭───────────────────────────────────────────────╮
+    # │ Theming                                       │
+    # ╰───────────────────────────────────────────────╯
+    ./modules/theme/nord.nix
+    ./modules/theme/gruvbox.nix
+
+    # ╭───────────────────────────────────────────────╮
+    # │ Version Control Systems                       │
+    # ╰───────────────────────────────────────────────╯
     ./modules/git.nix
-    ./modules/direnv.nix
     ./modules/gh.nix
     ./modules/jujutsu.nix
+
     ./modules/opencode.nix
 
+    # ╭───────────────────────────────────────────────╮
+    # │ File Managers                                 │
+    # ╰───────────────────────────────────────────────╯
     ./modules/yazi.nix
+
     ./modules/vesktop/vesktop.nix
 
     # ╭───────────────────────────────────────────────╮
@@ -50,9 +66,8 @@
     ./modules/shell/atuin.nix
 
     # ╭───────────────────────────────────────────────╮
-    # │ Wayland and Terminal Tools                    │
+    # │ Bars                                         │
     # ╰───────────────────────────────────────────────╯
-    ./modules/tmux/default.nix
     ./modules/nyx_panel/default.nix
 
     # ╭───────────────────────────────────────────────╮
