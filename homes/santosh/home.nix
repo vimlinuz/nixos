@@ -33,15 +33,14 @@
     ./modules/vesktop/vesktop.nix
 
     # ╭───────────────────────────────────────────────╮
-    # │ Code editors                                  │
+    # │ editors                                       │
     # ╰───────────────────────────────────────────────╯
-    ./modules/neovim/mnw/nvim.nix
-    ./modules/vim.nix
-    ./modules/neovide.nix
-    ./modules/zed.nix
-    ./modules/helix.nix
-    ./modules/neovim/nixvim/nvim.nix
-    ./modules/obsidian.nix
+    ./modules/editors/neovim/mnw/nvim.nix
+    ./modules/editors/vim.nix
+    ./modules/editors/neovim/neovide.nix
+    ./modules/editors/zed.nix
+    ./modules/editors/helix.nix
+    ./modules/editors/obsidian.nix
 
     # ╭───────────────────────────────────────────────╮
     # │ Shell                                         │

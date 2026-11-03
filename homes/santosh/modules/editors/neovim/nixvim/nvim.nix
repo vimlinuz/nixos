@@ -53,7 +53,7 @@ rec {
 
   programs.nixvim = {
     nixpkgs.useGlobalPackages = true;
-    enable = false;
+    enable = true;
     editorconfig = {
       enable = true;
     };
