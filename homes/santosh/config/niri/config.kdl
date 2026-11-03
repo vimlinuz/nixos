@@ -1,5 +1,5 @@
 include "./modules/animations/dither-glitch.kdl"
-include "binds.kdl"
+include "./modules/binds.kdl"
 
 input {
     keyboard {
