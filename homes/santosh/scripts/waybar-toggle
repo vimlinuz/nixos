@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-PROCESS_NAME=".waybar-wrapped"
-
-if pgrep -x "$PROCESS_NAME" >/dev/null; then
-    pkill -x $PROCESS_NAME
-else
-    waybar &
-fi
