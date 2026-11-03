@@ -77,15 +77,16 @@
     # ╰───────────────────────────────────────────────╯
     ./modules/scripts/sessionizer.nix
     ./modules/scripts/music-player.nix
-
-    # ./modules/scripts/clipManager.nix
     ./modules/scripts/pomodoro.nix
-    ./modules/scripts/quick-rm.nix
     ./modules/scripts/flake-initializer.nix
     ./modules/scripts/pull.nix
 
     ./modules/cursor.nix
     ./modules/cava.nix
+
+    # ╭───────────────────────────────────────────────╮
+    # │ Browsers                                      │
+    # ╰───────────────────────────────────────────────╯
     ./modules/browsers/zen-browser.nix
   ];
 
