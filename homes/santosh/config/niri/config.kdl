@@ -1,4 +1,4 @@
-include "./modules/animations/dither-glitch.kdl"
+include "./modules/animations/energize_b_niri.kdl"
 include "./modules/binds.kdl"
 
 input {
