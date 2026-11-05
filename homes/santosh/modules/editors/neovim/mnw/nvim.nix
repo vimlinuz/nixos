@@ -108,7 +108,6 @@ in
         pkgs.vimPlugins.conform-nvim
 
         pkgs.vimPlugins.blink-cmp
-        # pkgs.vimPlugins.blink-cmp-spell
         pkgs.vimPlugins.blink-emoji-nvim
         pkgs.vimPlugins.blink-cmp-env
         # pkgs.vimPlugins.blink-cmp-copilot
