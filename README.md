@@ -27,7 +27,7 @@ It provides a reproducible, declarative setup for my daily development and deskt
 - **NixOS System Configuration:** Full system-level setup, hardware-specific
 - **Home Manager Integration:** User-level dotfiles and app configs, managed via flakes
 - **Modern Desktop:** Niri (Wayland), custom theming, multi-monitor support
-- **Development Environment:** Neovim (nixvim), dev tools, shells, and utilities
+- **Development Environment:** Neovim (mnw), dev tools, shells, and utilities
 - **Modular Structure:** Organized for easy personal maintenance and extension
 
 ---

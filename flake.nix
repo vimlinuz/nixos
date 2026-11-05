@@ -6,7 +6,6 @@
       self,
       nixpkgs,
       home-manager,
-      nixvim,
       mnw,
       nix-index-database,
       ...
@@ -28,7 +27,6 @@
             {
               home-manager = {
                 sharedModules = [
-                  nixvim.homeModules.nixvim
                   mnw.homeManagerModules.mnw
                 ];
                 useGlobalPkgs = true;
@@ -69,11 +67,6 @@
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixvim = {
-      url = "github:nix-community/nixvim?rev=4ef28e447b9003b67ff7fa9488a3be93c43312db";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
