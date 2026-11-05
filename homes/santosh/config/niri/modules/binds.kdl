@@ -27,7 +27,6 @@ binds {
 
     // wallpaper selector binds
     // Mod+W hotkey-overlay-title="Open wallpaper change: rofi-wallpaper-selector" { spawn-sh "rofi-wallpaper-selector";}
-    // Mod+W hotkey-overlay-title="Toggle wallpaper switcher panel" { spawn-sh "qs ipc -p ~/nixos/homes/santosh/config/nyx_panel/main.qml call wallpaper toggle";}
 
     // Screenshot binds. (hyprshot)
     // Mod+Print hotkey-overlay-title="Screenshot a window: hyprshot" { spawn-sh "hyprshot -m window -o /home/santosh/Pictures/Screenshots";}

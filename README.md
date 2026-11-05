@@ -55,7 +55,6 @@ It provides a reproducible, declarative setup for my daily development and deskt
 │       ├── config/
 │       │   ├── kitty/
 │       │   ├── niri/
-│       │   ├── nyx_panel/
 │       │   └── rofi/
 │       ├── modules/
 │       │   ├── bars/
