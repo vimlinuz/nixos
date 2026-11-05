@@ -8,11 +8,14 @@
       home-manager,
       mnw,
       nix-index-database,
+      treefmt-nix,
       ...
     }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
+      pkgs = nixpkgs.legacyPackages.${system};
+      treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
     in
     {
       nixosConfigurations = {
@@ -40,7 +43,12 @@
         };
 
       };
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
+
+      formatter.${system} = treefmtEval.config.build.wrapper;
+
+      checks.${system}.formatting = treefmtEval.config.build.check self;
+
+      devShells.${system}.default = treefmtEval.config.build.devShell;
 
       packages.${system} = {
         neovimDev =
@@ -53,6 +61,11 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";

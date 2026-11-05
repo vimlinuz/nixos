@@ -196,15 +196,15 @@ Optionally, to stop niri from requesting its own `Suspend` action, add
 
 ## Appendix: quick reference
 
-| Item | Value |
-| --- | --- |
-| Signal | `38` = `SIGRTMIN+4` = systemd poweroff |
-| Module | `tiny_power_button` (`drivers/acpi/tiny-power-button.c`) |
-| Kconfig | `CONFIG_ACPI_TINY_POWER_BUTTON=m`, `..._SIGNAL=38` |
-| ACPI device | `PNP0C0C:00` (aliases `PNP0C0C`, `LNXPWRBN`) |
-| Runtime param | `/sys/module/tiny_power_button/parameters/power_signal` |
-| logind config | `hosts/helios/modules/logind.nix` |
-| Fix | `boot.blacklistedKernelModules = [ "tiny_power_button" ];` |
+| Item          | Value                                                      |
+| ------------- | ---------------------------------------------------------- |
+| Signal        | `38` = `SIGRTMIN+4` = systemd poweroff                     |
+| Module        | `tiny_power_button` (`drivers/acpi/tiny-power-button.c`)   |
+| Kconfig       | `CONFIG_ACPI_TINY_POWER_BUTTON=m`, `..._SIGNAL=38`         |
+| ACPI device   | `PNP0C0C:00` (aliases `PNP0C0C`, `LNXPWRBN`)               |
+| Runtime param | `/sys/module/tiny_power_button/parameters/power_signal`    |
+| logind config | `hosts/helios/modules/logind.nix`                          |
+| Fix           | `boot.blacklistedKernelModules = [ "tiny_power_button" ];` |
 
 Other ways to neutralise it (not used here):
 

@@ -15,7 +15,7 @@ DO_CIW=true
 
 # --- Derive date pieces from the `date` command ---
 year=$(date +%Y)
-month=$(date +%b | tr '[:upper:]' '[:lower:]')   # jan, feb, mar, apr, may, jun, jul, ...
+month=$(date +%b | tr '[:upper:]' '[:lower:]') # jan, feb, mar, apr, may, jun, jul, ...
 day=$(date +%d)
 
 # Your existing tree uses "fev" instead of "feb" for February.
@@ -36,12 +36,12 @@ start_epoch=$(date +%s)
 start_time=$(date -d "@$start_epoch")
 
 # --- Create file from template if it doesn't already exist ---
-if [[ -f "$target_file" ]]; then
+if [[ -f $target_file ]]; then
   echo "Entry already exists: $target_file"
   DO_CIW=false
 else
 
-  cat > "$target_file" <<EOF
+  cat >"$target_file" <<EOF
 ---
 Start: $start_time
 Title: "Option<Here goes the title of specific topic that I am going to talk about>"
@@ -64,16 +64,15 @@ fi
 
 # --- Open it in your editor ---
 if $DO_CIW; then
-neovide "$target_file" -- -c "set spell" -c "call cursor(2, 9)" -c 'normal ci"'
+  neovide "$target_file" -- -c "set spell" -c "call cursor(2, 9)" -c 'normal ci"'
 else
-neovide "$target_file" -- -c "set spell"
+  neovide "$target_file" -- -c "set spell"
 fi
-
 
 # Set the end timestamp
 end_epoch=$(date +%s)
 end_time=$(date -d "@$end_epoch")
-elapsed=$(( (end_epoch - start_epoch + 30) / 60 ))
+elapsed=$(((end_epoch - start_epoch + 30) / 60))
 
 # --- Append session info to the file
 {
@@ -87,11 +86,12 @@ elapsed=$(( (end_epoch - start_epoch + 30) / 60 ))
   echo "Duration: ${elapsed} minutes"
   echo
   echo "---"
-} >> "$target_file"
+} >>"$target_file"
 
 # --- Commit and push to github
 cd "$JOURNAL_DIR"
 jj commit -m "journal: $(date)"
-jj bookmark move main --to @-; jj git push --bookmark main
+jj bookmark move main --to @-
+jj git push --bookmark main
 
 cd "$CURRENT_DIR"
