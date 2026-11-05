@@ -16,7 +16,6 @@ with pkgs;
   nerd-fonts.martian-mono
   source-code-pro
   oxygenfonts
-  oxygenfonts
   julia-mono
   nerd-fonts.commit-mono
 ]
