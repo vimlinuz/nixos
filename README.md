@@ -38,8 +38,12 @@ It provides a reproducible, declarative setup for my daily development and deskt
 .
 ├── .github/
 │   └── assets/
+├── .githooks/
+│   └── pre-commit
 ├── docs/
 │   └── power-button-shutdown.md
+├── .editorconfig
+├── treefmt.nix
 ├── flake.nix
 ├── flake.lock
 ├── overlay.nix
@@ -78,6 +82,37 @@ It provides a reproducible, declarative setup for my daily development and deskt
 - **Flake-based:** Locked dependencies for reproducible builds
 - **Home Manager:** Integrated into system config for unified rebuilds
 - **Modular Design:** Clean separation for system, user, and host-specific configs
+
+---
+
+## Formatting
+
+The whole repository is formatted with [treefmt](https://numtide.github.io/treefmt)
+through `treefmt.nix`. Nix, Lua, shell, Markdown, CSS, YAML, and TOML use
+two-space indentation with spaces instead of tabs.
+
+```sh
+nix fmt                      # format the whole repository
+nix flake check              # verify formatting without writing changes
+nix fmt -- path/to/file      # format specific paths
+```
+
+### Pre-commit hook
+
+A Git pre-commit hook formats staged files before each commit. Enable it once
+per clone:
+
+```sh
+git config core.hooksPath .githooks
+```
+
+Jujutsu does not run Git hooks. When committing with `jj`, run the configured
+alias first:
+
+```sh
+jj fmt                       # runs `nix fmt`
+jj new                       # or `jj commit`
+```
 
 ---
 

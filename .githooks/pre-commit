@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Format staged files with treefmt before a Git commit.
+#
+# Install once per clone:
+#   git config core.hooksPath .githooks
+#
+# Jujutsu does not run Git hooks; use `jj fmt` before `jj new` instead.
+set -euo pipefail
+
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root"
+
+# Collect staged files that still exist in the working tree.
+mapfile -d '' files < <(git diff --cached --name-only --diff-filter=ACMR -z --)
+
+if [ ${#files[@]} -eq 0 ]; then
+  exit 0
+fi
+
+# Format only the staged paths. treefmt ignores files no formatter handles.
+nix fmt -- "${files[@]}"
+
+# Re-stage anything the formatter changed.
+git add -- "${files[@]}"
