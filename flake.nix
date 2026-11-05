@@ -64,11 +64,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nh = {
-      url = "github:nix-community/nh";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -76,11 +71,6 @@
 
     crane-rs = {
       url = "github:vimlinuz/crane-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    mdwatch = {
-      url = "github:vimlinuz/mdwatch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
