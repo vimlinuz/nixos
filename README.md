@@ -61,7 +61,6 @@ It provides a reproducible, declarative setup for my daily development and deskt
 │       │   ├── bars/
 │       │   ├── browsers/
 │       │   ├── editors/
-│       │   ├── hypr/
 │       │   ├── pkgs/
 │       │   ├── scripts/
 │       │   ├── shell/
