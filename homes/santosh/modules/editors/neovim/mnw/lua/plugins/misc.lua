@@ -16,4 +16,3 @@ require("present").setup({})
 
 require("fidget").setup({})
 require("jj").setup({})
-require("avante").setup({})

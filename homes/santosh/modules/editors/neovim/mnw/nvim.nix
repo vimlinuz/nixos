@@ -137,14 +137,13 @@ in
         pkgs.vimPlugins.presenting-vim
 
         pkgs.vimPlugins.direnv-nvim
-        pkgs.vimPlugins.avante-nvim
       ];
 
       # Anything that you're loading lazily should be put here
       opt = [
         pkgs.vimPlugins.bigfile-nvim
-
-        pkgs.vimPlugins.CopilotChat-nvim
+        # pkgs.vimPlugins.avante-nvim
+        # pkgs.vimPlugins.CopilotChat-nvim
         # pkgs.vimPlugins.copilot-lua
         pkgs.vimPlugins.supermaven-nvim
       ];
