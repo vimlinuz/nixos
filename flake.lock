@@ -195,6 +195,7 @@
         "treefmt-nix": "treefmt-nix",
         "vague-gtk": "vague-gtk",
         "wall-archive": "wall-archive",
+        "wallpkgs": "wallpkgs",
         "zen-browser": "zen-browser"
       }
     },
@@ -288,6 +289,21 @@
       "original": {
         "owner": "vimlinuz",
         "repo": "wall-archive",
+        "type": "github"
+      }
+    },
+    "wallpkgs": {
+      "locked": {
+        "lastModified": 1779053539,
+        "narHash": "sha256-EQfScEeutDGzrZnD9gy5OyAwy3t2TUxkC0JwflbOD98=",
+        "owner": "NotAShelf",
+        "repo": "wallpkgs",
+        "rev": "066caa0e504d642986dba696ae5350e4fc1f4f5b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NotAShelf",
+        "repo": "wallpkgs",
         "type": "github"
       }
     },

@@ -51,6 +51,10 @@
       devShells.${system}.default = treefmtEval.config.build.devShell;
 
       packages.${system} = {
+        wallpapers = pkgs.callPackage ./pkgs/wallpapers.nix {
+          inherit (inputs) wall-archive wallpkgs;
+        };
+
         neovimDev =
           self.nixosConfigurations.santosh.config.home-manager.users.santosh.programs.mnw.finalPackage.devMode;
         neovim =
@@ -90,6 +94,10 @@
     wall-archive = {
       url = "github:vimlinuz/wall-archive";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    wallpkgs = {
+      url = "github:NotAShelf/wallpkgs";
     };
 
     zen-browser = {
