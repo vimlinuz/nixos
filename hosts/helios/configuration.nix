@@ -117,13 +117,6 @@
   services.xserver.enable = true;
   services.libinput.touchpad.disableWhileTyping = true;
 
-  programs.hyprland = {
-    enable = false;
-    withUWSM = true;
-    # package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-    xwayland.enable = true;
-  };
-
   programs.niri = {
     enable = true;
   };

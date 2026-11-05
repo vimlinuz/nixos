@@ -51,7 +51,6 @@ It provides a reproducible, declarative setup for my daily development and deskt
 ├── homes/
 │   └── santosh/
 │       ├── home.nix
-│       ├── assets/
 │       ├── config/
 │       │   ├── kitty/
 │       │   └── niri/
@@ -68,7 +67,6 @@ It provides a reproducible, declarative setup for my daily development and deskt
 │       │   └── vesktop/
 │       └── scripts/
 ├── secrets/
-├── wallpapers/
 ├── LICENSE
 └── README.md
 ```
