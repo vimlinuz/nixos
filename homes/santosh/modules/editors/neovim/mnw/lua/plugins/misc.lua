@@ -5,7 +5,7 @@ require("nvim-autopairs").setup({
 require("nvim-surround").setup({})
 require("todo-comments").setup({ signs = true })
 require("colorizer").setup({})
-require("cord").setup({ display = { show_time = true } })
+require("cord").setup()
 
 require("ibl").setup({
   indent = { char = "│" },
