@@ -54,8 +54,7 @@ It provides a reproducible, declarative setup for my daily development and deskt
 │       ├── assets/
 │       ├── config/
 │       │   ├── kitty/
-│       │   ├── niri/
-│       │   └── rofi/
+│       │   └── niri/
 │       ├── modules/
 │       │   ├── bars/
 │       │   ├── browsers/

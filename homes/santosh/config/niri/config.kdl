@@ -266,7 +266,6 @@ cursor {
 
 // spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
 // spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
-// spawn-sh-at-startup "swaync"
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
