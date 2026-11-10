@@ -1,6 +1,4 @@
 if vim.g.neovide then
-  print("YAY!!! we are in neovim max")
-
   vim.g.neovide_scale_factor = 1
 
   vim.keymap.set("", "<C-=>", function()
