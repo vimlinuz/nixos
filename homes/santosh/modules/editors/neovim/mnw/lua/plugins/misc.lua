@@ -4,7 +4,15 @@ require("nvim-autopairs").setup({
 })
 require("nvim-surround").setup({})
 require("todo-comments").setup({ signs = true })
-require("colorizer").setup({})
+
+require("colorizer").setup({
+  options = {
+    parsers = {
+      names = { enable = false },
+    },
+  },
+})
+
 require("cord").setup()
 
 require("ibl").setup({
