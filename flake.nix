@@ -91,6 +91,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    mdwatch = {
+      url = "github:vimlinuz/mdwatch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     wall-archive = {
       url = "github:vimlinuz/wall-archive";
       inputs.nixpkgs.follows = "nixpkgs";

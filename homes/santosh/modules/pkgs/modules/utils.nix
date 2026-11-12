@@ -29,5 +29,6 @@ with pkgs;
   thunar
   # Provided via flake inputs (not nixpkgs).
   inputs.crane-rs.packages.${stdenv.hostPlatform.system}.default
+  inputs.mdwatch.packages.${stdenv.hostPlatform.system}.default
   # mdwatch
 ]
