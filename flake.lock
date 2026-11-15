@@ -262,6 +262,26 @@
         "type": "github"
       }
     },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794718217,
+        "narHash": "sha256-6EGCdWl0tApK8PsKq1RN6iI02aW6eQHhi16MA3YFlHc=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "rev": "6bcea5968d17b7750e27f19f1827dce1a31bbc98",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "type": "github"
+      }
+    },
     "present-neovim": {
       "flake": false,
       "locked": {
@@ -287,6 +307,7 @@
         "mnw": "mnw",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_4",
+        "noctalia": "noctalia",
         "present-neovim": "present-neovim",
         "sops-nix": "sops-nix",
         "treefmt-nix": "treefmt-nix_2",

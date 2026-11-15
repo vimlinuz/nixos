@@ -9,6 +9,7 @@
       mnw,
       nix-index-database,
       treefmt-nix,
+      noctalia,
       ...
     }:
     let
@@ -30,6 +31,7 @@
             {
               home-manager = {
                 sharedModules = [
+                  noctalia.homeModules.default
                   mnw.homeManagerModules.mnw
                 ];
                 useGlobalPkgs = true;
@@ -123,6 +125,11 @@
     present-neovim = {
       url = "github:chaitanyabsprip/present.nvim";
       flake = false;
+    };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     vague-gtk = {
