@@ -3,6 +3,7 @@ high_contrast = false
 ui_scale = 1.0
 
 [audio]
+colorize_icons = false
 enable_notification_sounds = true
 enable_overdrive = false
 enable_power_sounds = true
@@ -11,6 +12,7 @@ enable_sounds = true
 enable_volume_sounds = true
 sound_theme = "freedesktop"
 sound_volume = 0.5
+spectrum_frame_rate = 60
 
 [backdrop]
 blur_intensity = 0.5
@@ -23,6 +25,7 @@ order = ["default"]
 [bar.default]
 auto_hide = false
 auto_hide_delay_ms = 0
+auto_hide_reserve_space = false
 background_opacity = 1.0
 border = "outline_variant"
 border_width = 1.0
@@ -39,9 +42,11 @@ concave_edge_corners = true
 contact_shadow = false
 enabled = true
 end = [
-  "tray",
+  "media",
+  "spacer_2",
   "notifications",
-  "mirror",
+  "mirror_2",
+  "tray",
   "clipboard",
   "network",
   "bluetooth",
@@ -65,13 +70,13 @@ radius_bottom_left = 12
 radius_bottom_right = 12
 radius_top_left = 12
 radius_top_right = 12
-reserve_space = true
+reserve_space = false
 scale = 1.0
 shadow = true
 show_on_workspace_switch = false
 show_tooltip = true
-smart_auto_hide = false
-start = ["workspaces", "ribbon", "active_window"]
+smart_auto_hide = true
+start = ["workspaces", "ribbon_2", "active_window"]
 thickness = 34
 widget_spacing = 6
 
@@ -87,8 +92,11 @@ connection_notifications = true
 
 [brightness]
 enable_ddcutil = false
+enable_scheduled_brightness = false
 ignore_mmids = []
 minimum_brightness = 0.0
+scheduled_day_brightness = 1.0
+scheduled_night_brightness = 0.5
 sync_all_monitors = false
 
 [calendar]
@@ -156,13 +164,17 @@ active_monitor_only = false
 active_opacity = 1.0
 active_scale = 1.0
 auto_hide = false
+auto_hide_reveal_delay_ms = 250
 background_opacity = 0.87999999523162842
 border = "outline_variant"
 border_width = 0.0
+colorize_icons = false
 compositor_blur = true
 concave_edge_corners = true
 cross_axis_padding = 8
 enabled = false
+icon_saturation = 1.0
+icon_shadow = false
 icon_size = 48
 inactive_opacity = 0.85000002384185791
 inactive_scale = 0.85000002384185791
@@ -261,15 +273,18 @@ timeout = 660.0
 
 [keybinds]
 cancel = ["Escape"]
+category_next = ["Ctrl+Tab"]
+category_previous = ["Ctrl+Shift+ISO_Left_Tab"]
 copy = ["Ctrl+c"]
 delete = ["Delete"]
-down = ["Down"]
+down = ["Down", "Ctrl+n", "Ctrl+j"]
 left = ["Left"]
 right = ["Right"]
 save = ["Ctrl+s"]
+select_all = ["Ctrl+a"]
 tab_next = ["Tab"]
 tab_previous = ["Shift+ISO_Left_Tab"]
-up = ["Up"]
+up = ["Up", "Ctrl+p", "Ctrl+k"]
 validate = ["Return", "KP_Enter", "space"]
 
 [location]
@@ -283,12 +298,14 @@ sunset = ""
 allow_empty_password = false
 blur_intensity = 0.5
 blurred_desktop = false
+dnd = false
 edge_smoothness = 0.30000001192092896
 enabled = true
 fingerprint = true
 grace_period_seconds = 0
 lock_before_suspend = true
 monitors = []
+tint_color = "surface"
 tint_intensity = 0.30000001192092896
 transition = [
   "fade",
@@ -393,19 +410,23 @@ border = true
 border_color = "outline_variant"
 border_width = 1.0
 collapse_on_dismiss = true
+colorize_icons = false
 enable_daemon = true
 follow_focused_output = false
+group_by_app = true
 history_retention_hours = 0
 keep_dismissed_in_history = true
 layer = "top"
 max_visible = 0
 monitors = []
+newest_on_edge = false
 offset_x = 20
 offset_y = 8
 position = "top_right"
 scale = 1.0
 show_actions = true
 show_app_name = true
+show_progress_bar = true
 width = 360
 
 [osd]
@@ -485,9 +506,11 @@ niri_overview_type_to_launch_enabled = false
 offline_mode = false
 password_style = "default"
 polkit_agent = false
+polkit_colorize_icons = false
 popup_borders = true
 popup_shadows = true
 readline_shortcuts = false
+screen_time_colorize_icons = false
 screen_time_enabled = false
 settings_expand_all_groups = false
 settings_show_advanced = true
@@ -497,7 +520,7 @@ shared_gl_context = true
 show_close_buttons = false
 show_location = true
 telemetry_enabled = false
-time_format = "%H:%M"
+time_format = "%I:%M"
 umbriel_audio_provider_enabled = false
 umbriel_overview_close_on_launch_enabled = false
 umbriel_overview_type_to_launch_enabled = false
@@ -516,6 +539,7 @@ app_grid = false
 auto_paste = "auto"
 categories = true
 category_icons_only = false
+colorize_icons = false
 compact = false
 default_view = "recent"
 fetch_exchange_rates = true
@@ -581,6 +605,7 @@ size = 32
 
 [shell.screenshot]
 annotate = false
+append_mode_suffix = true
 close_on_copy = true
 close_on_save = true
 confirm_region = false
@@ -670,6 +695,7 @@ alpha = 0.55000001192092896
 direction = "down"
 
 [shell.window_switcher]
+colorize_icons = false
 current_workspace_only = false
 mru = false
 show_all_outputs = true
@@ -728,6 +754,7 @@ pure_black_dark = false
 shell_mode = "dark"
 source = "wallpaper"
 sync_color_scheme = true
+terminal_colors = "palette"
 wallpaper_scheme = "m3-content"
 
 [theme.templates]
@@ -737,6 +764,7 @@ enable_builtin_templates = false
 enable_community_templates = false
 
 [wallpaper]
+directory = "/nix/store/hgziqpj1hk4ndygap9hgk3h2my5m42mg-wallpapers/wallpapers"
 directory_dark = ""
 directory_light = ""
 edge_smoothness = 0.30000001192092896
@@ -744,6 +772,7 @@ enabled = true
 fill_color = ""
 fill_mode = "crop"
 per_monitor_directories = false
+sync_transitions = true
 transition = [
   "fade",
   "wipe",
@@ -779,6 +808,12 @@ max_length = 260.0
 min_length = 80.0
 title_scroll = "none"
 type = "active_window"
+
+[widget.audio_visualizer]
+bands = 35
+centered = false
+type = "audio_visualizer"
+width = 125
 
 [widget.battery]
 font_scale = 0.75
@@ -826,12 +861,16 @@ type = "lock_keys"
 
 [widget.media]
 art_size = 16.0
+hide_when_no_media = true
 max_length = 220.0
 min_length = 80.0
 title_scroll = "none"
 type = "media"
 
 [widget.mirror]
+type = "elijaharch/wl-screen-mirror:mirror"
+
+[widget.mirror_2]
 type = "elijaharch/wl-screen-mirror:mirror"
 
 [widget.network]
@@ -856,6 +895,9 @@ stat = "ram_used"
 type = "sysmon"
 
 [widget.ribbon]
+type = "luochen1990/niri-ribbon:ribbon"
+
+[widget.ribbon_2]
 type = "luochen1990/niri-ribbon:ribbon"
 
 [widget.spacer]
