@@ -76,7 +76,7 @@ shadow = true
 show_on_workspace_switch = false
 show_tooltip = true
 smart_auto_hide = true
-start = ["workspaces", "ribbon_2", "active_window"]
+start = ["workspaces", "active_window"]
 thickness = 34
 widget_spacing = 6
 
@@ -330,12 +330,43 @@ widget_order = [
   "lockscreen-login-box@eDP-1",
   "lockscreen-widget-0000000000000005",
   "lockscreen-widget-0000000000000006",
+  "lockscreen-login-box@WL-1",
 ]
 
 [lockscreen_widgets.grid]
 cell_size = 16
 major_interval = 4
 visible = true
+
+[lockscreen_widgets.widget."lockscreen-login-box@WL-1"]
+box_height = 196.0
+box_width = 810.0
+cx = 957.49993896484375
+cy = 894.67401123046875
+enabled = true
+output = "WL-1"
+placement_height = 1076.0
+placement_width = 1915.0
+rotation = 0.0
+type = "login_box"
+
+[lockscreen_widgets.widget."lockscreen-login-box@WL-1".settings]
+background_color = "surface_container"
+background_opacity = 0.88
+background_radius = 12.0
+center_password_text = false
+input_opacity = 1.0
+input_radius = 6.0
+layout = "regular"
+show_caps_lock = true
+show_keyboard_layout = true
+show_login_button = true
+show_media = true
+show_media_controls = true
+show_password_reveal = true
+show_session_buttons = true
+show_unlock_hint = true
+show_weather = true
 
 [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
 box_height = 196.0
@@ -361,6 +392,7 @@ show_caps_lock = true
 show_keyboard_layout = true
 show_login_button = false
 show_media = true
+show_media_controls = true
 show_password_reveal = true
 show_session_buttons = true
 show_unlock_hint = true
@@ -468,7 +500,7 @@ wifi = true
 
 [plugins]
 auto_update = "all"
-enabled = ["luochen1990/niri-ribbon", "elijaharch/wl-screen-mirror"]
+enabled = ["elijaharch/wl-screen-mirror"]
 
 [[plugins.source]]
 enabled = true
@@ -764,7 +796,7 @@ enable_builtin_templates = false
 enable_community_templates = false
 
 [wallpaper]
-directory = "/nix/store/hgziqpj1hk4ndygap9hgk3h2my5m42mg-wallpapers/wallpapers"
+directory = "/nix/store/hj2mhzbz2w2hqvh9mq5lq21mi52yjl9q-wallpapers/wallpapers"
 directory_dark = ""
 directory_light = ""
 edge_smoothness = 0.30000001192092896
