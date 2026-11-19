@@ -17,6 +17,7 @@
     ./modules/packages.nix
     ./modules/bluetooth.nix
     inputs.sops-nix.nixosModules.sops
+    inputs.umbriel.nixosModules.default
     ./modules/upower.nix
     ./modules/logind.nix
     ./modules/keyd.nix
@@ -118,6 +119,10 @@
   services.libinput.touchpad.disableWhileTyping = true;
 
   programs.niri = {
+    enable = false;
+  };
+
+  programs.umbriel = {
     enable = true;
   };
 
