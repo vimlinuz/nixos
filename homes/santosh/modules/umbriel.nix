@@ -95,6 +95,14 @@
         shadow = "#50505066";
       };
 
+      hot_corners = {
+        bottom_left = {
+          enabled = true;
+          delay_ms = 200;
+          action = "overview-open";
+        };
+      };
+
       overview = {
         zoom = 0.4;
         workspace_wallpaper = true;
