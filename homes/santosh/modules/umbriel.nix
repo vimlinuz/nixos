@@ -304,14 +304,21 @@
         "Mod+R" = "window-cycle-primary-extent";
         "Mod+Shift+R" = "window-cycle-secondary-extent";
         "Mod+Ctrl+R" = "window-set-secondary-extent 1.0"; # niri: reset-window-height
-        "Mod+F" = "window-toggle-maximize";
         "Mod+Shift+F" = "window-toggle-fullscreen";
         "Mod+Ctrl+F" = "window-set-primary-extent 1.0"; # niri: expand-column-to-available-width
         "Mod+C" = "column-center";
+
+        "Mod+A" = "window-set-primary-extent 0.333";
+        "Mod+S" = "window-set-primary-extent 0.5";
+        "Mod+D" = "window-set-primary-extent 0.667";
+        "Mod+F" = "window-set-primary-extent 1.0";
+        # "Mod+F" = "window-toggle-maximize";
+
         "Mod+Minus" = "window-modify-primary-extent -0.1";
         "Mod+Equal" = "window-modify-primary-extent +0.1";
-        "Mod+Shift+Minus" = "window-modify-secondary-extent -0.1";
-        "Mod+Shift+Equal" = "window-modify-secondary-extent +0.1";
+        "Mod+Ctrl+Minus" = "window-modify-secondary-extent -0.1";
+        "Mod+Ctrl+Equal" = "window-modify-secondary-extent +0.1";
+
         "Mod+V" = "window-toggle-floating";
         "Mod+Shift+V" = "window-focus-switch-floating";
 
