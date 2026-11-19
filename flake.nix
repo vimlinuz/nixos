@@ -10,6 +10,7 @@
       nix-index-database,
       treefmt-nix,
       noctalia,
+      umbriel,
       ...
     }:
     let
@@ -31,8 +32,9 @@
             {
               home-manager = {
                 sharedModules = [
-                  noctalia.homeModules.default
                   mnw.homeManagerModules.mnw
+                  noctalia.homeModules.default
+                  umbriel.homeModules.default
                 ];
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -132,9 +134,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    umbriel = {
+      url = "github:noctalia-dev/umbriel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     vague-gtk = {
       url = "github:vague-theme/vague-gtk";
       flake = false;
     };
+
   };
 }
